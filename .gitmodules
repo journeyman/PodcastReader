@@ -1,0 +1,3 @@
+[submodule "Submodules/ReactiveUI"]
+	path = Submodules/ReactiveUI
+	url = git@github.com:reactiveui/ReactiveUI.git
