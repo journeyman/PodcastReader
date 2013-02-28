@@ -104,6 +104,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MainViewViewModel.cs" />
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -111,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,9 +157,24 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="System.ServiceModel.Syndication">
       <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\System.ServiceModel.Syndication.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Routing\ReactiveUI.Routing_WP8.csproj">
+      <Project>{9F70B056-893E-487D-8DD1-C012C4440618}</Project>
+      <Name>ReactiveUI.Routing_WP8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Xaml\ReactiveUI.Xaml_WP8.csproj">
+      <Project>{F9459904-F785-4255-866A-A619787CB895}</Project>
+      <Name>ReactiveUI.Xaml_WP8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI_WP8.csproj">
+      <Project>{884D2D0B-65CE-40CB-AE45-B1F45C4ECE76}</Project>
+      <Name>ReactiveUI_WP8</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

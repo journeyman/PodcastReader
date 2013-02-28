@@ -11,6 +11,7 @@ using Microsoft.Phone.Shell;
 using PodcastReader.Phone8.Resources;
 using System.ServiceModel.Syndication;
 using PodcastReader.Phone8.Classes;
+using ReactiveUI;
 
 namespace PodcastReader.Phone8
 {
@@ -21,8 +22,7 @@ namespace PodcastReader.Phone8
         {
             InitializeComponent();
 
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
+            
         }
 
         //private class Observer
@@ -34,21 +34,5 @@ namespace PodcastReader.Phone8
                          .ObserveOnDispatcher()
                          .Subscribe(Observer.Create<SyndicationFeed>(feed => MessageBox.Show(feed.Items.Count().ToString())));
         }
-
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
-
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
     }
 }
