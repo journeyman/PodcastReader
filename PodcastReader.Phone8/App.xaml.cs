@@ -7,6 +7,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using PodcastReader.Phone8.Resources;
+using PodcastReader.Phone8.Classes;
 
 namespace PodcastReader.Phone8
 {
@@ -55,6 +56,7 @@ namespace PodcastReader.Phone8
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
+            var b = new AppBootstrapper();
         }
 
         // Code to execute when the application is launching (eg, from Start)
