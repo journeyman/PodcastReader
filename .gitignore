@@ -7,7 +7,6 @@
 *.vs10x
 *.pidb
 *.userprefs
-ReactiveUI/Generated/*.cs
 *.tmp_proj
 **/StyleCop.Cache
 StyleCop.Cache
@@ -18,3 +17,6 @@ Release
 NuGet-Release
 
 *.nupkg
+
+packages/*
+!packages/repositories.config
