@@ -4,9 +4,9 @@ using System;
 
 namespace PodcastReader.Phone8.ViewModels
 {
-    public interface IMainViewViewModel : IRoutableViewModel { }
+    public interface IMainViewModel : IRoutableViewModel { }
 
-    public class MainViewViewModel : ReactiveObject, IMainViewViewModel
+    public class MainViewModel : ReactiveObject, IMainViewModel
     {
         public string UrlPathSegment
         {

@@ -9,9 +9,9 @@ using ReactiveUI;
 
 namespace PodcastReader.Phone8.Views
 {
-    public partial class MainView : PhoneApplicationPage, IViewFor<IMainViewViewModel>
+    public partial class MainView : PhoneApplicationPage, IViewFor<IMainViewModel>
     {
-        private IMainViewViewModel _viewModel;
+        private IMainViewModel _viewModel;
 
         public MainView()
         {
@@ -26,7 +26,7 @@ namespace PodcastReader.Phone8.Views
                          .Subscribe(Observer.Create<SyndicationFeed>(feed => MessageBox.Show(feed.Items.Count().ToString())));
         }
 
-        public IMainViewViewModel ViewModel 
+        public IMainViewModel ViewModel 
         {
             get { return _viewModel; }
             set 
@@ -36,6 +36,6 @@ namespace PodcastReader.Phone8.Views
             }
         }
 
-        object IViewFor.ViewModel { get { return this.ViewModel; } set { this.ViewModel = (MainViewViewModel) value; } }
+        object IViewFor.ViewModel { get { return this.ViewModel; } set { this.ViewModel = (MainViewModel) value; } }
     }
 }
