@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\IFeed.cs" />
+    <Compile Include="Entities\IFeedItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IFeedsService.cs" />
   </ItemGroup>

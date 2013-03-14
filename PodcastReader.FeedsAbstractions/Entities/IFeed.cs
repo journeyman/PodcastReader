@@ -2,5 +2,6 @@
 {
     public interface IFeed
     {
+        string Title { get; }
     }
 }

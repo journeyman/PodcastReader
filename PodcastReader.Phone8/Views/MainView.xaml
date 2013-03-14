@@ -6,27 +6,47 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    xmlns:models="clr-namespace:PodcastReader.Phone8.Models" mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait"  Orientation="Portrait"
+    SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
-        <!--Pivot Control-->
-        <phone:Pivot Title="MY APPLICATION">
-            <!--Pivot item one-->
-            <phone:PivotItem Header="item1">
-                <Grid/>
-            </phone:PivotItem>
-
-            <!--Pivot item two-->
-            <phone:PivotItem Header="item2">
-                <Grid/>
-            </phone:PivotItem>
-        </phone:Pivot>
-    </Grid>
+    <StackPanel x:Name="LayoutRoot" Background="Transparent">
+        <Panel.Resources>
+            <Style x:Key="FeedItemsListStyle" TargetType="ItemsControl">
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextNormalStyle}" />
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <Style x:Key="FeedsListStyle" TargetType="ItemsControl">
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextAccentStyle}" />
+                                <ScrollViewer Margin="14,0,0,0">
+                                    <ItemsControl ItemsSource="{Binding Items}" Style="{StaticResource FeedItemsListStyle}" />
+                                </ScrollViewer>
+                            </StackPanel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Panel.Resources>
+        
+        <TextBlock Style="{StaticResource PhoneTextTitle1Style}" Text="podcasts" />
+        
+        <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding Feeds}" Style="{StaticResource FeedsListStyle}" />
+        </ScrollViewer>
+    </StackPanel>
     
 </phone:PhoneApplicationPage>

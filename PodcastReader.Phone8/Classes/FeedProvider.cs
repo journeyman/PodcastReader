@@ -1,18 +1,16 @@
 ﻿using Microsoft.Phone.Reactive;
+using PodcastReader.FeedsAbstractions.Entities;
+using PodcastReader.FeedsAbstractions.Services;
 using System;
 using System.IO;
 using System.Net;
 using System.ServiceModel.Syndication;
 using System.Xml;
+using PodcastReader.Phone8.Models;
 
 namespace PodcastReader.Phone8.Classes
 {
-    public interface IFeedsProvider
-    {
-        IObservable<SyndicationFeed> GetFeeds();
-    }
-
-    public class TestFeedsProvider : IFeedsProvider
+    public class TestFeedsProvider : IFeedsService
     {
         private const string TEST_FEED_URL = "http://feeds.feedburner.com/Hanselminutes?format=xml";
 
@@ -26,6 +24,11 @@ namespace PodcastReader.Phone8.Classes
             client.DownloadStringAsync(new Uri(TEST_FEED_URL));
 
             return feeds;
+        }
+
+        public IObservable<IFeed> GetFeedsAsync()
+        {
+            return this.GetFeeds().Select(syndicationFeed => new FeedModel("blah", new FeedItemsLoader(syndicationFeed)));
         }
     }
 }

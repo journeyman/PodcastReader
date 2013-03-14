@@ -13,7 +13,8 @@
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
-
-    <Routing:RoutedViewHost x:Name="viewHost" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
-
+    <!--This host grid is used by MemoryPanel currently-->
+    <Grid>
+        <Routing:RoutedViewHost x:Name="viewHost" />
+    </Grid>
 </phone:PhoneApplicationPage>

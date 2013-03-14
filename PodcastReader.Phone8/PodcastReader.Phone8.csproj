@@ -98,12 +98,19 @@
     <Compile Include="Classes\AppBootstrapper.cs" />
     <Compile Include="Classes\FeedProvider.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Models\FeedModel.cs" />
+    <Compile Include="Models\IFeedItemsLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utils\MemoryPanel.cs" />
+    <Compile Include="Utils\VisualTreeExtensions.cs" />
+    <Compile Include="ViewModels\IFeedPreview.cs" />
+    <Compile Include="ViewModels\IFeedPreviewsLoader.cs" />
+    <Compile Include="ViewModels\IFeedsLoader.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\HostView.xaml.cs">
       <DependentUpon>HostView.xaml</DependentUpon>
@@ -158,6 +165,7 @@
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -166,11 +174,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.3.0.1.10\lib\sl4-windowsphone71\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.1.30214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rx-Interfaces.2.1.30214.0\lib\WP8\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="System.ServiceModel.Syndication">
       <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\System.ServiceModel.Syndication.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PodcastReader.FeedsAbstractions\PodcastReader.FeedsAbstractions.csproj">
+      <Project>{77418DA8-6CA6-43BD-BC76-9555A1CDE358}</Project>
+      <Name>PodcastReader.FeedsAbstractions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Routing\ReactiveUI.Routing_WP8.csproj">
       <Project>{9F70B056-893E-487D-8DD1-C012C4440618}</Project>
       <Name>ReactiveUI.Routing_WP8</Name>

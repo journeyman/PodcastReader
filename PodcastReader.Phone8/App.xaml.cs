@@ -8,6 +8,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using PodcastReader.Phone8.Resources;
 using PodcastReader.Phone8.Classes;
+using PodcastReader.Phone8.Utils;
 
 namespace PodcastReader.Phone8
 {
@@ -55,7 +56,9 @@ namespace PodcastReader.Phone8
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-
+#if DEBUG
+            MemoryPanel.Show(TimeSpan.FromMilliseconds(500d));
+#endif
             var b = new AppBootstrapper();
         }
 

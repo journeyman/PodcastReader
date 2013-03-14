@@ -7,6 +7,7 @@ using PodcastReader.Phone8.Views;
 using ReactiveUI;
 using ReactiveUI.Routing;
 using System.Reflection;
+using PodcastReader.FeedsAbstractions.Services;
 namespace PodcastReader.Phone8.Classes
 {
     public class AppBootstrapper : IScreen
@@ -42,16 +43,20 @@ namespace PodcastReader.Phone8.Classes
 
             this.RegisterViews();
             this.RegisterViewModels();
+            this.RegisterServices(kernel);
 
             this.Router.Navigate.Execute(RxApp.GetService<IMainViewModel>());
         }
 
         private IKernel GetKernel()
         {
-            var kernel = new StandardKernel();
+            return new StandardKernel();
+        }
 
-
-            return kernel;
+        private void RegisterServices(IKernel kernel)
+        {
+            //kernel.Bind<IFeedsService>().To<TestFeedsProvider>().InSingletonScope();
+            kernel.Bind<IFeedPreviewsLoader>().To<FeedPreviewsLoader>().InSingletonScope();
         }
 
         private void RegisterViewModels()
