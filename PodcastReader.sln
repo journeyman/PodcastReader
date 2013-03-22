@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GReader.API.ConsoleClient",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastReader.Phone8", "PodcastReader.Phone8\PodcastReader.Phone8.csproj", "{8E0C268F-5B45-4DC9-9F72-53B8C3F9F6E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastReader.FeedsAbstractions", "PodcastReader.FeedsAbstractions\PodcastReader.FeedsAbstractions.csproj", "{77418DA8-6CA6-43BD-BC76-9555A1CDE358}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Submodules", "Submodules", "{CFDB560D-7E9D-461A-B1E2-7EC36B2B6B52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactiveUI_WP8", "Submodules\ReactiveUI\ReactiveUI\ReactiveUI_WP8.csproj", "{884D2D0B-65CE-40CB-AE45-B1F45C4ECE76}"
@@ -63,14 +61,6 @@ Global
 		{8E0C268F-5B45-4DC9-9F72-53B8C3F9F6E5}.Release|x86.ActiveCfg = Release|x86
 		{8E0C268F-5B45-4DC9-9F72-53B8C3F9F6E5}.Release|x86.Build.0 = Release|x86
 		{8E0C268F-5B45-4DC9-9F72-53B8C3F9F6E5}.Release|x86.Deploy.0 = Release|x86
-		{77418DA8-6CA6-43BD-BC76-9555A1CDE358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77418DA8-6CA6-43BD-BC76-9555A1CDE358}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77418DA8-6CA6-43BD-BC76-9555A1CDE358}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{77418DA8-6CA6-43BD-BC76-9555A1CDE358}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{77418DA8-6CA6-43BD-BC76-9555A1CDE358}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77418DA8-6CA6-43BD-BC76-9555A1CDE358}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77418DA8-6CA6-43BD-BC76-9555A1CDE358}.Release|ARM.ActiveCfg = Release|Any CPU
-		{77418DA8-6CA6-43BD-BC76-9555A1CDE358}.Release|x86.ActiveCfg = Release|Any CPU
 		{884D2D0B-65CE-40CB-AE45-B1F45C4ECE76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{884D2D0B-65CE-40CB-AE45-B1F45C4ECE76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{884D2D0B-65CE-40CB-AE45-B1F45C4ECE76}.Debug|ARM.ActiveCfg = Debug|ARM

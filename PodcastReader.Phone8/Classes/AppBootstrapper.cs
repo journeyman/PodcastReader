@@ -2,12 +2,12 @@
 using System.Linq;
 using Microsoft.Phone.Reactive;
 using Ninject;
+using PodcastReader.Phone8.Interfaces.Loaders;
+using PodcastReader.Phone8.Loaders;
 using PodcastReader.Phone8.ViewModels;
-using PodcastReader.Phone8.Views;
 using ReactiveUI;
 using ReactiveUI.Routing;
 using System.Reflection;
-using PodcastReader.FeedsAbstractions.Services;
 namespace PodcastReader.Phone8.Classes
 {
     public class AppBootstrapper : IScreen

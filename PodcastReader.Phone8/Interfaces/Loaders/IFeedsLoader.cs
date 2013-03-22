@@ -1,7 +1,7 @@
-﻿using PodcastReader.FeedsAbstractions.Entities;
 using System;
+using PodcastReader.FeedsAbstractions.Entities;
 
-namespace PodcastReader.Phone8.ViewModels
+namespace PodcastReader.Phone8.Interfaces.Loaders
 {
     public interface IFeedsLoader : IObservable<IFeed>
     {

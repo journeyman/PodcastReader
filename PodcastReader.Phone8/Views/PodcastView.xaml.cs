@@ -1,4 +1,5 @@
 ﻿using Microsoft.Phone.Controls;
+using PodcastReader.Phone8.ViewModels;
 using ReactiveUI;
 using PodcastReader.Phone8.Models;
 

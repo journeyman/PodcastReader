@@ -1,20 +1,15 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Net;
 using System.ServiceModel.Syndication;
 using System.Xml;
 using Microsoft.Phone.Reactive;
+using PodcastReader.Phone8.Interfaces.Loaders;
+using PodcastReader.Phone8.Interfaces.Models;
 using PodcastReader.Phone8.Models;
-using PodcastReader.Phone8.ViewModels;
-using ReactiveUI;
 
-namespace PodcastReader.FeedsAbstractions.Services
+namespace PodcastReader.Phone8.Loaders
 {
-    public interface IFeedPreviewsLoader : IObservable<IFeedPreview>
-    {
-        void Load();
-    }
-
     public class FeedPreviewsLoader : IFeedPreviewsLoader
     {
         private const string TEST_FEED_URL = "http://feeds.feedburner.com/Hanselminutes?format=xml";
@@ -31,10 +26,10 @@ namespace PodcastReader.FeedsAbstractions.Services
             var client = new WebClient();
 
             Observable.FromEvent<DownloadStringCompletedEventArgs>(client, "DownloadStringCompleted")
-                .Select(e => e.EventArgs.Result)
-                .Select(xml => SyndicationFeed.Load(XmlReader.Create(new StringReader(xml))))
-                .Select(feed => new FeedModel(feed.Title.Text, new FeedItemsLoader(feed)))
-                .Subscribe(_subject);
+                      .Select(e => e.EventArgs.Result)
+                      .Select(xml => SyndicationFeed.Load(XmlReader.Create(new StringReader(xml))))
+                      .Select(feed => new FeedModel(feed.Title.Text, new FeedItemsLoader(feed)))
+                      .Subscribe(_subject);
 
             client.DownloadStringAsync(new Uri(TEST_FEED_URL));
         }

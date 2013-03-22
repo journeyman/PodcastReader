@@ -1,9 +1,4 @@
-﻿using System.Linq;
-using System.ServiceModel.Syndication;
-using System.Windows;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Reactive;
-using PodcastReader.Phone8.Classes;
+﻿using Microsoft.Phone.Controls;
 using PodcastReader.Phone8.ViewModels;
 using ReactiveUI;
 
@@ -16,14 +11,6 @@ namespace PodcastReader.Phone8.Views
         public MainView()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            var feedsProvider = new TestFeedsProvider();
-            feedsProvider.GetFeeds()
-                         .ObserveOnDispatcher()
-                         .Subscribe(Observer.Create<SyndicationFeed>(feed => MessageBox.Show(feed.Items.Count().ToString())));
         }
 
         public IMainViewModel ViewModel 

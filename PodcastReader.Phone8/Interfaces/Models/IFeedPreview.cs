@@ -1,7 +1,6 @@
-﻿using PodcastReader.FeedsAbstractions.Entities;
 using System;
 
-namespace PodcastReader.Phone8.ViewModels
+namespace PodcastReader.Phone8.Interfaces.Models
 {
     public interface IFeedPreview
     {

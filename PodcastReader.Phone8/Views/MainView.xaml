@@ -6,7 +6,6 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:models="clr-namespace:PodcastReader.Phone8.Models"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -24,7 +23,7 @@
                             <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextNormalStyle}">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Tap">
-                                        <i:InvokeCommandAction Command="{Binding GoToPodcastCommand}" />
+                                        <i:InvokeCommandAction Command="{Binding GoToPodcastCommand}" CommandParameter="{Binding}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </TextBlock>

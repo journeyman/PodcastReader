@@ -1,6 +1,7 @@
 ﻿using System;
 using PodcastReader.FeedsAbstractions.Entities;
-using PodcastReader.Phone8.ViewModels;
+using PodcastReader.Phone8.Interfaces.Loaders;
+using PodcastReader.Phone8.Interfaces.Models;
 using ReactiveUI;
 
 namespace PodcastReader.Phone8.Models
@@ -14,10 +15,10 @@ namespace PodcastReader.Phone8.Models
             this.Title = title;
 
             _lastFeedItemProp = new ObservableAsPropertyHelper<IFeedItem>(itemsLoader, item => this.RaisePropertyChanged(x => x.LastFeedItem));
-            this.Items = itemsLoader.CreateCollection().CreateDerivedCollection(f => f, null, FeedItemsComparer);
+            this.Items = itemsLoader.CreateCollection().CreateDerivedCollection(f => f, null, ByDateDescendingComparer);
         }
 
-        private int FeedItemsComparer(IFeedItem a, IFeedItem b)
+        private int ByDateDescendingComparer(IFeedItem a, IFeedItem b)
         {
             if (a.DatePublished == b.DatePublished)
                 return 0;
