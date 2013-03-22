@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Classes\AppBootstrapper.cs" />
     <Compile Include="Classes\FeedProvider.cs" />
+    <Compile Include="Classes\Screen.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Models\FeedModel.cs" />
     <Compile Include="Models\IFeedItemsLoader.cs" />
@@ -112,6 +113,9 @@
     <Compile Include="ViewModels\IFeedPreviewsLoader.cs" />
     <Compile Include="ViewModels\IFeedsLoader.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\PodcastView.xaml.cs">
+      <DependentUpon>PodcastView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HostView.xaml.cs">
       <DependentUpon>HostView.xaml</DependentUpon>
     </Compile>
@@ -124,6 +128,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Views\PodcastView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\HostView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -181,6 +189,7 @@
     <Reference Include="System.ServiceModel.Syndication">
       <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\System.ServiceModel.Syndication.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PodcastReader.FeedsAbstractions\PodcastReader.FeedsAbstractions.csproj">

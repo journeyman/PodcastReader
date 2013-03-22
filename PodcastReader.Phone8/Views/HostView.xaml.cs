@@ -17,7 +17,7 @@ namespace PodcastReader.Phone8.Views
         public HostView()
         {
             InitializeComponent();
-
+            this.
             viewHost.Router = RxApp.GetService<IScreen>().Router;
         }
     }
