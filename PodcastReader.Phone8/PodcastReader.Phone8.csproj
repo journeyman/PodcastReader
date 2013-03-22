@@ -117,6 +117,7 @@
     <Compile Include="Utils\VisualTreeExtensions.cs" />
     <Compile Include="ViewModels\FeedItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\RoutableViewModelBase.cs" />
     <Compile Include="Views\PodcastView.xaml.cs">
       <DependentUpon>PodcastView.xaml</DependentUpon>
     </Compile>
@@ -132,6 +133,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Resource Include="Views\Layouts\HeaderedLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
     <Page Include="Views\PodcastView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -196,6 +201,10 @@
     <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Submodules\Magellan.WP\Magellan.WP.csproj">
+      <Project>{60146683-34C4-464E-9169-7B76F9D5C365}</Project>
+      <Name>Magellan.WP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Routing\ReactiveUI.Routing_WP8.csproj">
       <Project>{9F70B056-893E-487D-8DD1-C012C4440618}</Project>
       <Name>ReactiveUI.Routing_WP8</Name>

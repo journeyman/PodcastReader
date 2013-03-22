@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:m="clr-namespace:Magellan.WP.Controls;assembly=Magellan.WP"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -11,10 +12,18 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <StackPanel x:Name="LayoutRoot" Background="Transparent">
-        <ScrollViewer>
-            <ItemsControl ItemsSource="{Binding Items}" />
-        </ScrollViewer>
-    </StackPanel>
-    
+    <m:Layout Source="/PodcastReader.Phone8;component/Views/Layouts/HeaderedLayout.xaml">
+
+        <m:Zone ZonePlaceHolderName="Header" Content="{Binding Title}" />
+        
+        <m:Zone ZonePlaceHolderName="Content">
+            <StackPanel Background="Transparent">
+                <ScrollViewer>
+                    <ItemsControl ItemsSource="{Binding Items}" />
+                </ScrollViewer>
+            </StackPanel>
+        </m:Zone>
+        
+    </m:Layout>
+
 </phone:PhoneApplicationPage>
