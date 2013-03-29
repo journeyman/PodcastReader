@@ -87,6 +87,7 @@ namespace Magellan.WP.Controls
         {
             LoadLayoutFromSource();
             ReloadZones();
+            //this.UpdateLayout();
         }
 
         private void LoadLayoutFromSource()

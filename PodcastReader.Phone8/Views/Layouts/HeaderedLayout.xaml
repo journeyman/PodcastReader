@@ -11,9 +11,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <m:ZonePlaceHolder Name="Header">
-            <TextBlock Text="{Binding Content, ElementName=Header}" Style="{StaticResource PhoneTextTitle1Style}" />
-        </m:ZonePlaceHolder>
+        <m:ZonePlaceHolder Name="Header"/>
         
         <m:ZonePlaceHolder Name="Content" Grid.Row="2" />
         

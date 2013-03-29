@@ -24,5 +24,6 @@ namespace PodcastReader.Phone8.Views
         }
 
         object IViewFor.ViewModel { get { return this.ViewModel; } set { this.ViewModel = (MainViewModel) value; } }
+
     }
 }
