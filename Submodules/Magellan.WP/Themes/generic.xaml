@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:m="clr-namespace:Magellan.WP.Controls;assembly=Magellan.WP">
+
+    <Style TargetType="m:ZonePlaceHolder">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="m:ZonePlaceHolder">
+                    <ContentPresenter />
+                    <!--<ContentPresenter Content="{TemplateBinding Content}"/>-->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="m:Layout">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="m:Layout">
+                    <!--TODO:figure out why its important!-->
+                    <ContentPresenter Content="{TemplateBinding Content}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
