@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
 using System.ServiceModel.Syndication;
@@ -26,10 +26,10 @@ namespace PodcastReader.Phone8.Loaders
             var client = new WebClient();
 
             Observable.FromEvent<DownloadStringCompletedEventArgs>(client, "DownloadStringCompleted")
-                      .Select(e => e.EventArgs.Result)
-                      .Select(xml => SyndicationFeed.Load(XmlReader.Create(new StringReader(xml))))
-                      .Select(feed => new FeedModel(feed.Title.Text, new FeedItemsLoader(feed)))
-                      .Subscribe(_subject);
+                .Select(e => e.EventArgs.Result)
+                .Select(xml => SyndicationFeed.Load(XmlReader.Create(new StringReader(xml))))
+                .Select(feed => new FeedModel(feed.Title.Text, new PodcastItemsLoader(feed)))
+                .Subscribe(_subject);
 
             client.DownloadStringAsync(new Uri(TEST_FEED_URL));
         }

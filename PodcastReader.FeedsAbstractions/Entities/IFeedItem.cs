@@ -8,5 +8,4 @@ namespace PodcastReader.FeedsAbstractions.Entities
         string Title { get; }
         string Summary { get; }
     }
-
 }

@@ -8,13 +8,15 @@ namespace PodcastReader.Phone8.Models
 {
     public class FeedModel : ReactiveObject, IFeed, IFeedPreview
     {
-        private readonly ObservableAsPropertyHelper<IFeedItem> _lastFeedItemProp;
+        private readonly ObservableAsPropertyHelper<IPodcastItem> _lastFeedItemProp;
+        private readonly ObservableAsPropertyHelper<DateTimeOffset> _lastPulbishedProp;
 
-        public FeedModel(string title, IFeedItemsLoader itemsLoader)
+        public FeedModel(string title, IPodcastItemsLoader itemsLoader)
         {
             this.Title = title;
 
-            _lastFeedItemProp = new ObservableAsPropertyHelper<IFeedItem>(itemsLoader, item => this.RaisePropertyChanged(x => x.LastFeedItem));
+            _lastFeedItemProp = new ObservableAsPropertyHelper<IPodcastItem>(itemsLoader, item => this.RaisePropertyChanged(x => x.LastFeedItem));
+            _lastPulbishedProp = new ObservableAsPropertyHelper<DateTimeOffset>(_lastFeedItemProp.Select(i => i.LastPublished), dt => this.RaisePropertyChanged(x => x.LastPublished));
             this.Items = itemsLoader.CreateCollection().CreateDerivedCollection(f => f, null, ByDateDescendingComparer);
         }
 
@@ -28,7 +30,7 @@ namespace PodcastReader.Phone8.Models
                 return 1;
         }
 
-        public ReactiveCollection<IFeedItem> Items { get; private set; } 
+        public ReactiveCollection<IPodcastItem> Items { get; private set; } 
 
         public string Title { get; private set; }
 
@@ -39,7 +41,7 @@ namespace PodcastReader.Phone8.Models
 
         public DateTimeOffset LastPublished
         {
-            get { return this.LastFeedItem.DatePublished; }
+            get { return _ }
         }
     }
 }
