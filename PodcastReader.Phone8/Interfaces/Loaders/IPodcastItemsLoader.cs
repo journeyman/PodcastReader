@@ -3,7 +3,7 @@ using PodcastReader.Phone8.Interfaces.Models;
 
 namespace PodcastReader.Phone8.Interfaces.Loaders
 {
-    public interface IFeedItemsLoader : IObservable<IFeedItem>
+    public interface IPodcastItemsLoader : IObservable<IPodcastItem>
     {
     }
 }

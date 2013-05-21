@@ -4,14 +4,11 @@ using System.Resources;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Navigation;
-using Microsoft.Phone.BackgroundAudio;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using PodcastReader.Phone8.Infrastructure;
-using PodcastReader.Phone8.Resources;
-using PodcastReader.Phone8.Utils;
+using Tests.UI.Resources;
 
-namespace PodcastReader.Phone8
+namespace Tests.UI
 {
     public partial class App : Application
     {
@@ -43,9 +40,6 @@ namespace PodcastReader.Phone8
             {
                 // Display the current frame rate counters.
                 Application.Current.Host.Settings.EnableFrameRateCounter = true;
-                //to prevend debugger attaching to background agent instead of the app 
-                //(source http://msdn.microsoft.com/en-us/library/windowsphone/develop/hh394039(v=vs.105).aspx#BKMK_BackgroundAudioBestPractices)
-                BackgroundAudioPlayer.Instance.Close();
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -60,10 +54,7 @@ namespace PodcastReader.Phone8
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-#if DEBUG
-            MemoryPanel.Show(TimeSpan.FromMilliseconds(500d));
-#endif
-            var b = new AppBootstrapper();
+
         }
 
         // Code to execute when the application is launching (eg, from Start)

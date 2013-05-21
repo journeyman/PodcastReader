@@ -4,16 +4,16 @@ using Magellan.WP.Controls;
 
 namespace PodcastReader.Phone8.Views
 {
-    public partial class PodcastView : Layout, IViewFor<IFeedItemViewModel>
+    public partial class PodcastView : Layout, IViewFor<IPodcastItemViewModel>
     {
-        private IFeedItemViewModel _viewModel;
+        private IPodcastItemViewModel _viewModel;
 
         public PodcastView()
         {
             InitializeComponent();
         }
 
-        public IFeedItemViewModel ViewModel 
+        public IPodcastItemViewModel ViewModel 
         {
             get { return _viewModel; }
             set 
@@ -23,6 +23,6 @@ namespace PodcastReader.Phone8.Views
             }
         }
 
-        object IViewFor.ViewModel { get { return this.ViewModel; } set { this.ViewModel = (IFeedItemViewModel) value; } }
+        object IViewFor.ViewModel { get { return this.ViewModel; } set { this.ViewModel = (IPodcastItemViewModel) value; } }
     }
 }

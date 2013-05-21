@@ -1,6 +1,7 @@
 ﻿using ReactiveUI;
 using ReactiveUI.Routing;
-namespace PodcastReader.Phone8.Classes
+
+namespace PodcastReader.Phone8.Infrastructure
 {
     public static class Screen
     {

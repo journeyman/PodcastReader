@@ -1,4 +1,5 @@
-﻿using Microsoft.Phone.Controls;
+﻿using System.ComponentModel;
+using Microsoft.Phone.Controls;
 using ReactiveUI;
 using ReactiveUI.Routing;
 
@@ -13,9 +14,9 @@ namespace PodcastReader.Phone8.Views
             viewHost.Router = RxApp.GetService<IScreen>().Router;
         }
 
-        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        protected override void OnBackKeyPress(CancelEventArgs e)
         {
-            if (viewHost.Router.NavigationStack.Count > 1)
+            if (viewHost.Router.NavigateBack.CanExecute(null))
             {
                 e.Cancel = true;
                 viewHost.Router.NavigateBack.Execute(null);

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.Phone.Reactive;
+using System.Reactive.Linq;
 using Ninject;
 using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Loaders;
@@ -8,7 +8,10 @@ using PodcastReader.Phone8.ViewModels;
 using ReactiveUI;
 using ReactiveUI.Routing;
 using System.Reflection;
-namespace PodcastReader.Phone8.Classes
+using PodcastReader.Infrastructure.Interfaces;
+using PodcastReader.Infrastructure.Audio;
+
+namespace PodcastReader.Phone8.Infrastructure
 {
     public class AppBootstrapper : IScreen
     {
@@ -55,8 +58,8 @@ namespace PodcastReader.Phone8.Classes
 
         private void RegisterServices(IKernel kernel)
         {
-            //kernel.Bind<IFeedsService>().To<TestFeedsProvider>().InSingletonScope();
             kernel.Bind<IFeedPreviewsLoader>().To<FeedPreviewsLoader>().InSingletonScope();
+            kernel.Bind<IPlayerClient>().To<BufferingPlayerClient>().InSingletonScope();
         }
 
         private void RegisterViewModels()
@@ -74,9 +77,11 @@ namespace PodcastReader.Phone8.Classes
                 .Subscribe();
         }
 
+        /// <summary>
+        /// auto registers Views as IViewFo<T>
+        /// </summary>
         private void RegisterViews()
         {
-            //auto registers Views as IViewFor<>
             var assembly = Assembly.GetExecutingAssembly();
             assembly.GetTypes()
                 .Select(t => t.GetTypeAndItsRawGenericInterfaceIfExists(typeof(IViewFor<>)))

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive.Linq;
 using PodcastReader.FeedsAbstractions.Entities;
 using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Interfaces.Models;
@@ -15,9 +16,9 @@ namespace PodcastReader.Phone8.Models
         {
             this.Title = title;
 
-            _lastFeedItemProp = new ObservableAsPropertyHelper<IPodcastItem>(itemsLoader, item => this.RaisePropertyChanged(x => x.LastFeedItem));
-            _lastPulbishedProp = new ObservableAsPropertyHelper<DateTimeOffset>(_lastFeedItemProp.Select(i => i.LastPublished), dt => this.RaisePropertyChanged(x => x.LastPublished));
             this.Items = itemsLoader.CreateCollection().CreateDerivedCollection(f => f, null, ByDateDescendingComparer);
+            _lastFeedItemProp = new ObservableAsPropertyHelper<IPodcastItem>(this.Items.ItemsAdded, item => this.RaisePropertyChanged(x => x.LastFeedItem));
+            _lastPulbishedProp = new ObservableAsPropertyHelper<DateTimeOffset>(_lastFeedItemProp.Select(i => i.DatePublished), dt => this.RaisePropertyChanged(x => x.LastPublished));
         }
 
         private int ByDateDescendingComparer(IFeedItem a, IFeedItem b)
@@ -41,7 +42,7 @@ namespace PodcastReader.Phone8.Models
 
         public DateTimeOffset LastPublished
         {
-            get { return _ }
+            get { return _lastPulbishedProp.Value; }
         }
     }
 }

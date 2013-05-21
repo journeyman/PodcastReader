@@ -14,9 +14,10 @@
         
     <m:Zone ZonePlaceHolderName="Content">
         <StackPanel Background="Transparent">
-            <ScrollViewer>
+            <!--<ScrollViewer>
                 <ItemsControl ItemsSource="{Binding Items}" />
-            </ScrollViewer>
+            </ScrollViewer>-->
+            <Button Content="Play" Command="{Binding PlayPodcastCommand}"/>
         </StackPanel>
     </m:Zone>
         

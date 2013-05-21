@@ -12,6 +12,10 @@
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="Views/HostView.xaml" />
+      <ExtendedTask Name="BackgroundTask">
+        <BackgroundServiceAgent Specifier="AudioPlayerAgent" Name="Audio.AudioPlaybackAgent" Source="Audio.AudioPlaybackAgent" Type="Audio.AudioPlaybackAgent.AudioQueueScheduler" />
+        <BackgroundServiceAgent Specifier="AudioStreamingAgent" Name="Audio.StorageStreamingAgent" Source="Audio.StorageStreamingAgent" Type="Audio.StorageStreamingAgent.AudioStreamer" />
+      </ExtendedTask>
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="PodcastReader.Phone8Token" TaskName="_default">
