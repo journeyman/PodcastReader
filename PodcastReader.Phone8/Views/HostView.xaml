@@ -6,7 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Routing="clr-namespace:ReactiveUI.Routing;assembly=ReactiveUI.Routing_WP8"
+    xmlns:xaml="clr-namespace:ReactiveUI.Xaml;assembly=ReactiveUI.Xaml"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -15,6 +15,6 @@
     shell:SystemTray.IsVisible="True">
     <!--This host grid is used by MemoryPanel currently-->
     <Grid>
-        <Routing:RoutedViewHost x:Name="viewHost" />
+        <xaml:RoutedViewHost x:Name="viewHost" />
     </Grid>
 </phone:PhoneApplicationPage>

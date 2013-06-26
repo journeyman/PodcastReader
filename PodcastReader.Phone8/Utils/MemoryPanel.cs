@@ -30,7 +30,7 @@ namespace PodcastReader.Phone8.Utils
             var panel = content.GetVisualChildren<Panel>().FirstOrDefault();
             if (panel == null)
             {
-                RxApp.LoggerFactory(typeof(MemoryPanel)).Write("Failed to init MemoryPanel: containing panel not found!", LogLevel.Debug);
+                LogHost.Default.Debug("Failed to init MemoryPanel: containing panel not found!");
                 return;
             }
             

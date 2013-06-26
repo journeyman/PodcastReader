@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using Microsoft.Phone.Controls;
 using ReactiveUI;
-using ReactiveUI.Routing;
 
 namespace PodcastReader.Phone8.Views
 {
@@ -11,7 +10,7 @@ namespace PodcastReader.Phone8.Views
         {
             InitializeComponent();
 
-            viewHost.Router = RxApp.GetService<IScreen>().Router;
+            viewHost.Router = RxApp.DependencyResolver.GetService<IScreen>().Router;
         }
 
         protected override void OnBackKeyPress(CancelEventArgs e)

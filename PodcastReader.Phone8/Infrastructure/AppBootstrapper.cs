@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Linq;
-using System.Reactive.Linq;
 using Ninject;
 using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Loaders;
 using PodcastReader.Phone8.ViewModels;
 using ReactiveUI;
-using ReactiveUI.Routing;
 using System.Reflection;
 using PodcastReader.Infrastructure.Interfaces;
 using PodcastReader.Infrastructure.Audio;
@@ -23,32 +21,32 @@ namespace PodcastReader.Phone8.Infrastructure
             this.Router = testRouter ?? new RoutingState();
             
             // Set up NInject to do DI
-            RxApp.ConfigureServiceLocator(
-                (iface, contract) =>
+            var customResolver = new FuncDependencyResolver(
+                (service, contract) =>
                 {
-                    if (contract != null) return kernel.Get(iface, contract);
-                    return kernel.Get(iface);
+                    if (contract != null) return kernel.GetAll(service, contract);
+                    var items = kernel.GetAll(service);
+                    var list = items.ToList();
+                    return list;
                 },
-                (iface, contract) =>
+                (factory, service, contract) =>
                 {
-                    if (contract != null) return kernel.GetAll(iface, contract);
-                    return kernel.GetAll(iface);
-                },
-                (realClass, iface, contract) =>
-                {
-                    var binding = kernel.Bind(iface).To(realClass);
+                    var binding = kernel.Bind(service).ToMethod(_ => factory());
                     if (contract != null) binding.Named(contract);
                 });
+            customResolver.InitializeResolver();
+
+            RxApp.DependencyResolver = customResolver;
 
             LogHost.Default.Level = LogLevel.Debug;
 
             kernel.Bind<IScreen>().ToConstant(this);
 
-            this.RegisterViews();
-            this.RegisterViewModels();
+            this.RegisterViews(kernel);
+            this.RegisterViewModels(kernel);
             this.RegisterServices(kernel);
 
-            this.Router.Navigate.Execute(RxApp.GetService<IMainViewModel>());
+            this.Router.Navigate.Execute(RxApp.DependencyResolver.GetService<IMainViewModel>());
         }
 
         private IKernel GetKernel()
@@ -62,33 +60,34 @@ namespace PodcastReader.Phone8.Infrastructure
             kernel.Bind<IPlayerClient>().To<BufferingPlayerClient>().InSingletonScope();
         }
 
-        private void RegisterViewModels()
+        private void RegisterViewModels(IKernel kernel)
         {
             var assembly = Assembly.GetExecutingAssembly();
-            assembly.GetTypes()
-                .Where(t => !t.IsInterface && t.Name.EndsWith("ViewModel"))
-                .ToObservable()
-                .Do(implType =>
-                        {
-                            var ifaceType = implType.GetInterfaces().SingleOrDefault(iface => iface.Name.Contains(implType.Name));
-                            if (ifaceType != null)
-                                RxApp.Register(implType, ifaceType);
-                        })
-                .Subscribe();
+            var vms = assembly.GetTypes()
+                .Where(t => !t.IsInterface && t.Name.EndsWith("ViewModel"));
+
+            foreach (var viewModelType in vms)
+            {
+                var ifaceType = viewModelType.GetInterfaces().SingleOrDefault(iface => iface.Name.Contains(viewModelType.Name));
+                if (ifaceType != null)
+                    kernel.Bind(ifaceType).To(viewModelType);
+            }
         }
 
         /// <summary>
         /// auto registers Views as IViewFo<T>
         /// </summary>
-        private void RegisterViews()
+        private void RegisterViews(IKernel kernel)
         {
             var assembly = Assembly.GetExecutingAssembly();
-            assembly.GetTypes()
-                .Select(t => t.GetTypeAndItsRawGenericInterfaceIfExists(typeof(IViewFor<>)))
-                .Where(result => result != null)
-                .ToObservable()
-                .Do(implIfacePair => RxApp.Register(implIfacePair.Item1, implIfacePair.Item2))
-                .Subscribe();
+            var views = assembly.GetTypes()
+                    .Select(t => t.GetTypeAndItsRawGenericInterfaceIfExists(typeof (IViewFor<>)))
+                    .Where(result => result != null);
+
+            foreach (var ifaceImplPair in views)
+            {
+                kernel.Bind(ifaceImplPair.Item1).To(ifaceImplPair.Item2);
+            }
         }
     }
 

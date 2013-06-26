@@ -1,5 +1,4 @@
 ﻿using ReactiveUI;
-using ReactiveUI.Routing;
 using System;
 
 namespace PodcastReader.Phone8.ViewModels

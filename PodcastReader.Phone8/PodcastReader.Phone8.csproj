@@ -117,7 +117,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\MemoryPanel.cs" />
-    <Compile Include="Utils\RoutingStateMixins.cs" />
+    <Compile Include="Utils\PropertyChangedExtensions.cs" />
     <Compile Include="Utils\VisualTreeExtensions.cs" />
     <Compile Include="ViewModels\PodcastItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -234,17 +234,17 @@
       <Project>{60146683-34C4-464E-9169-7B76F9D5C365}</Project>
       <Name>Magellan.WP</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Routing\ReactiveUI.Routing_WP8.csproj">
-      <Project>{9F70B056-893E-487D-8DD1-C012C4440618}</Project>
-      <Name>ReactiveUI.Routing_WP8</Name>
+    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.NLog\ReactiveUI.NLog_WP8.csproj">
+      <Project>{584F60B1-C425-4D17-B90A-8C2AB1EC78D7}</Project>
+      <Name>ReactiveUI.NLog_WP8</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Xaml\ReactiveUI.Xaml_WP8.csproj">
+    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Platforms\ReactiveUI.Xaml_WP8.csproj">
       <Project>{F9459904-F785-4255-866A-A619787CB895}</Project>
       <Name>ReactiveUI.Xaml_WP8</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI_WP8.csproj">
-      <Project>{884D2D0B-65CE-40CB-AE45-B1F45C4ECE76}</Project>
-      <Name>ReactiveUI_WP8</Name>
+    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI.csproj">
+      <Project>{464CB812-F99F-401B-BE4C-E8F0515CD19D}</Project>
+      <Name>ReactiveUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

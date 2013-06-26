@@ -1,7 +1,6 @@
 ﻿using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Interfaces.Models;
 using ReactiveUI;
-using ReactiveUI.Routing;
 
 namespace PodcastReader.Phone8.ViewModels
 {
@@ -29,7 +28,7 @@ namespace PodcastReader.Phone8.ViewModels
                 return -1;
         }
 
-        public ReactiveCollection<IFeedPreview> Feeds { get; private set; }
+        public IReactiveCollection<IFeedPreview> Feeds { get; private set; }
     }
 
 }

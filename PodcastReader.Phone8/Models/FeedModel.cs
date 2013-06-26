@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reactive.Linq;
 using PodcastReader.FeedsAbstractions.Entities;
 using PodcastReader.Phone8.Interfaces.Loaders;
@@ -17,7 +18,7 @@ namespace PodcastReader.Phone8.Models
             this.Title = title;
 
             this.Items = itemsLoader.CreateCollection().CreateDerivedCollection(f => f, null, ByDateDescendingComparer);
-            _lastFeedItemProp = new ObservableAsPropertyHelper<IPodcastItem>(this.Items.ItemsAdded, item => this.RaisePropertyChanged(x => x.LastFeedItem));
+            _lastFeedItemProp = new ObservableAsPropertyHelper<IPodcastItem>(this.Items.CountChanged.Select(_ => this.Items.Last()), _ => this.RaisePropertyChanged(x => x.LastFeedItem));
             _lastPulbishedProp = new ObservableAsPropertyHelper<DateTimeOffset>(_lastFeedItemProp.Select(i => i.DatePublished), dt => this.RaisePropertyChanged(x => x.LastPublished));
         }
 
@@ -31,7 +32,7 @@ namespace PodcastReader.Phone8.Models
                 return 1;
         }
 
-        public ReactiveCollection<IPodcastItem> Items { get; private set; } 
+        public IReactiveCollection<IPodcastItem> Items { get; private set; } 
 
         public string Title { get; private set; }
 

@@ -152,14 +152,6 @@
       <Project>{8E0C268F-5B45-4DC9-9F72-53B8C3F9F6E5}</Project>
       <Name>PodcastReader.Phone8</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Routing\ReactiveUI.Routing_WP8.csproj">
-      <Project>{9F70B056-893E-487D-8DD1-C012C4440618}</Project>
-      <Name>ReactiveUI.Routing_WP8</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI_WP8.csproj">
-      <Project>{884D2D0B-65CE-40CB-AE45-B1F45C4ECE76}</Project>
-      <Name>ReactiveUI_WP8</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

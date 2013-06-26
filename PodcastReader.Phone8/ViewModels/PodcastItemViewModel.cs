@@ -5,9 +5,7 @@ using PodcastReader.Infrastructure;
 using PodcastReader.Phone8.Infrastructure;
 using PodcastReader.Phone8.Interfaces.Models;
 using PodcastReader.Phone8.Models;
-using PodcastReader.Phone8.Utils;
-using ReactiveUI.Routing;
-using ReactiveUI.Xaml;
+using ReactiveUI;
 
 namespace PodcastReader.Phone8.ViewModels
 {
