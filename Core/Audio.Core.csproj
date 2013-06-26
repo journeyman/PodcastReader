@@ -84,6 +84,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BitTools.cs" />
+    <Compile Include="DebugOutputLogger.cs" />
     <Compile Include="MpegFrame.cs" />
     <Compile Include="MpegLayer3WaveFormat.cs" />
     <Compile Include="Mp3MediaStreamSource.cs" />

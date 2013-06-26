@@ -129,20 +129,18 @@ namespace Audio.Core
                 int id3Size = BitTools.ConvertSyncSafeToInt32(data, 6);
                 int bytesRead = 0;
 
-                Task.Run(() =>
+                //TODO:SS: try remove this Task.Run (we probably dont need threads in BG agent)
+                // Read through the ID3 Data tossing it out.)
+                while (id3Size > 0)
                 {
-                    // Read through the ID3 Data tossing it out.)
-                    while (id3Size > 0)
-                    {
-                        bytesRead = (id3Size - buffer.Length > 0)
-                           ? this.audioStream.Read(buffer, 0, buffer.Length)
-                           : this.audioStream.Read(buffer, 0, id3Size);
-                        id3Size -= bytesRead;
-                    }
+                    bytesRead = (id3Size - buffer.Length > 0)
+                        ? this.audioStream.Read(buffer, 0, buffer.Length)
+                        : this.audioStream.Read(buffer, 0, id3Size);
+                    id3Size -= bytesRead;
+                }
 
-                    mpegFrame = new MpegFrame(this.audioStream);
-                    callback(mpegFrame);
-                });
+                mpegFrame = new MpegFrame(this.audioStream);
+                callback(mpegFrame);
             }
             else
             {
@@ -171,6 +169,7 @@ namespace Audio.Core
         /// </summary>
         protected override void OpenMediaAsync()
         {
+            this.Log("OpenMediaAsync called");
             // Initialize data structures to pass to the Media pipeline via the MediaStreamSource
             Dictionary<MediaSourceAttributesKeys, string> mediaSourceAttributes = new Dictionary<MediaSourceAttributesKeys, string>();
             Dictionary<MediaStreamAttributeKeys, string> mediaStreamAttributes = new Dictionary<MediaStreamAttributeKeys, string>();
@@ -190,7 +189,7 @@ namespace Audio.Core
         {
             Dictionary<MediaSampleAttributeKeys, string> emptyDict = new Dictionary<MediaSampleAttributeKeys, string>();
             MediaStreamSample audioSample = null;
-
+            this.Log("Yay! Sample requested!");
             if (this.currentFrame != null)
             {
                 // Calculate our current position based on the stream's length
@@ -241,6 +240,7 @@ namespace Audio.Core
                 // We're near the end of the file, or we got an irrecoverable error.
                 // Return a null stream which tells the MediaStreamSource & MediaElement to shut down
                 audioSample = new MediaStreamSample(this.audioStreamDescription, null, 0, 0, 0, emptyDict);
+                this.Log("Reporting GetSampleCompleted called");
                 this.ReportGetSampleCompleted(audioSample);
             }
         }
@@ -250,12 +250,14 @@ namespace Audio.Core
         /// </summary>
         protected override void CloseMedia()
         {
+            this.Log("CloseMedia called");
             try
             {
                 this.audioStream.Close();
             }
-            catch (CryptographicException)
+            catch (CryptographicException ex)
             {
+                this.Log("CryptoException while closing media, message: " + ex.Message);
                 // Ignore these, they are thrown when abruptly closing a
                 // stream (i.e. skipping tracks) where the source is a
                 // CryptoStream
@@ -274,6 +276,7 @@ namespace Audio.Core
         /// </param>
         protected override void GetDiagnosticAsync(MediaStreamSourceDiagnosticKind diagnosticKind)
         {
+            this.Log("GetDiagnosticAsync called");
             throw new NotImplementedException();
         }
 
@@ -292,6 +295,8 @@ namespace Audio.Core
         /// </param>
         protected override void SeekAsync(long seekToTime)
         {
+            this.Log("SeekAsync called, to time: " + seekToTime);
+            audioStream.Seek(seekToTime, SeekOrigin.Begin);
             this.ReportSeekCompleted(seekToTime);
         }
 
@@ -303,6 +308,7 @@ namespace Audio.Core
         /// </param>
         protected override void SwitchMediaStreamAsync(MediaStreamDescription mediaStreamDescription)
         {
+            this.Log("SwitchMediaStreamAsync called");
             throw new NotImplementedException();
         }
 
@@ -327,15 +333,15 @@ namespace Audio.Core
             // Initialize the Mp3 data structures used by the Media pipeline with state from the first frame.
             WaveFormatExtensible wfx = new WaveFormatExtensible();
             this.MpegLayer3WaveFormat = new MpegLayer3WaveFormat();
-            this.MpegLayer3WaveFormat.WaveFormatExtensible = wfx;
 
-            this.MpegLayer3WaveFormat.WaveFormatExtensible.FormatTag = 85;
-            this.MpegLayer3WaveFormat.WaveFormatExtensible.Channels = (short)((mpegLayer3Frame.Channels == Channel.SingleChannel) ? 1 : 2);
-            this.MpegLayer3WaveFormat.WaveFormatExtensible.SamplesPerSec = mpegLayer3Frame.SamplingRate;
-            this.MpegLayer3WaveFormat.WaveFormatExtensible.AverageBytesPerSecond = mpegLayer3Frame.Bitrate / 8;
-            this.MpegLayer3WaveFormat.WaveFormatExtensible.BlockAlign = 1;
-            this.MpegLayer3WaveFormat.WaveFormatExtensible.BitsPerSample = 0;
-            this.MpegLayer3WaveFormat.WaveFormatExtensible.ExtraDataSize = 12;
+            wfx.FormatTag = 0x55;//mp3
+            wfx.Channels = (short)((mpegLayer3Frame.Channels == Channel.SingleChannel) ? 1 : 2);
+            wfx.SamplesPerSec = mpegLayer3Frame.SamplingRate;
+            wfx.AverageBytesPerSecond = mpegLayer3Frame.Bitrate / 8;
+            wfx.BlockAlign = 1;
+            wfx.BitsPerSample = 0;
+            wfx.ExtraDataSize = 12;
+            this.MpegLayer3WaveFormat.WaveFormatExtensible = wfx;
 
             this.MpegLayer3WaveFormat.Id = 1;
             this.MpegLayer3WaveFormat.BitratePaddingMode = 0;
@@ -343,7 +349,8 @@ namespace Audio.Core
             this.MpegLayer3WaveFormat.BlockSize = (short)mpegLayer3Frame.FrameSize;
             this.MpegLayer3WaveFormat.CodecDelay = 0;
 
-            mediaStreamAttributes[MediaStreamAttributeKeys.CodecPrivateData] = this.MpegLayer3WaveFormat.ToHexString();
+            var hexCodecData = MpegLayer3WaveFormat.ToHexString();
+            mediaStreamAttributes[MediaStreamAttributeKeys.CodecPrivateData] = hexCodecData;
             this.audioStreamDescription = new MediaStreamDescription(MediaStreamType.Audio, mediaStreamAttributes);
 
             mediaStreamDescriptions.Add(this.audioStreamDescription);
@@ -361,6 +368,7 @@ namespace Audio.Core
 
             // Report that the Mp3MediaStreamSource has finished initializing its internal state and can now
             // pass in Mp3 Samples.
+            this.Log("Reporting open Media completed");
             this.ReportOpenMediaCompleted(mediaSourceAttributes, mediaStreamDescriptions);
 
             this.currentFrame = mpegLayer3Frame;

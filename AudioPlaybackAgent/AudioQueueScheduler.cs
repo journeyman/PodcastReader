@@ -49,10 +49,11 @@ namespace Audio.AudioPlaybackAgent
         /// </remarks>
         protected override void OnPlayStateChanged(BackgroundAudioPlayer player, AudioTrack track, PlayState playState)
         {
+            this.Log("OnPlayStatechanged called, state: " + playState);
             switch (playState)
             {
                 case PlayState.TrackEnded:
-                    player.Track = GetPreviousTrack();
+                    player.Track = GetNextTrack();
                     break;
                 case PlayState.TrackReady:
                     player.Play();
@@ -98,6 +99,7 @@ namespace Audio.AudioPlaybackAgent
         /// </remarks>
         protected override void OnUserAction(BackgroundAudioPlayer player, AudioTrack track, UserAction action, object param)
         {
+            this.Log("OnUserAction called, action: " + action);
             switch (action)
             {
                 case UserAction.Play:
@@ -149,6 +151,7 @@ namespace Audio.AudioPlaybackAgent
         /// <returns>an instance of AudioTrack, or null if the playback is completed</returns>
         private AudioTrack GetNextTrack()
         {
+            this.Log("GetNextTrack called");
             // TODO: add logic to get the next audio track
 
             AudioTrack track = null;
@@ -170,6 +173,7 @@ namespace Audio.AudioPlaybackAgent
         /// <returns>an instance of AudioTrack, or null if previous track is not allowed</returns>
         private AudioTrack GetPreviousTrack()
         {
+            this.Log("GetPreviousTrack called");
             // TODO: add logic to get the previous audio track
 
             AudioTrack track = null;
@@ -192,6 +196,7 @@ namespace Audio.AudioPlaybackAgent
         /// </remarks>
         protected override void OnError(BackgroundAudioPlayer player, AudioTrack track, Exception error, bool isFatal)
         {
+            this.Log("OnError called, is Fatal: " + isFatal + ", Message: " + error + " " + error.Message);
             if (isFatal)
             {
                 Abort();
@@ -212,7 +217,8 @@ namespace Audio.AudioPlaybackAgent
         /// </remarks>
         protected override void OnCancel()
         {
-
+            this.Log("OnCansel called");
+            base.OnCancel();
         }
     }
 }

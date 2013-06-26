@@ -1,4 +1,6 @@
-﻿using Audio.Core;
+﻿using System.IO;
+using System.IO.IsolatedStorage;
+using Audio.Core;
 using Microsoft.Phone.BackgroundAudio;
 
 namespace Audio.StorageStreamingAgent
@@ -28,7 +30,13 @@ namespace Audio.StorageStreamingAgent
         /// </remarks>
         protected override void OnBeginStreaming(AudioTrack track, Microsoft.Phone.BackgroundAudio.AudioStreamer streamer)
         {
-            streamer.SetSource(new Mp3MediaStreamSource(null));
+            //using (var iso = IsolatedStorageFile.GetUserStoreForApplication())
+            //{
+            var iso = IsolatedStorageFile.GetUserStoreForApplication();
+                string filePath = track.Tag;
+                var exist = iso.FileExists(filePath);
+                streamer.SetSource(new Mp3MediaStreamSource(iso.OpenFile(filePath, FileMode.Open, FileAccess.Read)));
+            //}
 
             NotifyComplete();
         }
