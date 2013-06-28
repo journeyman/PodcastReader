@@ -84,9 +84,9 @@ namespace PodcastReader.Phone8.Infrastructure
                     .Select(t => t.GetTypeAndItsRawGenericInterfaceIfExists(typeof (IViewFor<>)))
                     .Where(result => result != null);
 
-            foreach (var ifaceImplPair in views)
+            foreach (var implIfacePair in views)
             {
-                kernel.Bind(ifaceImplPair.Item1).To(ifaceImplPair.Item2);
+                kernel.Bind(implIfacePair.Item2).To(implIfacePair.Item1);
             }
         }
     }
