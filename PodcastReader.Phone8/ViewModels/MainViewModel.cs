@@ -28,7 +28,7 @@ namespace PodcastReader.Phone8.ViewModels
                 return -1;
         }
 
-        public IReactiveCollection<IFeedPreview> Feeds { get; private set; }
+        public IReadOnlyReactiveList<IFeedPreview> Feeds { get; private set; }
     }
 
 }

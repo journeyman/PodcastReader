@@ -6,6 +6,20 @@ using System.Windows;
 
 namespace PodcastReader.Infrastructure.Audio
 {
+    public class BackgroundPlayerClient : IPlayerClient
+    {
+        public void Play(IAudioTrackInfo trackInfo)
+        {
+            BackgroundAudioPlayer.Instance.Track = new AudioTrack(trackInfo.Uri,
+                                                                  trackInfo.Title,
+                                                                  trackInfo.Artist,
+                                                                  "Podcasts",
+                                                                  null);
+            BackgroundAudioPlayer.Instance.Play();
+        }
+    }
+
+
     public class BufferingPlayerClient : IPlayerClient
     {
         public void Play(IAudioTrackInfo trackInfo)

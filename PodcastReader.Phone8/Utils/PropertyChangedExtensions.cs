@@ -6,7 +6,7 @@ namespace PodcastReader.Phone8
 {
     public static class PropertyChangedExtensions
     {
-        public static void RaisePropertyChanged<T>(this T This, Expression<Func<T, object>> expression)
+        public static void RaisePropertyChanged<T, TOut>(this T This, Expression<Func<T, TOut>> expression)
             where T : ReactiveObject
         {
             This.RaisePropertyChanged(Reflection.SimpleExpressionToPropertyName(expression));

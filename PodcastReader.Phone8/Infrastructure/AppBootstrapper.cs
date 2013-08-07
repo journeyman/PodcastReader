@@ -57,7 +57,7 @@ namespace PodcastReader.Phone8.Infrastructure
         private void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IFeedPreviewsLoader>().To<FeedPreviewsLoader>().InSingletonScope();
-            kernel.Bind<IPlayerClient>().To<BufferingPlayerClient>().InSingletonScope();
+            kernel.Bind<IPlayerClient>().To<BackgroundPlayerClient>().InSingletonScope();
         }
 
         private void RegisterViewModels(IKernel kernel)

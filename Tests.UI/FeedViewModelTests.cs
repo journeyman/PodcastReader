@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reactive.Subjects;
 using System.ServiceModel.Syndication;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using PodcastReader.Phone8.Interfaces.Loaders;
@@ -7,9 +6,8 @@ using PodcastReader.Phone8.Interfaces.Models;
 using PodcastReader.Phone8.Loaders;
 using PodcastReader.Phone8.Models;
 using ReactiveUI;
-using ReactiveUI.Routing;
 
-namespace Tests.Phone8
+namespace Tests.UI
 {
     [TestClass]
     public class FeedViewModelTests
@@ -18,7 +16,9 @@ namespace Tests.Phone8
         public void VerifyProperties()
         {
             //Just registering IScreen
-            RxApp.ConfigureServiceLocator((t, name) => new TestScreen(), (t, s) => null, (t,s,a) => {});
+            var testResolver = new FuncDependencyResolver((t, name) => new [] {new TestScreen()});
+            testResolver.InitializeResolver();
+            RxApp.DependencyResolver = testResolver;
 
             var items = new[]
                             {

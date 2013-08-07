@@ -234,9 +234,13 @@
       <Project>{60146683-34C4-464E-9169-7B76F9D5C365}</Project>
       <Name>Magellan.WP</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.NLog\ReactiveUI.NLog_WP8.csproj">
-      <Project>{584F60B1-C425-4D17-B90A-8C2AB1EC78D7}</Project>
-      <Name>ReactiveUI.NLog_WP8</Name>
+    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Blend\ReactiveUI.Blend_WP8.csproj">
+      <Project>{685E862E-AA12-4D05-AD27-61AB2D71E411}</Project>
+      <Name>ReactiveUI.Blend_WP8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Mobile\ReactiveUI.Mobile_WP8.csproj">
+      <Project>{B90F3D02-1E3A-4DD7-8E00-30F28B6DCC1E}</Project>
+      <Name>ReactiveUI.Mobile_WP8</Name>
     </ProjectReference>
     <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Platforms\ReactiveUI.Xaml_WP8.csproj">
       <Project>{F9459904-F785-4255-866A-A619787CB895}</Project>
