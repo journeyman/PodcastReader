@@ -4,9 +4,7 @@ using ReactiveUI;
 
 namespace PodcastReader.Phone8.ViewModels
 {
-    public interface IMainViewModel : IRoutableViewModel { }
-
-    public class MainViewModel : RoutableViewModelBase, IMainViewModel
+    public class MainViewModel : RoutableViewModelBase
     {
         private readonly IFeedPreviewsLoader _feedPreviews;
 

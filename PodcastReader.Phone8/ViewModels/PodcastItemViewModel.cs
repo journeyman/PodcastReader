@@ -9,9 +9,7 @@ using ReactiveUI;
 
 namespace PodcastReader.Phone8.ViewModels
 {
-    public interface IPodcastItemViewModel : IRoutableViewModel { }
-
-    public class PodcastItemViewModel : RoutableViewModelBase, IPodcastItem, IPodcastItemViewModel
+    public class PodcastItemViewModel : RoutableViewModelBase, IPodcastItem
     {
         public PodcastItemViewModel(SyndicationItem item)
         {

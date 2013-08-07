@@ -4,16 +4,16 @@ using ReactiveUI;
 
 namespace PodcastReader.Phone8.Views
 {
-    public partial class MainView : PhoneApplicationPage, IViewFor<IMainViewModel>
+    public partial class MainView : PhoneApplicationPage, IViewFor<MainViewModel>
     {
-        private IMainViewModel _viewModel;
+        private MainViewModel _viewModel;
 
         public MainView()
         {
             InitializeComponent();
         }
 
-        public IMainViewModel ViewModel 
+        public MainViewModel ViewModel 
         {
             get { return _viewModel; }
             set 
