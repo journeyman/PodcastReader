@@ -46,7 +46,7 @@ namespace PodcastReader.Phone8.Infrastructure
             this.RegisterViewModels(kernel);
             this.RegisterServices(kernel);
 
-            this.Router.Navigate.Execute(RxApp.DependencyResolver.GetService<IMainViewModel>());
+            this.Router.Navigate.Execute(RxApp.DependencyResolver.GetService<MainViewModel>());
         }
 
         private IKernel GetKernel()

@@ -6,6 +6,7 @@ namespace PodcastReader.Phone8.Infrastructure
     {
         private static readonly IScreen _instance = RxApp.MutableResolver.GetService<IScreen>();
 
+        public static IScreen Instance { get { return _instance; } }
         public static IRoutingState Router { get { return _instance.Router; } }
     }
 }

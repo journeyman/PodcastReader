@@ -19,7 +19,7 @@ namespace PodcastReader.Phone8.ViewModels
             this.PodcastUri = item.GetPodcastUris().First();
 
 
-            this.GoToPodcastCommand = Screen.Router.Navigate; //Screen.Router.NavigateCommandForParamOfType<IPodcastItemViewModel>(); //ReactiveCommand.Create(_ => true, p => Screen.Router.Navigate.Execute(p));
+            this.GoToPodcastCommand = HostScreen.Router.Navigate; //Screen.Router.NavigateCommandForParamOfType<IPodcastItemViewModel>(); //ReactiveCommand.Create(_ => true, p => Screen.Router.Navigate.Execute(p));
             this.PlayPodcastCommand = new ReactiveCommand();
             this.PlayPodcastCommand.Subscribe(OnPlayPodcast);
         }

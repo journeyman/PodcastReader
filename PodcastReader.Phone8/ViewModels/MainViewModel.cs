@@ -1,4 +1,5 @@
-﻿using PodcastReader.Phone8.Interfaces.Loaders;
+﻿using System.Reactive.Linq;
+using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Interfaces.Models;
 using ReactiveUI;
 
@@ -12,6 +13,7 @@ namespace PodcastReader.Phone8.ViewModels
         {
             _feedPreviews = feedPreviews;
 
+            this.AddSubscriptionCommand = HostScreen.Router.Navigate.WithParameter(() => new AddSubscriptionViewModel());
             this.Feeds = feedPreviews.CreateCollection().CreateDerivedCollection(f => f, null, FeedsComparer);
             feedPreviews.Load();
         }
@@ -26,7 +28,8 @@ namespace PodcastReader.Phone8.ViewModels
                 return -1;
         }
 
+        public IReactiveCommand AddSubscriptionCommand { get; private set; }
+
         public IReadOnlyReactiveList<IFeedPreview> Feeds { get; private set; }
     }
-
 }

@@ -51,6 +51,8 @@
         
         <TextBlock Style="{StaticResource PhoneTextTitle1Style}" Text="podcasts" />
         
+        <Button Content="Add subscription" Command="{Binding AddSubscriptionCommand}"/>
+        
         <ScrollViewer>
             <ItemsControl ItemsSource="{Binding Feeds}" Style="{StaticResource FeedsListStyle}" />
         </ScrollViewer>

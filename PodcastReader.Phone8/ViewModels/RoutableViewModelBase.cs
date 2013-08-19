@@ -1,4 +1,5 @@
-﻿using ReactiveUI;
+﻿using PodcastReader.Phone8.Infrastructure;
+using ReactiveUI;
 using System;
 
 namespace PodcastReader.Phone8.ViewModels
@@ -12,7 +13,7 @@ namespace PodcastReader.Phone8.ViewModels
 
         public IScreen HostScreen
         {
-            get { throw new NotImplementedException(); }
+            get { return Screen.Instance; }
         }
     }
 }
