@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GReader.API", "GReader.API\GReader.API.csproj", "{CE49CDD8-BD35-4275-9B24-E6A494DC80E0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GReader.API.ConsoleClient", "GReader.API.ConsoleClient\GReader.API.ConsoleClient.csproj", "{75BEDC06-C6A1-43F4-AB61-28CAFA375F5A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastReader.Phone8", "PodcastReader.Phone8\PodcastReader.Phone8.csproj", "{8E0C268F-5B45-4DC9-9F72-53B8C3F9F6E5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Submodules", "Submodules", "{CFDB560D-7E9D-461A-B1E2-7EC36B2B6B52}"
@@ -45,30 +41,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CE49CDD8-BD35-4275-9B24-E6A494DC80E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE49CDD8-BD35-4275-9B24-E6A494DC80E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CE49CDD8-BD35-4275-9B24-E6A494DC80E0}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{CE49CDD8-BD35-4275-9B24-E6A494DC80E0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{CE49CDD8-BD35-4275-9B24-E6A494DC80E0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{CE49CDD8-BD35-4275-9B24-E6A494DC80E0}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CE49CDD8-BD35-4275-9B24-E6A494DC80E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CE49CDD8-BD35-4275-9B24-E6A494DC80E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CE49CDD8-BD35-4275-9B24-E6A494DC80E0}.Release|ARM.ActiveCfg = Release|Any CPU
-		{CE49CDD8-BD35-4275-9B24-E6A494DC80E0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{CE49CDD8-BD35-4275-9B24-E6A494DC80E0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{CE49CDD8-BD35-4275-9B24-E6A494DC80E0}.Release|x86.ActiveCfg = Release|Any CPU
-		{75BEDC06-C6A1-43F4-AB61-28CAFA375F5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75BEDC06-C6A1-43F4-AB61-28CAFA375F5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75BEDC06-C6A1-43F4-AB61-28CAFA375F5A}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{75BEDC06-C6A1-43F4-AB61-28CAFA375F5A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{75BEDC06-C6A1-43F4-AB61-28CAFA375F5A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{75BEDC06-C6A1-43F4-AB61-28CAFA375F5A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{75BEDC06-C6A1-43F4-AB61-28CAFA375F5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75BEDC06-C6A1-43F4-AB61-28CAFA375F5A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75BEDC06-C6A1-43F4-AB61-28CAFA375F5A}.Release|ARM.ActiveCfg = Release|Any CPU
-		{75BEDC06-C6A1-43F4-AB61-28CAFA375F5A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{75BEDC06-C6A1-43F4-AB61-28CAFA375F5A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{75BEDC06-C6A1-43F4-AB61-28CAFA375F5A}.Release|x86.ActiveCfg = Release|Any CPU
 		{8E0C268F-5B45-4DC9-9F72-53B8C3F9F6E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8E0C268F-5B45-4DC9-9F72-53B8C3F9F6E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E0C268F-5B45-4DC9-9F72-53B8C3F9F6E5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
