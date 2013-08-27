@@ -19,5 +19,4 @@ NuGet-Release
 *.nupkg
 
 packages/*
-src/Submodules
 !packages/repositories.config
