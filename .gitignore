@@ -18,5 +18,5 @@ NuGet-Release
 
 *.nupkg
 
-packages/*
+src/packages/*
 !packages/repositories.config
