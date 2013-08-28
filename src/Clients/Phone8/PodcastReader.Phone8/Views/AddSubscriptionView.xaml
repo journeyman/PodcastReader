@@ -1,0 +1,26 @@
+﻿<m:Layout 
+    Source="/PodcastReader.Phone8;component/Views/Layouts/HeaderedLayout.xaml"
+    x:Class="PodcastReader.Phone8.Views.AddSubscriptionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:m="clr-namespace:Magellan.WP.Controls;assembly=Magellan.WP"
+    HorizontalContentAlignment="Stretch"
+    VerticalContentAlignment="Stretch"
+    >
+    
+    <m:Zone ZonePlaceHolderName="Header">
+        <TextBlock Text="{Binding Strings.AddSubscriptionTitle, Source={StaticResource Localized}}" Style="{StaticResource PhoneTextTitle1Style}" />
+    </m:Zone>
+        
+    <m:Zone ZonePlaceHolderName="Content">
+        <StackPanel>
+            <TextBox Name="SubscriptionUrl" />
+            <Button Command="{Binding AddSubscriptionCommand}" CommandParameter="{Binding Text, ElementName=SubscriptionUrl}" Content="Add" />
+        </StackPanel>
+        <!--TODO:
+        1. Make scrollable textbox
+        2. add here for url insertion option
+        3. add some file uploading with subscriptions inside like ODML or something-->
+    </m:Zone>
+        
+</m:Layout>

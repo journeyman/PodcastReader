@@ -1,0 +1,24 @@
+﻿<m:Layout 
+    Source="/PodcastReader.Phone8;component/Views/Layouts/HeaderedLayout.xaml"
+    x:Class="PodcastReader.Phone8.Views.PodcastView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:m="clr-namespace:Magellan.WP.Controls;assembly=Magellan.WP"
+    HorizontalContentAlignment="Stretch"
+    VerticalContentAlignment="Stretch"
+    >
+    
+    <m:Zone ZonePlaceHolderName="Header">
+        <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextTitle1Style}" />
+    </m:Zone>
+        
+    <m:Zone ZonePlaceHolderName="Content">
+        <StackPanel Background="Transparent">
+            <!--<ScrollViewer>
+                <ItemsControl ItemsSource="{Binding Items}" />
+            </ScrollViewer>-->
+            <Button Content="Play" Command="{Binding PlayPodcastCommand}"/>
+        </StackPanel>
+    </m:Zone>
+        
+</m:Layout>
