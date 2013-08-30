@@ -94,7 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.ServiceModel.Syndication">
-      <HintPath>..\Libs\System.ServiceModel.Syndication.dll</HintPath>
+      <HintPath>..\..\..\..\Libs\System.ServiceModel.Syndication.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

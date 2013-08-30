@@ -201,25 +201,20 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Ninject.3.0.1.10\lib\sl4-windowsphone71\Ninject.dll</HintPath>
+    <Reference Include="Ninject">
+      <HintPath>..\..\..\packages\Ninject.3.0.1.10\lib\sl4-windowsphone71\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reactive.Core, Version=2.1.30214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Rx-Core.2.1.30214.0\lib\WP8\System.Reactive.Core.dll</HintPath>
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\..\..\packages\Rx-Core.2.1.30214.0\lib\WP8\System.Reactive.Core.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reactive.Interfaces, Version=2.1.30214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Rx-Interfaces.2.1.30214.0\lib\WP8\System.Reactive.Interfaces.dll</HintPath>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\..\..\packages\Rx-Interfaces.2.1.30214.0\lib\WP8\System.Reactive.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reactive.Linq, Version=2.1.30214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Rx-Linq.2.1.30214.0\lib\WP8\System.Reactive.Linq.dll</HintPath>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\..\..\packages\Rx-Linq.2.1.30214.0\lib\WP8\System.Reactive.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reactive.PlatformServices, Version=2.1.30214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Rx-PlatformServices.2.1.30214.0\lib\WP8\System.Reactive.PlatformServices.dll</HintPath>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\..\..\packages\Rx-PlatformServices.2.1.30214.0\lib\WP8\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceModel.Syndication">
       <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\System.ServiceModel.Syndication.dll</HintPath>
@@ -227,37 +222,37 @@
     <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AudioPlaybackAgent\Audio.AudioPlaybackAgent.csproj">
-      <Project>{BDBB4467-A77D-4467-AD13-6E8D25F0E1AC}</Project>
-      <Name>Audio.AudioPlaybackAgent</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PodcastReader.Infrastructure\PodcastReader.Infrastructure.csproj">
-      <Project>{2723D721-478E-48B8-9503-57A8CC0317C2}</Project>
-      <Name>PodcastReader.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\StorageStreamingAgent\Audio.StorageStreamingAgent.csproj">
-      <Project>{A1D08278-829F-4D05-8D6E-C18CA0E327B7}</Project>
-      <Name>Audio.StorageStreamingAgent</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Submodules\Magellan.WP\Magellan.WP.csproj">
-      <Project>{60146683-34C4-464E-9169-7B76F9D5C365}</Project>
-      <Name>Magellan.WP</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Blend\ReactiveUI.Blend_WP8.csproj">
-      <Project>{685E862E-AA12-4D05-AD27-61AB2D71E411}</Project>
-      <Name>ReactiveUI.Blend_WP8</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Mobile\ReactiveUI.Mobile_WP8.csproj">
-      <Project>{B90F3D02-1E3A-4DD7-8E00-30F28B6DCC1E}</Project>
-      <Name>ReactiveUI.Mobile_WP8</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Platforms\ReactiveUI.Xaml_WP8.csproj">
+    <ProjectReference Include="..\..\..\Submodules\ReactiveUI\ReactiveUI.Platforms\ReactiveUI.Xaml_WP8.csproj">
       <Project>{F9459904-F785-4255-866A-A619787CB895}</Project>
       <Name>ReactiveUI.Xaml_WP8</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI.csproj">
+    <ProjectReference Include="..\..\..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI.csproj">
       <Project>{464CB812-F99F-401B-BE4C-E8F0515CD19D}</Project>
       <Name>ReactiveUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Audio\AudioPlaybackAgent\Audio.AudioPlaybackAgent.csproj">
+      <Project>{BDBB4467-A77D-4467-AD13-6E8D25F0E1AC}</Project>
+      <Name>Audio.AudioPlaybackAgent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PodcastReader.Phone8.Infrastructure\PodcastReader.Infrastructure.csproj">
+      <Project>{2723D721-478E-48B8-9503-57A8CC0317C2}</Project>
+      <Name>PodcastReader.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Audio\StorageStreamingAgent\Audio.StorageStreamingAgent.csproj">
+      <Project>{A1D08278-829F-4D05-8D6E-C18CA0E327B7}</Project>
+      <Name>Audio.StorageStreamingAgent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Submodules\Magellan.WP\Magellan.WP.csproj">
+      <Project>{60146683-34C4-464E-9169-7B76F9D5C365}</Project>
+      <Name>Magellan.WP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Submodules\ReactiveUI\ReactiveUI.Blend\ReactiveUI.Blend_WP8.csproj">
+      <Project>{685E862E-AA12-4D05-AD27-61AB2D71E411}</Project>
+      <Name>ReactiveUI.Blend_WP8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Submodules\ReactiveUI\ReactiveUI.Mobile\ReactiveUI.Mobile_WP8.csproj">
+      <Project>{B90F3D02-1E3A-4DD7-8E00-30F28B6DCC1E}</Project>
+      <Name>ReactiveUI.Mobile_WP8</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

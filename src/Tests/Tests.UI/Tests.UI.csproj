@@ -148,17 +148,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PodcastReader.Phone8\PodcastReader.Phone8.csproj">
+    <ProjectReference Include="..\..\Clients\Phone8\PodcastReader.Phone8\PodcastReader.Phone8.csproj">
       <Project>{8E0C268F-5B45-4DC9-9F72-53B8C3F9F6E5}</Project>
       <Name>PodcastReader.Phone8</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI.Platforms\ReactiveUI.Xaml_WP8.csproj">
-      <Project>{F9459904-F785-4255-866A-A619787CB895}</Project>
-      <Name>ReactiveUI.Xaml_WP8</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI.csproj">
-      <Project>{464CB812-F99F-401B-BE4C-E8F0515CD19D}</Project>
-      <Name>ReactiveUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

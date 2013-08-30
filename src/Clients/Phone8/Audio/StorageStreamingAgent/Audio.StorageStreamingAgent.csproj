@@ -88,7 +88,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Audio.Core.csproj">
+    <ProjectReference Include="..\..\..\..\Shared\Audio\Core\Audio.Core.csproj">
       <Project>{0AF5E75F-E2C4-43B6-814D-FF014A333830}</Project>
       <Name>Audio.Core</Name>
     </ProjectReference>

@@ -39,16 +39,16 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Reactive.Core">
-      <HintPath>..\packages\Rx-Core.2.1.30214.0\lib\Net45\System.Reactive.Core.dll</HintPath>
+      <HintPath>..\..\packages\Rx-Core.2.1.30214.0\lib\Net45\System.Reactive.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Interfaces">
-      <HintPath>..\packages\Rx-Interfaces.2.1.30214.0\lib\Net45\System.Reactive.Interfaces.dll</HintPath>
+      <HintPath>..\..\packages\Rx-Interfaces.2.1.30214.0\lib\Net45\System.Reactive.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Linq">
-      <HintPath>..\packages\Rx-Linq.2.1.30214.0\lib\Net45\System.Reactive.Linq.dll</HintPath>
+      <HintPath>..\..\packages\Rx-Linq.2.1.30214.0\lib\Net45\System.Reactive.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.PlatformServices">
-      <HintPath>..\packages\Rx-PlatformServices.2.1.30214.0\lib\Net45\System.Reactive.PlatformServices.dll</HintPath>
+      <HintPath>..\..\packages\Rx-PlatformServices.2.1.30214.0\lib\Net45\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Choose>
@@ -68,9 +68,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PodcastReader.Phone8\PodcastReader.Phone8.csproj">
+    <ProjectReference Include="..\..\Clients\Phone8\PodcastReader.Phone8\PodcastReader.Phone8.csproj">
       <Project>{8e0c268f-5b45-4dc9-9f72-53b8c3f9f6e5}</Project>
       <Name>PodcastReader.Phone8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI.csproj">
+      <Project>{464cb812-f99f-401b-be4c-e8f0515cd19d}</Project>
+      <Name>ReactiveUI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

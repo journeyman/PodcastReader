@@ -46,6 +46,8 @@ namespace Tests.Phone8
             public int Id { get; set; }
             public DateTimeOffset DatePublished { get; set; }
             public Uri PodcastUri { get; set; }
+            public string Title { get; private set; }
+            public string Summary { get; private set; }
         }
 
         private class TestPodcastItemsLoader : IPodcastItemsLoader
