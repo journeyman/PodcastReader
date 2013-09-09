@@ -1,8 +1,5 @@
-[submodule "Submodules/ReactiveUI"]
-	path = Submodules/ReactiveUI
-	url = git@github.com:journeyman/ReactiveUI.git
-[submodule "Submodules/Akavache"]
-	path = Submodules/Akavache
+[submodule "src/Submodules/Akavache"]
+	path = src/Submodules/Akavache
 	url = git@github.com:journeyman/Akavache.git
 [submodule "src/Submodules/ReactiveUI"]
 	path = src/Submodules/ReactiveUI
