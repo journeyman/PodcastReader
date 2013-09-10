@@ -98,6 +98,7 @@
     <Compile Include="Infrastructure\AppBootstrapper.cs" />
     <Compile Include="Infrastructure\PlayerClient.cs" />
     <Compile Include="Infrastructure\Screen.cs" />
+    <Compile Include="Infrastructure\SubscriptionsCache.cs" />
     <Compile Include="Infrastructure\SubscriptionsManager.cs" />
     <Compile Include="Interfaces\Loaders\IPodcastItemsLoader.cs" />
     <Compile Include="Interfaces\Loaders\IFeedPreviewsLoader.cs" />

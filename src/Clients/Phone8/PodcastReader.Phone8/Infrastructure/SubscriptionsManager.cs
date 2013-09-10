@@ -1,6 +1,5 @@
-﻿using System.Reactive.Linq;
-using System.Reactive.Subjects;
-using Akavache;
+﻿using System.Collections.Generic;
+using Microsoft.Phone.Reactive;
 using PodcastReader.Infrastructure.Interfaces;
 using System;
 using System.Threading.Tasks;
@@ -9,22 +8,30 @@ namespace PodcastReader.Phone8.Infrastructure
 {
     public class SubscriptionsManager : ISubscriptionsManager
     {
-        public SubscriptionsManager()
+        private readonly ISubscriptionsCache _cache;
+        private readonly ISubject<ISubscription> _subscriptions;
+
+        public SubscriptionsManager(ISubscriptionsCache cache)
         {
-            this.Subscriptions = new ReplaySubject<ISubscription>();
+            _cache = cache;
+
+            this._subscriptions = new ReplaySubject<ISubscription>();
         }
 
-        public IObservable<ISubscription> Subscriptions { get; private set; }
+        public IObservable<ISubscription> Subscriptions { get { return _subscriptions; } }
 
         public async void ReloadSubscriptions()
         {
-            var subscriptions = await BlobCache.LocalMachine.GetAllObjects<ISubscription>();
-            Subscriptions = subscriptions.ToObservable();
+            var subscriptions = await _cache.LoadSubscriptions();
+
+            foreach (var subscription in subscriptions)
+                _subscriptions.OnNext(subscription);
         }
 
         public async Task AddSubscriptionAsync(ISubscription subscription)
         {
-            await BlobCache.LocalMachine.InsertObject("Subscriptions", subscription);
+            _subscriptions.OnNext(subscription);
+            await _cache.SaveSubscription(subscription);
         }
     }
 }
