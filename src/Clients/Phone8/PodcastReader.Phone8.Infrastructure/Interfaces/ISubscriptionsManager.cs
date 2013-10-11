@@ -8,6 +8,6 @@ namespace PodcastReader.Infrastructure.Interfaces
         IObservable<ISubscription> Subscriptions { get; }
 
         void ReloadSubscriptions();
-        Task AddSubscriptionAsync();
+        Task AddSubscriptionAsync(ISubscription subscription);
     }
 }

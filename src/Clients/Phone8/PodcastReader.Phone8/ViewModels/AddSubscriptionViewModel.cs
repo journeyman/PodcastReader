@@ -25,9 +25,9 @@ namespace PodcastReader.Phone8.ViewModels
             return !string.IsNullOrWhiteSpace(url);
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
-            RxApp.DependencyResolver.GetService<ISubscriptionsManager>().AddSubscriptionAsync();
+            await RxApp.DependencyResolver.GetService<ISubscriptionsManager>().AddSubscriptionAsync();
         }
 
         public event EventHandler CanExecuteChanged;

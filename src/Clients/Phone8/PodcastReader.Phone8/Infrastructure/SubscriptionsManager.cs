@@ -1,4 +1,6 @@
-﻿using Microsoft.Phone.Reactive;
+﻿using System.Reactive.Linq;
+using System.Reactive.Subjects;
+using Akavache;
 using PodcastReader.Infrastructure.Interfaces;
 using System;
 using System.Threading.Tasks;
@@ -14,14 +16,15 @@ namespace PodcastReader.Phone8.Infrastructure
 
         public IObservable<ISubscription> Subscriptions { get; private set; }
 
-        public void ReloadSubscriptions()
+        public async void ReloadSubscriptions()
         {
-            
+            var subscriptions = await BlobCache.LocalMachine.GetAllObjects<ISubscription>();
+            Subscriptions = subscriptions.ToObservable();
         }
 
-        public Task AddSubscriptionAsync()
+        public async Task AddSubscriptionAsync(ISubscription subscription)
         {
-            throw new NotImplementedException();
+            await BlobCache.LocalMachine.InsertObject("Subscriptions", subscription);
         }
     }
 }

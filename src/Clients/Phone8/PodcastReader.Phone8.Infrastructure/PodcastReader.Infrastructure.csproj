@@ -97,6 +97,12 @@
       <HintPath>..\..\..\..\Libs\System.ServiceModel.Syndication.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Submodules\Akavache\Akavache.Portable\Akavache.Portable.csproj">
+      <Project>{EB73ADDD-2FE9-44C0-A1AB-20709B979B64}</Project>
+      <Name>Akavache.Portable</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />
