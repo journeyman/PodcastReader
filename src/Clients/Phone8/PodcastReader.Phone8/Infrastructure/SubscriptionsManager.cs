@@ -20,7 +20,7 @@ namespace PodcastReader.Phone8.Infrastructure
 
         public IObservable<ISubscription> Subscriptions { get { return _subscriptions; } }
 
-        public async void ReloadSubscriptions()
+        public async Task ReloadSubscriptions()
         {
             var subscriptions = await _cache.LoadSubscriptions();
 

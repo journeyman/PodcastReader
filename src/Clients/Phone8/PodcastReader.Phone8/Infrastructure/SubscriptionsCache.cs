@@ -21,25 +21,26 @@ namespace PodcastReader.Phone8.Infrastructure
 
         private const string Cache_File_Name = "subscriptionsCache.xml";
 
-        public Task<IEnumerable<ISubscription>> LoadSubscriptions()
+        public async Task<IEnumerable<ISubscription>> LoadSubscriptions()
         {
-            return Task.Run(() =>
-            {
-                using (var storage = IsolatedStorageFile.GetUserStoreForApplication())
+            return await Task.Run(() =>
                 {
-                    using (var file = storage.OpenFile(Cache_File_Name, FileMode.OpenOrCreate))
+                    using (var storage = IsolatedStorageFile.GetUserStoreForApplication())
                     {
-                        var serializer = new DataContractSerializer(typeof(Uri[]));
-                        var uris = (Uri[])serializer.ReadObject(file);
-                        return uris.Select(uri => (ISubscription)new DeserializedSubscription {Uri = uri});
+                        using (var file = storage.OpenFile(Cache_File_Name, FileMode.OpenOrCreate))
+                        {
+                            var serializer = new DataContractSerializer(typeof(Uri[]));
+                            var uris = (Uri[])serializer.ReadObject(file);
+                            return uris.Select(uri => (ISubscription)new DeserializedSubscription {Uri = uri});
+                        }
                     }
-                }
-            });
+                })
+                .ConfigureAwait(false);
         }
 
-        public Task SaveSubscription(ISubscription subscription)
+        public async Task SaveSubscription(ISubscription subscription)
         {
-            return Task.Run(() =>
+            await Task.Run(() =>
                 {
                     using (var storage = IsolatedStorageFile.GetUserStoreForApplication())
                     {
@@ -49,7 +50,8 @@ namespace PodcastReader.Phone8.Infrastructure
                             serializer.WriteObject(file, subscription.Uri);
                         }
                     }
-                });
+                })
+                .ConfigureAwait(false);
         }
     }
 }

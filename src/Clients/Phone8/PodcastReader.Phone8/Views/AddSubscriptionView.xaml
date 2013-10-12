@@ -14,8 +14,11 @@
         
     <m:Zone ZonePlaceHolderName="Content">
         <StackPanel>
-            <TextBox Name="SubscriptionUrl" />
-            <Button Command="{Binding AddSubscriptionCommand}" CommandParameter="{Binding Text, ElementName=SubscriptionUrl}" Content="Add" />
+            <TextBox Name="SubscriptionUrl" Text="http://www.dotnetrocks.com/feed.aspx" />
+            <Button 
+                Command="{Binding AddSubscriptionCommand}" 
+                CommandParameter="{Binding Text, ElementName=SubscriptionUrl}" 
+                Content="Add" />
         </StackPanel>
         <!--TODO:
         1. Make scrollable textbox
