@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Akavache;
 using Ninject;
 using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Loaders;
@@ -57,7 +56,7 @@ namespace PodcastReader.Phone8.Infrastructure
 
         private void RegisterServices(IKernel kernel)
         {
-            BlobCache.ApplicationName = "PodcastReader";
+            //BlobCache.ApplicationName = "PodcastReader";
 
             kernel.Bind<IFeedPreviewsLoader>().To<FeedPreviewsLoader>().InSingletonScope();
             kernel.Bind<IPlayerClient>().To<BackgroundPlayerClient>().InSingletonScope();
