@@ -30,8 +30,8 @@ namespace PodcastReader.Phone8.Infrastructure
 
         public async Task AddSubscriptionAsync(ISubscription subscription)
         {
-            _subscriptions.OnNext(subscription);
             await _cache.SaveSubscription(subscription);
+            _subscriptions.OnNext(subscription);
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
+using Akavache;
 using Ninject;
 using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Loaders;
-using PodcastReader.Phone8.ViewModels;
 using ReactiveUI;
 using System.Reflection;
 using PodcastReader.Infrastructure.Interfaces;
@@ -17,7 +17,7 @@ namespace PodcastReader.Phone8.Infrastructure
 
         public AppBootstrapper(IKernel testKernel = null, IRoutingState testRouter = null)
         {
-            var kernel = testKernel ?? this.GetKernel();
+            var kernel = testKernel ?? new StandardKernel();
             this.Router = testRouter ?? new RoutingState();
             
             // Set up NInject to do DI
@@ -45,19 +45,11 @@ namespace PodcastReader.Phone8.Infrastructure
             this.RegisterViews(kernel);
             this.RegisterViewModels(kernel);
             this.RegisterServices(kernel);
-
-            this.Router.Navigate.Execute(RxApp.DependencyResolver.GetService<MainViewModel>());
-        }
-
-        private IKernel GetKernel()
-        {
-            return new StandardKernel();
         }
 
         private void RegisterServices(IKernel kernel)
         {
-            //BlobCache.ApplicationName = "PodcastReader";
-
+            kernel.Bind<IBlobCache>().ToMethod(_ => BlobCache.LocalMachine);
             kernel.Bind<IFeedPreviewsLoader>().To<FeedPreviewsLoader>().InSingletonScope();
             kernel.Bind<IPlayerClient>().To<BackgroundPlayerClient>().InSingletonScope();
             kernel.Bind<ISubscriptionsManager>().To<SubscriptionsManager>().InSingletonScope();

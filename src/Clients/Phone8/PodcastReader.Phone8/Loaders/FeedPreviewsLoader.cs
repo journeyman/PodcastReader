@@ -45,6 +45,8 @@ namespace PodcastReader.Phone8.Loaders
 
             _subscriptionsManager.Subscriptions.Select(s => s.Uri).Subscribe(client.DownloadStringAsync);
 
+            await _subscriptionsManager.ReloadSubscriptions();
+
             client.DownloadStringAsync(new Uri(TEST_FEED_URL));
         }
     }
