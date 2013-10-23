@@ -39,9 +39,7 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextAccentStyle}" />
-                                <ScrollViewer Margin="14,0,0,0">
-                                    <ItemsControl ItemsSource="{Binding Items}" Style="{StaticResource FeedItemsListStyle}" />
-                                </ScrollViewer>
+                                <ItemsControl Margin="14,0,0,0" ItemsSource="{Binding Items}" Style="{StaticResource FeedItemsListStyle}" />
                             </StackPanel>
                         </DataTemplate>
                     </Setter.Value>
@@ -53,9 +51,7 @@
         
         <Button Content="Add subscription" Command="{Binding AddSubscriptionCommand}"/>
         
-        <ScrollViewer>
-            <ItemsControl ItemsSource="{Binding Feeds}" Style="{StaticResource FeedsListStyle}" />
-        </ScrollViewer>
+            <ListBox ItemsSource="{Binding Feeds}" Style="{StaticResource FeedsListStyle}" />
     </StackPanel>
     
 </phone:PhoneApplicationPage>

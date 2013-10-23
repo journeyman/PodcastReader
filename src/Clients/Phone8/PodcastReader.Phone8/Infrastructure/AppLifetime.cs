@@ -1,23 +1,28 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
 using Akavache;
 using Microsoft.Phone.Shell;
+using PodcastReader.Infrastructure;
 using PodcastReader.Phone8.ViewModels;
 using ReactiveUI;
+using ObservableExtensions = Microsoft.Phone.Reactive.ObservableExtensions;
 
 namespace PodcastReader.Phone8.Infrastructure
 {
-    public class AppLifetime
+    public class AppLifetime : IEnableLogger
     {
         public async void OnLaunching()
         {
-            await InitApp();
+            InitApp();
             RunInitedApp();
         }
 
         public async void OnActivated(bool statePreserved)
         {
             if (!statePreserved)
-                await InitApp();
+                InitApp();
             RunInitedApp();
         }
 
@@ -31,12 +36,11 @@ namespace PodcastReader.Phone8.Infrastructure
             await SaveAppState();
         }
 
-        private async Task InitApp()
+        private void InitApp()
         {
             var b = new AppBootstrapper(); //IoC registrations
             
             BlobCache.ApplicationName = "PodcastReader";
-            BlobCache.EnsureInitialized();
         }
 
         private void RunInitedApp()
@@ -46,6 +50,12 @@ namespace PodcastReader.Phone8.Infrastructure
 
         private async Task SaveAppState()
         {
+            Cache.Local.Shutdown.Subscribe( _ =>
+                                           {
+                                               this.Log().Debug("RxUI: shutdown is triggered");
+                                               Debug.WriteLine("shutdown is triggered");
+                                           });
+
             await BlobCache.Shutdown();
         }
     }

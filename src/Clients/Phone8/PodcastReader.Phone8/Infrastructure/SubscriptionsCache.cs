@@ -20,7 +20,7 @@ namespace PodcastReader.Phone8.Infrastructure
 
     public class IsoSubscriptionsCache : ISubscriptionsCache
     {
-        private const string CACHE_KEY_FMT = "subscription#{0}";
+        private const string CACHE_KEY_FMT = "subscription{0}";
         private const int DEFAULT_COUNT_VALUE = -1;
         private static int _count = DEFAULT_COUNT_VALUE;
 
@@ -36,17 +36,18 @@ namespace PodcastReader.Phone8.Infrastructure
             Debug.Assert(_count != DEFAULT_COUNT_VALUE, "Count field is not inited, LoadSubscriptions() wasn't called before SaveSubscription()");
 
             var serializable = new SubscriptionDto {Uri = subscription.Uri};
-            await Cache.Local.InsertObject(string.Format(CACHE_KEY_FMT, _count), serializable);
+            var key = string.Format(CACHE_KEY_FMT, _count);
+            await Cache.Local.InsertObject(key, serializable);
             _count++;
         }
     }
 
-    //[DataContract]
-    //[JsonObject]
+    [DataContract]
+    [JsonObject]
     public class SubscriptionDto : ISubscription
     {
-        //[DataMember]
-        //[JsonPropertyAttribute]
+        [DataMember]
+        [JsonPropertyAttribute]
         public Uri Uri { get; set; }
     }
 }

@@ -49,7 +49,8 @@ namespace PodcastReader.Phone8.Infrastructure
 
         private void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IBlobCache>().ToMethod(_ => BlobCache.LocalMachine);
+            //kernel.Bind<IBlobCache>().ToMethod(_ => BlobCache.LocalMachine);
+            kernel.Bind<IBlobCache>().ToConstant(BlobCache.LocalMachine);
             kernel.Bind<IFeedPreviewsLoader>().To<FeedPreviewsLoader>().InSingletonScope();
             kernel.Bind<IPlayerClient>().To<BackgroundPlayerClient>().InSingletonScope();
             kernel.Bind<ISubscriptionsManager>().To<SubscriptionsManager>().InSingletonScope();

@@ -14,7 +14,8 @@
         
     <m:Zone ZonePlaceHolderName="Content">
         <StackPanel>
-            <TextBox Name="SubscriptionUrl" Text="http://www.dotnetrocks.com/feed.aspx" />
+            <TextBox Name="SubscriptionUrl" Text="http://feeds.feedburner.com/netRocksFullMp3Downloads?format=xml" />
+            <!--<TextBox Name="SubscriptionUrl" Text="http://hobbytalks.org/rss.xml" />-->
             <Button 
                 Command="{Binding AddSubscriptionCommand}" 
                 CommandParameter="{Binding Text, ElementName=SubscriptionUrl}" 
