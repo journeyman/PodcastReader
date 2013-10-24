@@ -1,0 +1,3 @@
+[submodule "src/Submodules/ReactiveUI"]
+	path = src/Submodules/ReactiveUI
+	url = git@github.com:journeyman/ReactiveUI.git
