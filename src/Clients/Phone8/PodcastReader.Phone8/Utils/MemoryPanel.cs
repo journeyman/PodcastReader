@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using Microsoft.Phone.Info;
 using ReactiveUI;
 using System.Windows.Threading;
 using System.Windows.Media;
@@ -13,6 +14,7 @@ namespace PodcastReader.Phone8.Utils
     {
         private static MemoryPanel _instance;
         private static TimeSpan _updatePeriod;
+        private static MemoryInfo _memoryInfo;
 
         public static void Show(TimeSpan updatePeriod)
         {
@@ -39,10 +41,18 @@ namespace PodcastReader.Phone8.Utils
                                 Opacity = 70d,
                                 VerticalAlignment = VerticalAlignment.Bottom,
                                 HorizontalAlignment = HorizontalAlignment.Right,
-                                Foreground = new SolidColorBrush(Colors.Green)
+                                Foreground = new SolidColorBrush(Colors.Green),
+                                FontSize = 14,
+                                IsHitTestVisible = false,
+                                FontWeight = FontWeights.SemiBold,
                             };
 
+            Grid.SetColumnSpan(_instance, 100);
+            Grid.SetRowSpan(_instance, 100);
+
             panel.Children.Add(_instance);
+
+            _memoryInfo = new MemoryInfo();
 
             var timer = new DispatcherTimer {Interval = _updatePeriod};
             timer.Tick += Timer_OnTick;
@@ -51,8 +61,32 @@ namespace PodcastReader.Phone8.Utils
 
         static void Timer_OnTick(object sender, EventArgs e)
         {
-            string memoryString = string.Format("current: {0}, peak: {1}, limit: {2}", 10, 20, 30);
+            string memoryString = string.Format("current: {0}, peak: {1}, limit: {2}",
+                _memoryInfo.Usage.ToPrettyMbString(),
+                _memoryInfo.Peak.ToPrettyMbString(),
+                _memoryInfo.Limit.ToPrettyMbString());
+
             _instance.SetValue(ContentProperty, memoryString);
+        }
+    }
+
+    public class MemoryInfo
+    {
+        public long Usage { get { return DeviceStatus.ApplicationCurrentMemoryUsage; } }
+        public long Peak { get { return DeviceStatus.ApplicationPeakMemoryUsage; } }
+        public long Limit { get { return DeviceStatus.ApplicationMemoryUsageLimit; } }
+    }
+
+    public static class LongExtensions
+    {
+        public static string ToPrettyMbString(this long num)
+        {
+            if (num <= 1024)
+                return num.ToString() + " b";
+            else if (num <= 1024 * 1024)
+                return (num / 1024).ToString() + " Kb";
+            else
+                return (num / (1024 * 1024)).ToString("N2") + " Mb";
         }
     }
 }
