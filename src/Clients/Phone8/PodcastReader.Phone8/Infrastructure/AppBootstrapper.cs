@@ -2,6 +2,7 @@
 using System.Linq;
 using Akavache;
 using Ninject;
+using PodcastReader.Infrastructure.Utils.Logging;
 using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Loaders;
 using ReactiveUI;
@@ -49,8 +50,9 @@ namespace PodcastReader.Phone8.Infrastructure
 
         private void RegisterServices(IKernel kernel)
         {
-            //kernel.Bind<IBlobCache>().ToMethod(_ => BlobCache.LocalMachine);
+            //kernel.Bind<IBlobCache>().ToMethod(_ => BlobCache.LocalMachine).InSingletonScope();
             kernel.Bind<IBlobCache>().ToConstant(BlobCache.LocalMachine);
+            kernel.Bind<ILogger>().ToMethod(_ => new PRDebugLogger()).InSingletonScope();
             kernel.Bind<IFeedPreviewsLoader>().To<FeedPreviewsLoader>().InSingletonScope();
             kernel.Bind<IPlayerClient>().To<BackgroundPlayerClient>().InSingletonScope();
             kernel.Bind<ISubscriptionsManager>().To<SubscriptionsManager>().InSingletonScope();

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Akavache;
-using Newtonsoft.Json;
 using PodcastReader.Infrastructure;
 using PodcastReader.Infrastructure.Interfaces;
+using ReactiveUI;
 
 namespace PodcastReader.Phone8.Infrastructure
 {
@@ -18,7 +17,7 @@ namespace PodcastReader.Phone8.Infrastructure
         Task SaveSubscription(ISubscription subscription);
     }
 
-    public class IsoSubscriptionsCache : ISubscriptionsCache
+    public class IsoSubscriptionsCache : ISubscriptionsCache, IEnableLogger
     {
         private const string CACHE_KEY_FMT = "subscription{0}";
         private const int DEFAULT_COUNT_VALUE = -1;
@@ -37,6 +36,7 @@ namespace PodcastReader.Phone8.Infrastructure
 
             var serializable = new SubscriptionDto {Uri = subscription.Uri};
             var key = string.Format(CACHE_KEY_FMT, _count);
+            this.Log().Info("Inserting subscription to {0} into cache", serializable.Uri);
             await Cache.Local.InsertObject(key, serializable);
             _count++;
         }
