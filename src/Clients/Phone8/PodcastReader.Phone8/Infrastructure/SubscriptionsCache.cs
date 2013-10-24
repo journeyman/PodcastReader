@@ -42,12 +42,8 @@ namespace PodcastReader.Phone8.Infrastructure
         }
     }
 
-    [DataContract]
-    [JsonObject]
     public class SubscriptionDto : ISubscription
     {
-        [DataMember]
-        [JsonPropertyAttribute]
         public Uri Uri { get; set; }
     }
 }
