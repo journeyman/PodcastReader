@@ -26,14 +26,14 @@ namespace PodcastReader.Phone8.Infrastructure
             RunInitedApp();
         }
 
-        public async void OnDeactivated(DeactivationReason reason)
+        public void OnDeactivated(DeactivationReason reason)
         {
-            await SaveAppState();
+            SaveAppState();
         }
 
-        public async void OnClosing()
+        public void OnClosing()
         {
-            await SaveAppState();
+            SaveAppState();
         }
 
         private void InitApp()
@@ -48,7 +48,7 @@ namespace PodcastReader.Phone8.Infrastructure
             Screen.Router.Navigate.Execute(RxApp.DependencyResolver.GetService<MainViewModel>());
         }
 
-        private async Task SaveAppState()
+        private void SaveAppState()
         {
             Cache.Local.Shutdown.Subscribe( _ =>
                                            {
@@ -56,7 +56,7 @@ namespace PodcastReader.Phone8.Infrastructure
                                                Debug.WriteLine("shutdown is triggered");
                                            });
 
-            await BlobCache.Shutdown();
+            BlobCache.Shutdown().Wait();
         }
     }
 }
