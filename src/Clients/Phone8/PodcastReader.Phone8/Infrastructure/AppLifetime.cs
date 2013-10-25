@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Akavache;
 using Microsoft.Phone.Shell;
 using PodcastReader.Infrastructure;
+using PodcastReader.Infrastructure.Utils.Logging;
 using PodcastReader.Phone8.ViewModels;
 using ReactiveUI;
 using ObservableExtensions = Microsoft.Phone.Reactive.ObservableExtensions;

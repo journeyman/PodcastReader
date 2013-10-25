@@ -26,6 +26,8 @@ namespace PodcastReader.Phone8.Infrastructure
                 (service, contract) =>
                 {
                     if (contract != null) return kernel.GetAll(service, contract);
+                    //returns IEnumerable that returns only LastOrDefault item
+                    //return new [] {kernel.GetAll(service).LastOrDefault()};
                     var items = kernel.GetAll(service);
                     var list = items.ToList();
                     return list;
