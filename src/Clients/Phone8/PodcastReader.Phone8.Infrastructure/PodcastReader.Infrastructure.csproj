@@ -94,6 +94,7 @@
     <Compile Include="PodcastSyndicationExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Logging\CompositeLogger.cs" />
+    <Compile Include="Utils\FeedXmlParser.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

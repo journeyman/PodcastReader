@@ -15,10 +15,17 @@ namespace PodcastReader.Phone8.Loaders
 
         public PodcastItemsLoader(SyndicationFeed feed)
         {
-            foreach (var syndicationItem in feed.Items.Where(item => item.IsPodcast()))
-            {
-                _subject.OnNext(new PodcastItemViewModel(syndicationItem));
-            }
+            feed.Items.Where(item => item.IsPodcast())
+                      .ToObservable()
+                      .Do(item => item.SourceFeed = feed)
+                      .Select(item => new PodcastItemViewModel(item))
+                      .Subscribe(_subject);
+
+            //foreach (var syndicationItem in feed.Items.Where(item => item.IsPodcast()))
+            //{
+            //    syndicationItem.SourceFeed = feed;
+            //    _subject.OnNext(new PodcastItemViewModel(syndicationItem));
+            //}
         }
 
         public IDisposable Subscribe(IObserver<IPodcastItem> observer)

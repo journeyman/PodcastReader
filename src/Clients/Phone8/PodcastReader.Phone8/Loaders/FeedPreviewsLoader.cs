@@ -8,6 +8,7 @@ using System.Reactive.Threading.Tasks;
 using System.ServiceModel.Syndication;
 using System.Xml;
 using PodcastReader.Infrastructure.Interfaces;
+using PodcastReader.Infrastructure.Utils;
 using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Interfaces.Models;
 using PodcastReader.Phone8.Models;
@@ -41,17 +42,13 @@ namespace PodcastReader.Phone8.Loaders
 
             _subscriptionsManager.Subscriptions
                 .Select(s => s.Uri)
-                .StartWith(new Uri(TEST_FEED_URL))
+                .StartWith(new Uri(TEST_FEED_URL2))
                 //.StartWith(new Uri(TEST_FEED_URL), new Uri(TEST_FEED_URL1), new Uri(TEST_FEED_URL2))
                 .Select(uri => client.GetStringAsync(uri).ToObservable())
                 .SelectMany(results => results)
                 .LoggedCatch(this)
                 //DtdProcessing = DtdProcessing.Ignore is needed for some feeds (e.g. http://www.dotnetrocks.com/feed.aspx)
-                .Select(xml =>
-                        {
-                            using (var reader = XmlReader.Create(new StringReader(xml),new XmlReaderSettings {DtdProcessing = DtdProcessing.Ignore}))
-                                return SyndicationFeed.Load(reader);
-                        })
+                .Select(xml => new FeedXmlParser().Parse(xml))
                 .Select(feed => new FeedModel(feed.Title.Text, new PodcastItemsLoader(feed)))
                 .Subscribe(_subject);
 

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using PodcastReader.Infrastructure;
+using PodcastReader.Infrastructure.Utils;
 using PodcastReader.Phone8.Infrastructure;
 using PodcastReader.Phone8.Interfaces.Models;
 using PodcastReader.Phone8.Models;
@@ -15,7 +16,11 @@ namespace PodcastReader.Phone8.ViewModels
         {
             this.DatePublished = item.PublishDate;
             this.Title = item.Title.Text;
-            this.Summary = item.Summary.Text;
+
+            string summary = item.Summary.IfNotNull(its => its.Text) ??
+                             item.ElementExtensions.FirstOrDefault(ext => ext.OuterName == "summary").IfNotNull(ext => ext.GetObject<string>(), string.Empty);
+            
+            this.Summary = summary;
             this.PodcastUri = item.GetPodcastUris().First();
 
 

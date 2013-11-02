@@ -26,8 +26,6 @@ namespace PodcastReader.Phone8.Infrastructure
                 (service, contract) =>
                 {
                     if (contract != null) return kernel.GetAll(service, contract);
-                    //returns IEnumerable that returns only LastOrDefault item
-                    //return new [] {kernel.GetAll(service).LastOrDefault()};
                     var items = kernel.GetAll(service);
                     var list = items.ToList();
                     return list;
@@ -52,8 +50,8 @@ namespace PodcastReader.Phone8.Infrastructure
 
         private void RegisterServices(IKernel kernel)
         {
-            //kernel.Bind<IBlobCache>().ToMethod(_ => BlobCache.LocalMachine).InSingletonScope();
-            kernel.Bind<IBlobCache>().ToConstant(BlobCache.LocalMachine);
+            kernel.Bind<IBlobCache>().ToMethod(_ => BlobCache.LocalMachine).InSingletonScope();
+            //kernel.Bind<IBlobCache>().ToConstant(BlobCache.LocalMachine);
             kernel.Bind<ILogger>().ToMethod(_ => new PRDebugLogger()).InSingletonScope();
             kernel.Bind<IFeedPreviewsLoader>().To<FeedPreviewsLoader>().InSingletonScope();
             kernel.Bind<IPlayerClient>().To<BackgroundPlayerClient>().InSingletonScope();

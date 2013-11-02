@@ -43,6 +43,10 @@ namespace PodcastReader.Phone8.Infrastructure
 
         private void RunInitedApp()
         {
+            bool debugFlag = false;
+            if (debugFlag)
+                Cache.Local.InvalidateAll().Wait();
+            
             Screen.Router.Navigate.Execute(RxApp.DependencyResolver.GetService<MainViewModel>());
         }
 

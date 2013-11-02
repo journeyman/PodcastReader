@@ -15,7 +15,9 @@ namespace PodcastReader.Infrastructure
                 return new[]
                            {
                                "mp3",
-                               "wav"
+                               "wav",
+                               "mpeg",
+                               "audio"//general subscring
                            };
             }
         }
@@ -34,6 +36,7 @@ namespace PodcastReader.Infrastructure
 
         public static bool IsLinkToPodcast(this SyndicationLink This)
         {
+            //MediaType should be something like "audio/mp3"
             return !string.IsNullOrWhiteSpace(This.MediaType) && This.MediaType.ContainsValues(SupportedMediaTypes);
         }
     }
