@@ -19,9 +19,7 @@ namespace PodcastReader.Phone8.ViewModels
 
         private int FeedsComparer(IFeedPreview a, IFeedPreview b)
         {
-            if (a.LastPublished == b.LastPublished)
-                return 0;
-            else if (a.LastPublished > b.LastPublished)
+            if (a.LastPublished > b.LastPublished)
                 return 1;
             else
                 return -1;
