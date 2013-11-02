@@ -41,7 +41,7 @@ namespace PodcastReader.Phone8.Infrastructure
             _count++;
         }
     }
-
+    
     public class SubscriptionDto : ISubscription
     {
         public Uri Uri { get; set; }

@@ -25,6 +25,8 @@ namespace PodcastReader.Phone8.Loaders
         }
 
         private const string TEST_FEED_URL = "http://feeds.feedburner.com/Hanselminutes?format=xml";
+        private const string TEST_FEED_URL1 = "http://feeds.feedburner.com/netRocksFullMp3Downloads?format=xml";
+        private const string TEST_FEED_URL2 = "http://hobbytalks.org/rss.xml";
 
         readonly ISubject<IFeedPreview> _subject = new ReplaySubject<IFeedPreview>();
 
@@ -40,9 +42,11 @@ namespace PodcastReader.Phone8.Loaders
             _subscriptionsManager.Subscriptions
                 .Select(s => s.Uri)
                 .StartWith(new Uri(TEST_FEED_URL))
+                //.StartWith(new Uri(TEST_FEED_URL), new Uri(TEST_FEED_URL1), new Uri(TEST_FEED_URL2))
                 .Select(uri => client.GetStringAsync(uri).ToObservable())
                 .SelectMany(results => results)
-                //DtdProcessing = DtdProcessing.Parse is needed for some feeds (e.g. http://www.dotnetrocks.com/feed.aspx)
+                .LoggedCatch(this)
+                //DtdProcessing = DtdProcessing.Ignore is needed for some feeds (e.g. http://www.dotnetrocks.com/feed.aspx)
                 .Select(xml =>
                         {
                             using (var reader = XmlReader.Create(new StringReader(xml),new XmlReaderSettings {DtdProcessing = DtdProcessing.Ignore}))
