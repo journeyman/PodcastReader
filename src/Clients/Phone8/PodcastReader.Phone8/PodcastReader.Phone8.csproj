@@ -119,6 +119,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="UI\Converters\PrettyPublishDateConverter.cs" />
     <Compile Include="Utils\RoutableViewModelExtensions.cs" />
     <Compile Include="Utils\MemoryPanel.cs" />
     <Compile Include="Utils\PropertyChangedExtensions.cs" />

@@ -7,7 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    xmlns:m="clr-namespace:Magellan.WP.Controls;assembly=Magellan.WP" mc:Ignorable="d"
+    xmlns:converters="clr-namespace:PodcastReader.Phone8.UI.Converters"
+    mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -15,19 +16,54 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <StackPanel x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
         <Panel.Resources>
             <Style x:Key="FeedItemsListStyle" TargetType="ItemsControl">
                 <Setter Property="ItemTemplate">
                     <Setter.Value>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextNormalStyle}">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Panel.Resources>
+                                        <converters:PrettyPublishDateConverter x:Key="PrettyPublishDateConverter" />
+                                    </Panel.Resources>
+                                    
+                                    <TextBlock Text="{Binding Title}" 
+                                       Style="{StaticResource PhoneTextNormalStyle}"
+                                       TextTrimming="WordEllipsis"
+                                       />
+
+                                    <TextBlock Text="{Binding DatePublished, Converter={StaticResource PrettyPublishDateConverter}}"
+                                               Grid.Column="1"
+                                               FontSize="14"
+                                               Foreground="DeepSkyBlue"
+                                               />
+                                </Grid>
+                                
+                                <TextBlock Text="{Binding Summary}"
+                                           Opacity=".7"
+                                           TextWrapping="Wrap"
+                                           MaxHeight="40"
+                                           FontSize="14"
+                                           />
+                                
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Tap">
                                         <i:InvokeCommandAction Command="{Binding GoToPodcastCommand}" CommandParameter="{Binding}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
-                            </TextBlock>
+                            </StackPanel>
+                            
                         </DataTemplate>
                     </Setter.Value>
                 </Setter>
@@ -38,8 +74,23 @@
                     <Setter.Value>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextAccentStyle}" />
-                                <ItemsControl Margin="14,0,0,0" ItemsSource="{Binding Items}" Style="{StaticResource FeedItemsListStyle}" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Panel.Resources>
+                                        <converters:PrettyPublishDateConverter x:Key="PrettyPublishDateConverter" />
+                                    </Panel.Resources>
+                                    
+                                    <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextAccentStyle}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding LastPublished, Converter={StaticResource PrettyPublishDateConverter}}" />
+                                </Grid>
+                                
+                                <ItemsControl Margin="14,0,0,0" 
+                                              ItemsSource="{Binding Items}"
+                                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                              Style="{StaticResource FeedItemsListStyle}" />
                             </StackPanel>
                         </DataTemplate>
                     </Setter.Value>
@@ -48,10 +99,12 @@
         </Panel.Resources>
         
         <TextBlock Style="{StaticResource PhoneTextTitle1Style}" Text="podcasts" />
+
+        <Button Grid.Row="1" Content="Add subscription" Command="{Binding AddSubscriptionCommand}"/>
         
-        <Button Content="Add subscription" Command="{Binding AddSubscriptionCommand}"/>
-        
-            <ListBox ItemsSource="{Binding Feeds}" Style="{StaticResource FeedsListStyle}" />
-    </StackPanel>
+        <ScrollViewer Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding Feeds}" Style="{StaticResource FeedsListStyle}" />
+        </ScrollViewer>
+    </Grid>
     
 </phone:PhoneApplicationPage>
