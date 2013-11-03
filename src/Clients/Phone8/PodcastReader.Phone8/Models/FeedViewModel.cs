@@ -3,16 +3,17 @@ using System.Linq;
 using System.Reactive.Linq;
 using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Interfaces.Models;
+using PodcastReader.Phone8.ViewModels;
 using ReactiveUI;
 
 namespace PodcastReader.Phone8.Models
 {
-    public class FeedModel : ReactiveObject, IFeed, IFeedPreview
+    public class FeedViewModel : RoutableViewModelBase, IFeed, IFeedPreview
     {
         private readonly ObservableAsPropertyHelper<IFeedItem> _lastFeedItemProp;
         private readonly ObservableAsPropertyHelper<DateTimeOffset> _lastPulbishedProp;
 
-        public FeedModel(string title, IPodcastItemsLoader itemsLoader)
+        public FeedViewModel(string title, IPodcastItemsLoader itemsLoader)
         {
             this.Title = title;
 

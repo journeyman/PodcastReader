@@ -1,0 +1,25 @@
+﻿<m:Layout 
+    Source="/PodcastReader.Phone8;component/Views/Layouts/HeaderedLayout.xaml"
+    x:Class="PodcastReader.Phone8.Views.FeedDetailsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:m="clr-namespace:Magellan.WP.Controls;assembly=Magellan.WP"
+    HorizontalContentAlignment="Stretch"
+    VerticalContentAlignment="Stretch"
+    >
+    <FrameworkElement.Resources>
+        <ResourceDictionary Source="../Resources/Styles/FeedDetailsViewStyles.xaml" />    
+    </FrameworkElement.Resources>
+    
+    <m:Zone ZonePlaceHolderName="Header">
+        <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextTitle1Style}" />
+    </m:Zone>
+        
+    <m:Zone ZonePlaceHolderName="Content">
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding Items}"
+                              Style="{StaticResource FeedItemsListStyle}" />
+            </ScrollViewer>
+    </m:Zone>
+        
+</m:Layout>

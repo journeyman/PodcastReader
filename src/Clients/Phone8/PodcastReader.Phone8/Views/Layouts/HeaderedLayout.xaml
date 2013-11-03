@@ -7,13 +7,12 @@
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="200" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <m:ZonePlaceHolder Name="Header"/>
         
-        <m:ZonePlaceHolder Name="Content" Grid.Row="2" />
+        <m:ZonePlaceHolder Name="Content" Grid.Row="1" />
         
     </Grid>
     

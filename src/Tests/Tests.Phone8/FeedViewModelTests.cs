@@ -27,7 +27,7 @@ namespace Tests.Phone8
             testPodcastsSubj.OnNext(new TestPodcastItem(1, initialDate.AddDays(1)));
             testPodcastsSubj.OnNext(new TestPodcastItem(2, initialDate.AddDays(2)));
 
-            var model = new FeedModel("TestFeed", testPodcasts);
+            var model = new FeedViewModel("TestFeed", testPodcasts);
 
             Assert.AreEqual(2, model.Items.Count);
         }

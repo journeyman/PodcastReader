@@ -24,51 +24,6 @@
         </Grid.RowDefinitions>
         
         <Panel.Resources>
-            <Style x:Key="FeedItemsListStyle" TargetType="ItemsControl">
-                <Setter Property="ItemTemplate">
-                    <Setter.Value>
-                        <DataTemplate>
-                            <StackPanel>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Panel.Resources>
-                                        <converters:DateToTimeAgoConverter x:Key="DateToTimeAgoConverter" />
-                                    </Panel.Resources>
-                                    
-                                    <TextBlock Text="{Binding Title}" 
-                                       Style="{StaticResource PhoneTextNormalStyle}"
-                                       TextTrimming="WordEllipsis"
-                                       />
-
-                                    <TextBlock Text="{Binding DatePublished, Converter={StaticResource DateToTimeAgoConverter}}"
-                                               Grid.Column="1"
-                                               FontSize="14"
-                                               Foreground="DeepSkyBlue"
-                                               />
-                                </Grid>
-                                
-                                <TextBlock Text="{Binding Summary}"
-                                           Opacity=".7"
-                                           TextWrapping="Wrap"
-                                           MaxHeight="40"
-                                           FontSize="14"
-                                           />
-                                
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="Tap">
-                                        <i:InvokeCommandAction Command="{Binding GoToPodcastCommand}" CommandParameter="{Binding}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </StackPanel>
-                            
-                        </DataTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            
             <Style x:Key="FeedsListStyle" TargetType="ItemsControl">
                 <Setter Property="ItemTemplate">
                     <Setter.Value>
@@ -87,10 +42,11 @@
                                     <TextBlock Grid.Column="1" Text="{Binding LatestPublished, Converter={StaticResource DateToTimeAgoConverter}}" />
                                 </Grid>
                                 
-                                <ItemsControl Margin="14,0,0,0" 
-                                              ItemsSource="{Binding Items}"
-                                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                              Style="{StaticResource FeedItemsListStyle}" />
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Tap">
+                                        <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </StackPanel>
                         </DataTemplate>
                     </Setter.Value>

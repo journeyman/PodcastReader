@@ -44,7 +44,7 @@ namespace PodcastReader.Phone8.Loaders
                 .SelectMany(results => results)
                 .LoggedCatch(this)
                 .Select(xml => new FeedXmlParser().Parse(xml))
-                .Select(feed => new FeedModel(feed.Title.Text, new PodcastItemsLoader(feed)))
+                .Select(feed => new FeedViewModel(feed.Title.Text, new PodcastItemsLoader(feed)))
                 .Subscribe(_subject);
 
             await _subscriptionsManager.ReloadSubscriptions();

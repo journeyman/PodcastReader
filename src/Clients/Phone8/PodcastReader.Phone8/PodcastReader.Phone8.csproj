@@ -111,7 +111,7 @@
     <Compile Include="Loaders\PodcastItemsLoader.cs" />
     <Compile Include="Loaders\FeedPreviewsLoader.cs" />
     <Compile Include="LocalizedStrings.cs" />
-    <Compile Include="Models\FeedModel.cs" />
+    <Compile Include="Models\FeedViewModel.cs" />
     <Compile Include="Models\PodcastTrackInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
@@ -130,6 +130,9 @@
     <Compile Include="ViewModels\RoutableViewModelBase.cs" />
     <Compile Include="Views\AddSubscriptionView.xaml.cs">
       <DependentUpon>AddSubscriptionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FeedDetailsView.xaml.cs">
+      <DependentUpon>FeedDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PodcastView.xaml.cs">
       <DependentUpon>PodcastView.xaml</DependentUpon>
@@ -150,7 +153,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Resource>
+    <ApplicationDefinition Include="Resources\Styles\FeedDetailsViewStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="Views\AddSubscriptionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FeedDetailsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

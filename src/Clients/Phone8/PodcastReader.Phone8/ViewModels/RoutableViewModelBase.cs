@@ -11,6 +11,8 @@ namespace PodcastReader.Phone8.ViewModels
             get { throw new NotImplementedException(); }
         }
 
+        public IReactiveCommand NavigateCommand { get { return HostScreen.Router.Navigate; } }
+
         public IScreen HostScreen
         {
             get { return Screen.Instance; }

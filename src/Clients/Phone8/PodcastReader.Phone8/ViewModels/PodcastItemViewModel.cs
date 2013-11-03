@@ -23,8 +23,6 @@ namespace PodcastReader.Phone8.ViewModels
             this.Summary = summary;
             this.PodcastUri = item.GetPodcastUris().First();
 
-
-            this.GoToPodcastCommand = HostScreen.Router.Navigate; //Screen.Router.NavigateCommandForParamOfType<IPodcastItemViewModel>(); //ReactiveCommand.Create(_ => true, p => Screen.Router.Navigate.Execute(p));
             this.PlayPodcastCommand = new ReactiveCommand();
             this.PlayPodcastCommand.Subscribe(OnPlayPodcast);
         }
@@ -34,7 +32,6 @@ namespace PodcastReader.Phone8.ViewModels
         public string Summary { get; private set; }
         public Uri PodcastUri { get; private set; }
 
-        public IReactiveCommand GoToPodcastCommand { get; private set; }
         public IReactiveCommand PlayPodcastCommand { get; private set; }
 
         public void OnPlayPodcast(object _)
