@@ -17,7 +17,7 @@ namespace PodcastReader.Phone8.Models
             this.Title = title;
 
             this.Items = itemsLoader.CreateCollection().CreateDerivedCollection(f => f, null, ByDateDescendingComparer);
-            var lastItemChanged = this.Items.Changed.Select(_ => this.Items.Last());
+            var lastItemChanged = this.Items.Changed.Select(_ => this.Items.First());
             _lastFeedItemProp = new ObservableAsPropertyHelper<IPodcastItem>(lastItemChanged, _ => this.RaisePropertyChanged(x => x.LastFeedItem));
             _lastPulbishedProp = new ObservableAsPropertyHelper<DateTimeOffset>(lastItemChanged.Select(i => i.DatePublished), _ => this.RaisePropertyChanged(x => x.LastPublished));
         }
