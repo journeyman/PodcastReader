@@ -6,6 +6,6 @@ namespace PodcastReader.Phone8.Interfaces.Models
     {
         string Title { get; }
         IFeedItem LastFeedItem { get; }
-        DateTimeOffset LastPublished { get; }
+        DateTimeOffset LatestPublished { get; }
     }
 }

@@ -9,24 +9,23 @@ namespace PodcastReader.Phone8.Models
 {
     public class FeedModel : ReactiveObject, IFeed, IFeedPreview
     {
-        private readonly ObservableAsPropertyHelper<IPodcastItem> _lastFeedItemProp;
+        private readonly ObservableAsPropertyHelper<IFeedItem> _lastFeedItemProp;
         private readonly ObservableAsPropertyHelper<DateTimeOffset> _lastPulbishedProp;
 
         public FeedModel(string title, IPodcastItemsLoader itemsLoader)
         {
             this.Title = title;
 
-            this.Items = itemsLoader.CreateCollection().CreateDerivedCollection(f => f, null, ByDateDescendingComparer);
-            var lastItemChanged = this.Items.Changed.Select(_ => this.Items.First());
-            _lastFeedItemProp = new ObservableAsPropertyHelper<IPodcastItem>(lastItemChanged, _ => this.RaisePropertyChanged(x => x.LastFeedItem));
-            _lastPulbishedProp = new ObservableAsPropertyHelper<DateTimeOffset>(lastItemChanged.Select(i => i.DatePublished), _ => this.RaisePropertyChanged(x => x.LastPublished));
+            this.Items = itemsLoader.CreateCollection().CreateDerivedCollection(f => f, null, FreshFirstOrderer);
+
+            var lastFeedItemObservable = this.Items.Changed.Select(_ => this.Items.First());
+            _lastFeedItemProp = lastFeedItemObservable.ToProperty(this, x => x.LastFeedItem);
+            _lastPulbishedProp = lastFeedItemObservable.Select(i => i.DatePublished).ToProperty(this, x => x.LatestPublished);
         }
 
-        private int ByDateDescendingComparer(IFeedItem a, IFeedItem b)
+        private int FreshFirstOrderer(IFeedItem a, IFeedItem b)
         {
-            if (a.DatePublished == b.DatePublished)
-                return 0;
-            else if (a.DatePublished > b.DatePublished)
+            if (a.DatePublished > b.DatePublished)
                 return -1;
             else
                 return 1;
@@ -41,7 +40,7 @@ namespace PodcastReader.Phone8.Models
             get { return _lastFeedItemProp.Value; }
         }
 
-        public DateTimeOffset LastPublished
+        public DateTimeOffset LatestPublished
         {
             get { return _lastPulbishedProp.Value; }
         }

@@ -35,7 +35,7 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Panel.Resources>
-                                        <converters:PrettyPublishDateConverter x:Key="PrettyPublishDateConverter" />
+                                        <converters:DateToTimeAgoConverter x:Key="DateToTimeAgoConverter" />
                                     </Panel.Resources>
                                     
                                     <TextBlock Text="{Binding Title}" 
@@ -43,7 +43,7 @@
                                        TextTrimming="WordEllipsis"
                                        />
 
-                                    <TextBlock Text="{Binding DatePublished, Converter={StaticResource PrettyPublishDateConverter}}"
+                                    <TextBlock Text="{Binding DatePublished, Converter={StaticResource DateToTimeAgoConverter}}"
                                                Grid.Column="1"
                                                FontSize="14"
                                                Foreground="DeepSkyBlue"
@@ -80,11 +80,11 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Panel.Resources>
-                                        <converters:PrettyPublishDateConverter x:Key="PrettyPublishDateConverter" />
+                                        <converters:DateToTimeAgoConverter x:Key="DateToTimeAgoConverter" />
                                     </Panel.Resources>
                                     
                                     <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextAccentStyle}" />
-                                    <TextBlock Grid.Column="1" Text="{Binding LastPublished, Converter={StaticResource PrettyPublishDateConverter}}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding LatestPublished, Converter={StaticResource DateToTimeAgoConverter}}" />
                                 </Grid>
                                 
                                 <ItemsControl Margin="14,0,0,0" 

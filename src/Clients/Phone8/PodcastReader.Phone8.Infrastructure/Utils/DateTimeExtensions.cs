@@ -6,15 +6,13 @@ namespace PodcastReader.Infrastructure.Utils
     {
         public static string ToTimeAgo(this TimeSpan timeSince)
         {
-            if (timeSince.TotalMilliseconds < 1)
-                return "not yet";
             if (timeSince.TotalMinutes < 1)
                 return "now";
             if (timeSince.TotalMinutes < 60)
                 return string.Format("{0}m", timeSince.Minutes);
             if (timeSince.TotalHours < 24)
                 return string.Format("{0}h", timeSince.Hours);
-            if (timeSince.TotalDays == 1)
+            if (timeSince.TotalDays < 2)
                 return "yesterday";
             if (timeSince.TotalDays < 7)
                 return string.Format("{0}d", timeSince.Days);

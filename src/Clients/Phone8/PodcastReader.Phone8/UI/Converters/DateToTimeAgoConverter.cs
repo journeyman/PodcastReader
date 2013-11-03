@@ -5,7 +5,7 @@ using PodcastReader.Infrastructure.Utils;
 
 namespace PodcastReader.Phone8.UI.Converters
 {
-    public class PrettyPublishDateConverter : IValueConverter
+    public class DateToTimeAgoConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

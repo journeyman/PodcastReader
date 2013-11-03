@@ -13,17 +13,22 @@ namespace PodcastReader.Phone8.ViewModels
         {
             _feedPreviews = feedPreviews;
 
+<<<<<<< HEAD
             this.AddSubscriptionCommand = HostScreen.Router.Navigate.WithParameter(() => Locator.Current.GetService<AddSubscriptionViewModel>());
             this.Feeds = feedPreviews.CreateCollection().CreateDerivedCollection(f => f, null, FeedsComparer);
+=======
+            this.AddSubscriptionCommand = HostScreen.Router.Navigate.WithParameter(() => RxApp.DependencyResolver.GetService<AddSubscriptionViewModel>());
+            this.Feeds = feedPreviews.CreateCollection().CreateDerivedCollection(f => f, null, FreshFirstOrderer);
+>>>>>>> fixed computing LastPublished date
             feedPreviews.Load();
         }
 
-        private int FeedsComparer(IFeedPreview a, IFeedPreview b)
+        private int FreshFirstOrderer(IFeedPreview a, IFeedPreview b)
         {
-            if (a.LastPublished > b.LastPublished)
-                return 1;
-            else
+            if (a.LatestPublished > b.LatestPublished)
                 return -1;
+            else
+                return 1;
         }
 
         public IReactiveCommand AddSubscriptionCommand { get; private set; }
