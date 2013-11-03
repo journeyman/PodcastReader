@@ -119,14 +119,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Submodules\ReactiveUI\ReactiveUI.Platforms\ReactiveUI.Xaml_WP8.csproj">
-      <Project>{F9459904-F785-4255-866A-A619787CB895}</Project>
-      <Name>ReactiveUI.Xaml_WP8</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI.csproj">
-      <Project>{464CB812-F99F-401B-BE4C-E8F0515CD19D}</Project>
-      <Name>ReactiveUI</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Submodules\Akavache\Akavache.Portable\Akavache.Portable.csproj">
       <Project>{EB73ADDD-2FE9-44C0-A1AB-20709B979B64}</Project>
       <Name>Akavache.Portable</Name>
@@ -134,6 +126,10 @@
     <ProjectReference Include="..\..\..\Submodules\Akavache\Akavache\Akavache_WP8.csproj">
       <Project>{A54279A3-3457-41DB-9166-67E05FD0E0B1}</Project>
       <Name>Akavache_WP8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI.csproj">
+      <Project>{464CB812-F99F-401B-BE4C-E8F0515CD19D}</Project>
+      <Name>ReactiveUI %28Submodules\ReactiveUI\ReactiveUI%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
