@@ -260,9 +260,9 @@
     <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Submodules\Akavache\Akavache.Portable\Akavache.Portable.csproj">
-      <Project>{EB73ADDD-2FE9-44C0-A1AB-20709B979B64}</Project>
-      <Name>Akavache.Portable</Name>
+    <ProjectReference Include="..\..\..\Submodules\Akavache\Akavache.Mobile\Akavache.Mobile_WP8.csproj">
+      <Project>{9F13D088-7B83-4922-97DD-18C4CBBDDEAE}</Project>
+      <Name>Akavache.Mobile_WP8</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Submodules\Akavache\Akavache\Akavache_WP8.csproj">
       <Project>{A54279A3-3457-41DB-9166-67E05FD0E0B1}</Project>
@@ -271,6 +271,10 @@
     <ProjectReference Include="..\..\..\Submodules\ReactiveUI\ReactiveUI.Blend\ReactiveUI.Blend_WP8.csproj">
       <Project>{685E862E-AA12-4D05-AD27-61AB2D71E411}</Project>
       <Name>ReactiveUI.Blend_WP8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Submodules\ReactiveUI\ReactiveUI.Mobile\ReactiveUI.Mobile_WP8.csproj">
+      <Project>{B90F3D02-1E3A-4DD7-8E00-30F28B6DCC1E}</Project>
+      <Name>ReactiveUI.Mobile_WP8</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Submodules\ReactiveUI\ReactiveUI.Platforms\ReactiveUI.Xaml_WP8.csproj">
       <Project>{F9459904-F785-4255-866A-A619787CB895}</Project>
