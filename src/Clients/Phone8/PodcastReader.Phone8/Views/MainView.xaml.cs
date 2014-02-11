@@ -11,6 +11,8 @@ namespace PodcastReader.Phone8.Views
         public MainView()
         {
             InitializeComponent();
+
+            this.BindCommand(ViewModel, x => x.AddSubscriptionCommand, x => x.addSubscriptionButton);
         }
 
         public MainViewModel ViewModel 

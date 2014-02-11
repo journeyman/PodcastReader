@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Reactive.Linq;
 using Microsoft.Phone.Controls;
 using ReactiveUI;
 
@@ -10,6 +11,8 @@ namespace PodcastReader.Phone8.Views
         {
             InitializeComponent();
 
+            //Resetting ViewContractObservable to prevent view resolution on every SizeChanged (e.g. on page orientation changing)
+            viewHost.ViewContractObservable = Observable.Empty<string>();
             viewHost.Router = RxApp.DependencyResolver.GetService<IScreen>().Router;
         }
 

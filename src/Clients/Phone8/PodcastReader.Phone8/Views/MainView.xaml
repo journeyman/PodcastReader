@@ -100,7 +100,7 @@
         
         <TextBlock Style="{StaticResource PhoneTextTitle1Style}" Text="podcasts" />
 
-        <Button Grid.Row="1" Content="Add subscription" Command="{Binding AddSubscriptionCommand}"/>
+        <Button Grid.Row="1" x:Name="addSubscriptionButton" Content="Add subscription" />
         
         <ScrollViewer Grid.Row="2">
             <ItemsControl ItemsSource="{Binding Feeds}" Style="{StaticResource FeedsListStyle}" />

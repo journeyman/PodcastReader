@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive.Subjects;
+using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Interfaces.Models;
@@ -14,7 +15,7 @@ namespace Tests.Phone8
         [TestMethod]
         public void VerifyProperties()
         {
-            //RxApp.InUnitTestRunnerOverride = true;
+            RxApp.InUnitTestRunnerOverride = true;
 
             var testPodcastsSubj = new Subject<IPodcastItem>();
             IPodcastItemsLoader testPodcasts = new TestPodcastItemsLoader(testPodcastsSubj);
@@ -25,13 +26,13 @@ namespace Tests.Phone8
 
             var model = new FeedModel("TestFeed", testPodcasts);
 
-            Assert.Equals(2, model.Items.Count);
+            Assert.AreEqual(2, model.Items.Count);
         }
 
         [TestMethod]
         public void Test()
         {
-
+            
         }
 
         private class TestPodcastItem : IPodcastItem
