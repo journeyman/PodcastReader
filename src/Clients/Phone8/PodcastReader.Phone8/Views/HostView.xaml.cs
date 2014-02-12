@@ -2,6 +2,7 @@
 using System.Reactive.Linq;
 using Microsoft.Phone.Controls;
 using ReactiveUI;
+using Splat;
 
 namespace PodcastReader.Phone8.Views
 {
@@ -13,7 +14,7 @@ namespace PodcastReader.Phone8.Views
 
             //Resetting ViewContractObservable to prevent view resolution on every SizeChanged (e.g. on page orientation changing)
             viewHost.ViewContractObservable = Observable.Empty<string>();
-            viewHost.Router = RxApp.DependencyResolver.GetService<IScreen>().Router;
+            viewHost.Router = Locator.Current.GetService<IScreen>().Router;
         }
 
         protected override void OnBackKeyPress(CancelEventArgs e)

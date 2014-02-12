@@ -1,6 +1,7 @@
 ﻿using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Interfaces.Models;
 using ReactiveUI;
+using Splat;
 
 namespace PodcastReader.Phone8.ViewModels
 {
@@ -12,7 +13,7 @@ namespace PodcastReader.Phone8.ViewModels
         {
             _feedPreviews = feedPreviews;
 
-            this.AddSubscriptionCommand = HostScreen.Router.Navigate.WithParameter(() => RxApp.DependencyResolver.GetService<AddSubscriptionViewModel>());
+            this.AddSubscriptionCommand = HostScreen.Router.Navigate.WithParameter(() => Locator.Current.GetService<AddSubscriptionViewModel>());
             this.Feeds = feedPreviews.CreateCollection().CreateDerivedCollection(f => f, null, FeedsComparer);
             feedPreviews.Load();
         }

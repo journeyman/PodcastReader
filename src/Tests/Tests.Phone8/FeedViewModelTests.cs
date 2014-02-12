@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Reactive.Subjects;
-using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Interfaces.Models;
 using PodcastReader.Phone8.Models;
-using ReactiveUI;
+using Splat;
 
 namespace Tests.Phone8
 {
@@ -15,7 +15,10 @@ namespace Tests.Phone8
         [TestMethod]
         public void VerifyProperties()
         {
-            RxApp.InUnitTestRunnerOverride = true;
+            var detector = new Mock<IModeDetector>();
+            detector.Setup(x => x.InUnitTestRunner()).Returns(true);
+
+            ModeDetector.OverrideModeDetector(detector.Object);
 
             var testPodcastsSubj = new Subject<IPodcastItem>();
             IPodcastItemsLoader testPodcasts = new TestPodcastItemsLoader(testPodcastsSubj);

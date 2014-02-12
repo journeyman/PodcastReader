@@ -3,9 +3,9 @@ using System.Reactive.Linq;
 using Akavache;
 using Microsoft.Phone.Shell;
 using PodcastReader.Infrastructure;
-using PodcastReader.Infrastructure.Utils.Logging;
 using PodcastReader.Phone8.ViewModels;
 using ReactiveUI;
+using Splat;
 
 namespace PodcastReader.Phone8.Infrastructure
 {
@@ -43,7 +43,7 @@ namespace PodcastReader.Phone8.Infrastructure
 
         private void RunInitedApp()
         {
-            Screen.Router.Navigate.Execute(RxApp.DependencyResolver.GetService<MainViewModel>());
+            Screen.Router.Navigate.Execute(Locator.Current.GetService<MainViewModel>());
         }
 
         private void SaveAppState()

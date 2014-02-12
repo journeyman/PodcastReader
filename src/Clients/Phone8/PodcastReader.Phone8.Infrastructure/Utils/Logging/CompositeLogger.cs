@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using ReactiveUI;
+using Splat;
 
 namespace PodcastReader.Infrastructure.Utils.Logging
 {

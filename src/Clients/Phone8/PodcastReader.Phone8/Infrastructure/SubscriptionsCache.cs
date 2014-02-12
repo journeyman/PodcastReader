@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Akavache;
 using PodcastReader.Infrastructure;
 using PodcastReader.Infrastructure.Interfaces;
-using ReactiveUI;
+using Splat;
 
 namespace PodcastReader.Phone8.Infrastructure
 {

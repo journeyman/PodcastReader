@@ -7,6 +7,7 @@ using Microsoft.Phone.Info;
 using ReactiveUI;
 using System.Windows.Threading;
 using System.Windows.Media;
+using Splat;
 
 namespace PodcastReader.Phone8.Utils
 {

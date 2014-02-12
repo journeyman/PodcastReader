@@ -9,6 +9,7 @@ using ReactiveUI;
 using System.Reflection;
 using PodcastReader.Infrastructure.Interfaces;
 using PodcastReader.Infrastructure.Audio;
+using Splat;
 
 namespace PodcastReader.Phone8.Infrastructure
 {
@@ -35,9 +36,8 @@ namespace PodcastReader.Phone8.Infrastructure
                     var binding = kernel.Bind(service).ToMethod(_ => factory());
                     if (contract != null) binding.Named(contract);
                 });
-            customResolver.InitializeResolver();
 
-            RxApp.DependencyResolver = customResolver;
+            Locator.Current = customResolver;
 
             LogHost.Default.Level = LogLevel.Debug;
 

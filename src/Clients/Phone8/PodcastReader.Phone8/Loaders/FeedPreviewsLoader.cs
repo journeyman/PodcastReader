@@ -9,6 +9,7 @@ using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Interfaces.Models;
 using PodcastReader.Phone8.Models;
 using ReactiveUI;
+using Splat;
 
 namespace PodcastReader.Phone8.Loaders
 {
