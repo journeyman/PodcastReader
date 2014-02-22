@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reactive.Linq;
+using PodcastReader.Infrastructure.Utils;
 using PodcastReader.Phone8.Interfaces.Loaders;
 using PodcastReader.Phone8.Interfaces.Models;
 using PodcastReader.Phone8.ViewModels;
@@ -16,12 +17,13 @@ namespace PodcastReader.Phone8.Models
         public FeedViewModel(string title, IPodcastItemsLoader itemsLoader)
         {
             this.Title = title;
-
             this.Items = itemsLoader.CreateCollection().CreateDerivedCollection(f => f, null, FreshFirstOrderer);
-
-            var lastFeedItemObservable = this.Items.Changed.Select(_ => this.Items.First());
-            _lastFeedItemProp = lastFeedItemObservable.ToProperty(this, x => x.LastFeedItem);
-            _lastPulbishedProp = lastFeedItemObservable.Select(i => i.DatePublished).ToProperty(this, x => x.LatestPublished);
+            
+            var lastFeedItemObservable = Items.Changed.Select(_ => this.Items.FirstOrDefault());
+            _lastFeedItemProp = lastFeedItemObservable.ToProperty(this, x => x.LastFeedItem, Items.FirstOrDefault());
+            _lastPulbishedProp = lastFeedItemObservable
+                .Select(i => i.DatePublished)
+                .ToProperty(this, x => x.LatestPublished, Items.FirstOrDefault().IfNotNull(i => i.DatePublished));
         }
 
         private int FreshFirstOrderer(IFeedItem a, IFeedItem b)

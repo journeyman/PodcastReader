@@ -40,11 +40,13 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Moq">
-      <HintPath>..\..\packages\Moq.4.2.1312.1622\lib\net40\Moq.dll</HintPath>
+    <Reference Include="Moq, Version=4.2.1402.2112, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Splat">
-      <HintPath>..\..\packages\Splat.1.1.1\lib\Net45\Splat.dll</HintPath>
+    <Reference Include="Splat, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Splat.1.2.0\lib\Net45\Splat.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Reactive.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -63,6 +65,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Rx-PlatformServices.2.2.3\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Rx-XAML.2.2.2\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -81,9 +88,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Clients\Phone8\PodcastReader.Phone8.Infrastructure\PodcastReader.Infrastructure.csproj">
+      <Project>{2723d721-478e-48b8-9503-57a8cc0317c2}</Project>
+      <Name>PodcastReader.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Clients\Phone8\PodcastReader.Phone8\PodcastReader.Phone8.csproj">
       <Project>{8e0c268f-5b45-4dc9-9f72-53b8c3f9f6e5}</Project>
       <Name>PodcastReader.Phone8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Submodules\ReactiveUI\ReactiveUI.Platforms\ReactiveUI.Xaml_WP8.csproj">
+      <Project>{f9459904-f785-4255-866a-a619787cb895}</Project>
+      <Name>ReactiveUI.Xaml_WP8</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI.csproj">
       <Project>{464cb812-f99f-401b-be4c-e8f0515cd19d}</Project>
