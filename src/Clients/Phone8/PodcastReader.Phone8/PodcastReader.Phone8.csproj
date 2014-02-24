@@ -261,10 +261,6 @@
     <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Submodules\Akavache\Akavache.Mobile\Akavache.Mobile_WP8.csproj">
-      <Project>{9F13D088-7B83-4922-97DD-18C4CBBDDEAE}</Project>
-      <Name>Akavache.Mobile_WP8</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Submodules\Akavache\Akavache\Akavache_WP8.csproj">
       <Project>{A54279A3-3457-41DB-9166-67E05FD0E0B1}</Project>
       <Name>Akavache_WP8</Name>
