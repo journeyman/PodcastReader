@@ -265,10 +265,6 @@
       <Project>{A54279A3-3457-41DB-9166-67E05FD0E0B1}</Project>
       <Name>Akavache_WP8</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Submodules\ReactiveUI\ReactiveUI.Blend\ReactiveUI.Blend_WP8.csproj">
-      <Project>{685E862E-AA12-4D05-AD27-61AB2D71E411}</Project>
-      <Name>ReactiveUI.Blend_WP8</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Submodules\ReactiveUI\ReactiveUI.Mobile\ReactiveUI.Mobile_WP8.csproj">
       <Project>{B90F3D02-1E3A-4DD7-8E00-30F28B6DCC1E}</Project>
       <Name>ReactiveUI.Mobile_WP8</Name>
