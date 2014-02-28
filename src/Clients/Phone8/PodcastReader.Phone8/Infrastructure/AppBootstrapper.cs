@@ -20,7 +20,6 @@ namespace PodcastReader.Phone8.Infrastructure
         public AppBootstrapper(IKernel testKernel = null, IRoutingState testRouter = null)
         {
             var kernel = testKernel ?? new StandardKernel();
-            this.Router = testRouter ?? new RoutingState();
             
             // Set up NInject to do DI
             var customResolver = new FuncDependencyResolver(
@@ -46,12 +45,14 @@ namespace PodcastReader.Phone8.Infrastructure
             this.RegisterViews(kernel);
             this.RegisterViewModels(kernel);
             this.RegisterServices(kernel);
+        
+            //initing Router at the end to postpone call to RxApp static ctor
+            this.Router = testRouter ?? new RoutingState();
         }
 
         private void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IBlobCache>().ToMethod(_ => BlobCache.LocalMachine).InSingletonScope();
-            //kernel.Bind<IBlobCache>().ToConstant(BlobCache.LocalMachine);
+            kernel.Bind<IBlobCache>().ToMethod(_ => BlobCache.UserAccount).InSingletonScope();
             kernel.Bind<ILogger>().ToMethod(_ => new PRDebugLogger()).InSingletonScope();
             kernel.Bind<IFeedPreviewsLoader>().To<FeedPreviewsLoader>().InSingletonScope();
             kernel.Bind<IPlayerClient>().To<BackgroundPlayerClient>().InSingletonScope();

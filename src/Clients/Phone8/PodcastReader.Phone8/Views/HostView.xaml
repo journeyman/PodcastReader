@@ -15,6 +15,10 @@
     shell:SystemTray.IsVisible="True">
     <!--This host grid is used by MemoryPanel currently-->
     <Grid>
-        <xaml:RoutedViewHost x:Name="viewHost" />
+        <xaml:RoutedViewHost x:Name="viewHost">
+            <xaml:RoutedViewHost.DefaultContent>
+                <Grid Background="GreenYellow"></Grid>
+            </xaml:RoutedViewHost.DefaultContent>
+        </xaml:RoutedViewHost>
     </Grid>
 </phone:PhoneApplicationPage>
