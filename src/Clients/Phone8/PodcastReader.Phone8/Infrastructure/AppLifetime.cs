@@ -4,7 +4,6 @@ using Akavache;
 using Microsoft.Phone.Shell;
 using PodcastReader.Infrastructure;
 using PodcastReader.Phone8.ViewModels;
-using ReactiveUI;
 using Splat;
 
 namespace PodcastReader.Phone8.Infrastructure
