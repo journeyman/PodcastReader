@@ -19,8 +19,10 @@ namespace PodcastReader.Phone8.Infrastructure
         public void OnActivated(bool statePreserved)
         {
             if (!statePreserved)
+            {
                 InitApp();
-            RunInitedApp();
+                RunInitedApp();
+            }
         }
 
         public void OnDeactivated(DeactivationReason reason)
