@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="Infrastructure\AppBootstrapper.cs" />
     <Compile Include="Infrastructure\AppLifetime.cs" />
+    <Compile Include="Infrastructure\Commands\CommandBase.cs" />
     <Compile Include="Infrastructure\PlayerClient.cs" />
     <Compile Include="Infrastructure\Screen.cs" />
     <Compile Include="Infrastructure\SubscriptionsCache.cs" />

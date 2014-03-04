@@ -1,6 +1,7 @@
 using System;
 using System.Reactive.Subjects;
 using System.Threading.Tasks;
+using PodcastReader.Phone8.Infrastructure.Commands;
 using ReactiveUI;
 using System.Windows.Input;
 using PodcastReader.Infrastructure.Interfaces;
@@ -17,7 +18,7 @@ namespace PodcastReader.Phone8.ViewModels
         public ICommand AddSubscriptionCommand { get; private set; }
     }
 
-    public class AddCommand : ICommand
+    public class AddCommand : CommandBase<string>
     {
         private readonly ISubscriptionsManager _subscriptionsManager;
 
@@ -26,18 +27,15 @@ namespace PodcastReader.Phone8.ViewModels
             _subscriptionsManager = subscriptionsManager;
         }
 
-        public bool CanExecute(object parameter)
+        protected override bool CanExecute(string param)
         {
-            var url = (string) parameter;
-            return !string.IsNullOrWhiteSpace(url);
+            return !string.IsNullOrWhiteSpace(param);
         }
 
-        public void Execute(object parameter)
+        protected override void Execute(string param)
         {
-            _subscriptionsManager.AddSubscriptionAsync(new Subscription(new Uri((string)parameter)));
+            _subscriptionsManager.AddSubscriptionAsync(new Subscription(new Uri(param)));
         }
-
-        public event EventHandler CanExecuteChanged;
     }
 
     public class Subscription : ISubscription

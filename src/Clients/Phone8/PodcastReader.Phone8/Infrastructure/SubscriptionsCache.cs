@@ -19,7 +19,7 @@ namespace PodcastReader.Phone8.Infrastructure
 
     public class IsoSubscriptionsCache : ISubscriptionsCache, IEnableLogger
     {
-        private const string CACHE_KEY_FMT = "subscription{0}";
+        private const string CACHE_KEY_FMT = "sub{0}";
         private const int DEFAULT_COUNT_VALUE = -1;
         private static int _count = DEFAULT_COUNT_VALUE;
 
