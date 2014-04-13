@@ -21,7 +21,7 @@ namespace PodcastReader.Phone8.Infrastructure
             if (!statePreserved)
             {
                 InitApp();
-                RunInitedApp();
+                //RunInitedApp();
             }
         }
 
@@ -37,9 +37,9 @@ namespace PodcastReader.Phone8.Infrastructure
 
         private void InitApp()
         {
-            var b = new AppBootstrapper(); //IoC registrations
-            
             BlobCache.ApplicationName = "PodcastReader";
+
+            var b = new AppBootstrapper(); //IoC registrations
         }
 
         private void RunInitedApp()

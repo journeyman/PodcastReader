@@ -40,8 +40,7 @@ namespace PodcastReader.Phone8.Loaders
             _subscriptionsManager.Subscriptions
                 .Select(s => s.Uri)
                 .StartWith(new Uri(TEST_FEED_URL), new Uri(TEST_FEED_URL1), new Uri(TEST_FEED_URL2))
-                .Select(uri => client.GetStringAsync(uri).ToObservable())
-                .SelectMany(results => results)
+                .SelectMany(uri => client.GetStringAsync(uri).ToObservable())
                 .LoggedCatch(this)
                 .Select(xml => new FeedXmlParser().Parse(xml))
                 .Select(feed => new FeedViewModel(feed.Title.Text, new PodcastItemsLoader(feed)))

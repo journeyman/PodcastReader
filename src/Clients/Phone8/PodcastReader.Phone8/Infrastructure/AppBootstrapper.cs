@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Diagnostics;
 using System.Linq;
 using Akavache;
 using Ninject;
@@ -21,7 +21,7 @@ namespace PodcastReader.Phone8.Infrastructure
         {
             var kernel = testKernel ?? new StandardKernel();
             
-            // Set up NInject to do DI
+             //Set up NInject to do DI
             var customResolver = new FuncDependencyResolver(
                 (service, contract) =>
                 {
@@ -36,9 +36,13 @@ namespace PodcastReader.Phone8.Infrastructure
                     if (contract != null) binding.Named(contract);
                 });
 
-            Locator.Current = customResolver;
+            Locator.Current = new NInjectDependencyResolver(kernel);
 
             LogHost.Default.Level = LogLevel.Debug;
+
+
+            //initing Router at the end to postpone call to RxApp static ctor
+            this.Router = testRouter ?? new RoutingState();
 
             kernel.Bind<IScreen>().ToConstant(this);
 
@@ -46,18 +50,16 @@ namespace PodcastReader.Phone8.Infrastructure
             this.RegisterViewModels(kernel);
             this.RegisterServices(kernel);
         
-            //initing Router at the end to postpone call to RxApp static ctor
-            this.Router = testRouter ?? new RoutingState();
         }
 
         private void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IBlobCache>().ToMethod(_ => BlobCache.UserAccount).InSingletonScope();
-            kernel.Bind<ILogger>().ToMethod(_ => new PRDebugLogger()).InSingletonScope();
-            kernel.Bind<IFeedPreviewsLoader>().To<FeedPreviewsLoader>().InSingletonScope();
-            kernel.Bind<IPlayerClient>().To<BackgroundPlayerClient>().InSingletonScope();
-            kernel.Bind<ISubscriptionsManager>().To<SubscriptionsManager>().InSingletonScope();
-            kernel.Bind<ISubscriptionsCache>().To<IsoSubscriptionsCache>().InSingletonScope();
+            kernel.Rebind<IBlobCache>().ToMethod(_ => BlobCache.UserAccount).InSingletonScope();
+            kernel.Rebind<ILogger>().ToMethod(_ => new PRDebugLogger()).InSingletonScope();
+            kernel.Rebind<IFeedPreviewsLoader>().To<FeedPreviewsLoader>().InSingletonScope();
+            kernel.Rebind<IPlayerClient>().To<BackgroundPlayerClient>().InSingletonScope();
+            kernel.Rebind<ISubscriptionsManager>().To<SubscriptionsManager>().InSingletonScope();
+            kernel.Rebind<ISubscriptionsCache>().To<IsoSubscriptionsCache>().InSingletonScope();
         }
 
         private void RegisterViewModels(IKernel kernel)
@@ -88,20 +90,6 @@ namespace PodcastReader.Phone8.Infrastructure
             {
                 kernel.Bind(implIfacePair.Item2).To(implIfacePair.Item1);
             }
-        }
-    }
-
-    public static class TypeExtensions
-    {
-        public static Tuple<Type, Type> GetTypeAndItsRawGenericInterfaceIfExists(this Type type, Type ifaceType)
-        {
-            var iface = type.GetInterfaces().FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == ifaceType);
-            return iface == null ? null : new Tuple<Type, Type>(type, iface);
-        }
-
-        public static bool IsSubclassOfRawGeneric(this Type type, Type toCheck)
-        {
-            return null == type.GetInterfaces().SingleOrDefault(iface => iface.IsGenericType && iface.GetGenericTypeDefinition() == toCheck);
         }
     }
 }

@@ -99,10 +99,13 @@
     <Compile Include="Infrastructure\AppBootstrapper.cs" />
     <Compile Include="Infrastructure\AppLifetime.cs" />
     <Compile Include="Infrastructure\Commands\CommandBase.cs" />
+    <Compile Include="Infrastructure\NInjectDependencyResolver.cs" />
+    <Compile Include="Infrastructure\NInjectExtensions.cs" />
     <Compile Include="Infrastructure\PlayerClient.cs" />
     <Compile Include="Infrastructure\Screen.cs" />
     <Compile Include="Infrastructure\SubscriptionsCache.cs" />
     <Compile Include="Infrastructure\SubscriptionsManager.cs" />
+    <Compile Include="Infrastructure\TypeExtensions.cs" />
     <Compile Include="Interfaces\Loaders\IPodcastItemsLoader.cs" />
     <Compile Include="Interfaces\Loaders\IFeedPreviewsLoader.cs" />
     <Compile Include="Interfaces\Loaders\IFeedsLoader.cs" />
@@ -263,6 +266,10 @@
     <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Submodules\Akavache\Akavache.Deprecated\Akavache.Deprecated_WP8.csproj">
+      <Project>{AC4FCB4C-2A32-4E23-A5AB-7A4268016CBF}</Project>
+      <Name>Akavache.Deprecated_WP8</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Submodules\Akavache\Akavache\Akavache_WP8.csproj">
       <Project>{A54279A3-3457-41DB-9166-67E05FD0E0B1}</Project>
       <Name>Akavache_WP8</Name>
