@@ -25,8 +25,6 @@ namespace PodcastReader.Phone8.Infrastructure
 
         public async Task<IEnumerable<ISubscription>> LoadSubscriptions()
         {
-            var keys = await Cache.Local.GetAllKeys();
-
             var subs = (await Cache.Local.GetAllObjects<string>()).ToList();
             _count = subs.Count;
             return subs.Select(url => new Subscription(new Uri(url, UriKind.Absolute)));
@@ -40,7 +38,6 @@ namespace PodcastReader.Phone8.Infrastructure
             var key = string.Format(CACHE_KEY_FMT, _count);
             this.Log().Info("Inserting subscription to {0} into cache", serializable.Uri);
             await Cache.Local.InsertObject(key, serializable.Uri.OriginalString);
-            await Cache.Local.Flush();
             _count++;
         }
     }

@@ -36,7 +36,8 @@ namespace PodcastReader.Phone8.Infrastructure
                     if (contract != null) binding.Named(contract);
                 });
 
-            Locator.Current = new NInjectDependencyResolver(kernel);
+            Locator.Current = customResolver;
+            //Locator.Current = new NInjectDependencyResolver(kernel);
 
             LogHost.Default.Level = LogLevel.Debug;
 
@@ -54,12 +55,12 @@ namespace PodcastReader.Phone8.Infrastructure
 
         private void RegisterServices(IKernel kernel)
         {
-            kernel.Rebind<IBlobCache>().ToMethod(_ => BlobCache.UserAccount).InSingletonScope();
-            kernel.Rebind<ILogger>().ToMethod(_ => new PRDebugLogger()).InSingletonScope();
-            kernel.Rebind<IFeedPreviewsLoader>().To<FeedPreviewsLoader>().InSingletonScope();
-            kernel.Rebind<IPlayerClient>().To<BackgroundPlayerClient>().InSingletonScope();
-            kernel.Rebind<ISubscriptionsManager>().To<SubscriptionsManager>().InSingletonScope();
-            kernel.Rebind<ISubscriptionsCache>().To<IsoSubscriptionsCache>().InSingletonScope();
+            kernel.Bind<IBlobCache>().ToMethod(_ => BlobCache.UserAccount).InSingletonScope();
+            kernel.Bind<ILogger>().ToMethod(_ => new PRDebugLogger()).InSingletonScope();
+            kernel.Bind<IFeedPreviewsLoader>().To<FeedPreviewsLoader>().InSingletonScope();
+            kernel.Bind<IPlayerClient>().To<BackgroundPlayerClient>().InSingletonScope();
+            kernel.Bind<ISubscriptionsManager>().To<SubscriptionsManager>().InSingletonScope();
+            kernel.Bind<ISubscriptionsCache>().To<IsoSubscriptionsCache>().InSingletonScope();
         }
 
         private void RegisterViewModels(IKernel kernel)

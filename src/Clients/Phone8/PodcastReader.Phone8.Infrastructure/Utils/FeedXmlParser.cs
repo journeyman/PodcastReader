@@ -4,9 +4,9 @@ using System.Xml;
 
 namespace PodcastReader.Infrastructure.Utils
 {
-    public class FeedXmlParser
+    public static class FeedXmlParser
     {
-        public SyndicationFeed Parse(string xml)
+        public static SyndicationFeed Parse(string xml)
         {
             //DtdProcessing = DtdProcessing.Ignore is needed for some feeds (e.g. http://www.dotnetrocks.com/feed.aspx)
             using (var reader = XmlReader.Create(new StringReader(xml), new XmlReaderSettings { DtdProcessing = DtdProcessing.Ignore }))
