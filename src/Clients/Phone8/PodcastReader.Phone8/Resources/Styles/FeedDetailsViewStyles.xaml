@@ -33,7 +33,7 @@
                         <TextBlock Text="{Binding Summary}"
                                            Opacity=".7"
                                            TextWrapping="Wrap"
-                                           MaxHeight="40"
+                                           MaxHeight="70"
                                            FontSize="14"
                                            />
 

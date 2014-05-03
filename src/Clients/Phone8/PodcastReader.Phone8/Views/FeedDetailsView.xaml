@@ -12,7 +12,7 @@
     </FrameworkElement.Resources>
     
     <m:Zone ZonePlaceHolderName="Header">
-        <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextTitle1Style}" />
+        <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextTitle2Style}" />
     </m:Zone>
         
     <m:Zone ZonePlaceHolderName="Content">

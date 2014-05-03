@@ -13,6 +13,11 @@ using Splat;
 
 namespace PodcastReader.Phone8.Loaders
 {
+    public class FeedLoadingException : Exception
+    {
+        public FeedLoadingException(Exception inner) : base(string.Empty, inner){}
+    }
+
     public class FeedPreviewsLoader : IFeedPreviewsLoader, IEnableLogger
     {
         private readonly ISubscriptionsManager _subscriptionsManager;
@@ -43,7 +48,7 @@ namespace PodcastReader.Phone8.Loaders
                 .SelectMany(uri => client.GetStringAsync(uri).ToObservable())
                 .Select(FeedXmlParser.Parse)
                 .Select(feed => new FeedViewModel(feed.Title.Text, new PodcastItemsLoader(feed)))
-                .LoggedCatch(this)
+                .LoggedCatch<IFeedPreview, FeedPreviewsLoader, Exception>(this, ex => Observable.Throw<IFeedPreview>(new FeedLoadingException(ex)))
                 .Subscribe(_subject);
 
             await _subscriptionsManager.ReloadSubscriptions();

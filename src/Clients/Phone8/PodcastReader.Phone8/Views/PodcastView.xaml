@@ -18,6 +18,10 @@
                 <ItemsControl ItemsSource="{Binding Items}" />
             </ScrollViewer>-->
             <Button Content="Play" Command="{Binding PlayPodcastCommand}"/>
+            <TextBlock 
+                Text="{Binding Summary}"
+                TextWrapping="Wrap"
+                />
         </StackPanel>
     </m:Zone>
         

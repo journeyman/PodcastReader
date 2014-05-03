@@ -25,11 +25,18 @@
         
         <Panel.Resources>
             <Style x:Key="FeedsListStyle" TargetType="ItemsControl">
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="ItemTemplate">
                     <Setter.Value>
                         <DataTemplate>
                             <StackPanel>
-                                <Grid>
+                                <Grid Margin="{StaticResource PhoneTouchTargetOverhang}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition Width="Auto" />
