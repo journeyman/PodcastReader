@@ -15,9 +15,9 @@ namespace PodcastReader.Phone8.Infrastructure
 {
     public class AppBootstrapper : IScreen
     {
-        public IRoutingState Router { get; private set; }
+        public RoutingState Router { get; private set; }
 
-        public AppBootstrapper(IKernel testKernel = null, IRoutingState testRouter = null)
+        public AppBootstrapper(IKernel testKernel = null, RoutingState testRouter = null)
         {
             var kernel = testKernel ?? new StandardKernel();
             

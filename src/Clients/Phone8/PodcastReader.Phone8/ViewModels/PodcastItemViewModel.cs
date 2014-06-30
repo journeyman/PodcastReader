@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Reactive;
 using System.ServiceModel.Syndication;
 using PodcastReader.Infrastructure;
 using PodcastReader.Infrastructure.Utils;
@@ -23,7 +24,7 @@ namespace PodcastReader.Phone8.ViewModels
             this.Summary = summary;
             this.PodcastUri = item.GetPodcastUris().First();
 
-            this.PlayPodcastCommand = new ReactiveCommand();
+            this.PlayPodcastCommand = ReactiveCommand.Create();
             this.PlayPodcastCommand.Subscribe(OnPlayPodcast);
         }
 
@@ -32,7 +33,7 @@ namespace PodcastReader.Phone8.ViewModels
         public string Summary { get; private set; }
         public Uri PodcastUri { get; private set; }
 
-        public IReactiveCommand PlayPodcastCommand { get; private set; }
+        public IReactiveCommand<object> PlayPodcastCommand { get; private set; }
 
         public void OnPlayPodcast(object _)
         {

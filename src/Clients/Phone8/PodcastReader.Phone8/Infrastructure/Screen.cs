@@ -8,6 +8,6 @@ namespace PodcastReader.Phone8.Infrastructure
         private static readonly IScreen _instance = Locator.Current.GetService<IScreen>();
 
         public static IScreen Instance { get { return _instance; } }
-        public static IRoutingState Router { get { return _instance.Router; } }
+        public static RoutingState Router { get { return _instance.Router; } }
     }
 }
