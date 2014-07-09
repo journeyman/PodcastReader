@@ -25,6 +25,7 @@
     <ValidateXaml>true</ValidateXaml>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <NuGetPackageImportStamp>55145676</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -150,6 +151,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Splat">
+      <HintPath>..\..\..\packages\Splat.1.3.3\lib\wp8\Splat.dll</HintPath>
+    </Reference>
     <Reference Include="System.Reactive.Core">
       <HintPath>..\..\..\packages\Rx-Core.2.2.4\lib\windowsphone8\System.Reactive.Core.dll</HintPath>
     </Reference>
@@ -171,10 +175,6 @@
       <Project>{241c47df-ca8e-4296-aa03-2c48bb646abd}</Project>
       <Name>Akavache.Sqlite3</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Submodules\Akavache\Akavache\Akavache_Portable.csproj">
-      <Project>{eb73addd-2fe9-44c0-a1ab-20709b979b64}</Project>
-      <Name>Akavache_Portable</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Submodules\Akavache\Akavache\Akavache_WP8.csproj">
       <Project>{a54279a3-3457-41db-9166-67e05fd0e0b1}</Project>
       <Name>Akavache_WP8</Name>
@@ -190,4 +190,11 @@
   </Target>
   -->
   <ProjectExtensions />
+  <Import Project="..\..\..\packages\SQLitePCL.raw_basic.0.4.0-alpha\build\wp8\SQLitePCL.raw_basic.targets" Condition="Exists('..\..\..\packages\SQLitePCL.raw_basic.0.4.0-alpha\build\wp8\SQLitePCL.raw_basic.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\packages\SQLitePCL.raw_basic.0.4.0-alpha\build\wp8\SQLitePCL.raw_basic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\SQLitePCL.raw_basic.0.4.0-alpha\build\wp8\SQLitePCL.raw_basic.targets'))" />
+  </Target>
 </Project>
