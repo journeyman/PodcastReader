@@ -13,7 +13,7 @@ namespace PodcastReader.Phone8.ViewModels
         {
             _feedPreviews = feedPreviews;
 
-            this.AddSubscriptionCommand = HostScreen.Router.Navigate.WithParameter(() => Locator.Current.GetService<AddSubscriptionViewModel>());
+            this.AddSubscriptionCommand = NavigateCommand.WithParameter(() => Locator.Current.GetService<AddSubscriptionViewModel>());
             this.Feeds = feedPreviews.CreateCollection().CreateDerivedCollection(f => f, null, FreshFirstOrderer);
             feedPreviews.Load();
         }

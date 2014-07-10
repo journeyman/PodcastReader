@@ -18,7 +18,9 @@ namespace PodcastReader.Phone8.Views
 
         protected override void OnBackKeyPress(CancelEventArgs e)
         {
-            if (viewHost.Router.NavigateBack.CanExecute(null))
+            //TODO:SS: hotfix as NavigationStack.CountChanged doesn't work (why?)
+            //if (viewHost.Router.NavigateBack.CanExecute(null))
+            if (viewHost.Router.NavigationStack.Count > 1)
             {
                 e.Cancel = true;
                 viewHost.Router.NavigateBack.Execute(null);

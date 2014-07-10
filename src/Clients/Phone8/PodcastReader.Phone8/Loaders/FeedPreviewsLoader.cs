@@ -30,6 +30,8 @@ namespace PodcastReader.Phone8.Loaders
         private const string TEST_FEED_URL = "http://feeds.feedburner.com/Hanselminutes?format=xml";
         private const string TEST_FEED_URL1 = "http://feeds.feedburner.com/netRocksFullMp3Downloads?format=xml";
         private const string TEST_FEED_URL2 = "http://hobbytalks.org/rss.xml";
+        private const string TEST_FEED_URL3 = "http://haskellcast.com/feed.xml";
+        private const string TEST_FEED_URL4 = "http://thespaceshow.wordpress.com/feed/";
 
         readonly ISubject<IFeedPreview> _subject = new ReplaySubject<IFeedPreview>();
 

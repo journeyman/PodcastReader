@@ -58,6 +58,10 @@
       <Project>{2723d721-478e-48b8-9503-57a8cc0317c2}</Project>
       <Name>PodcastReader.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI_WP8.csproj">
+      <Project>{f9459904-f785-4255-866a-a619787cb895}</Project>
+      <Name>ReactiveUI_WP8</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

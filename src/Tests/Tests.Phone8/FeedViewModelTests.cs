@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reactive.Concurrency;
 using System.Reactive.Subjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -18,7 +19,9 @@ namespace Tests.Phone8
         public FeedViewModelTests()
         {
             var proxy = new ProxyResolver(Locator.CurrentMutable);
-            proxy.PreventOneRegistrationOf<ICreatesObservableForProperty>(3);
+            //proxy.PreventOneRegistrationOf<ICreatesObservableForProperty>(3);
+            proxy.PreventOneRegistrationOf<ICreatesCommandBinding>(0);
+            
             Locator.CurrentMutable = proxy;
 
             RxApp.MainThreadScheduler = _virtualScheduler;
@@ -54,9 +57,26 @@ namespace Tests.Phone8
         }
 
         [TestMethod]
-        public void Test()
+        public void CollectionCountChangedTest()
         {
-            
+            var fixture = new ReactiveList<int>();
+            var before_output = new List<int>();
+            var output = new List<int>();
+
+            fixture.CountChanging.Subscribe(before_output.Add);
+            fixture.CountChanged.Subscribe(output.Add);
+
+            fixture.Add(10);
+            fixture.Add(20);
+            fixture.Add(30);
+            fixture.RemoveAt(1);
+            fixture.Clear();
+
+            var before_results = new[] { 0, 1, 2, 3, 2 };
+            Assert.AreEqual(before_results.Length, before_output.Count);
+
+            var results = new[] { 1, 2, 3, 2, 0 };
+            Assert.AreEqual(results.Length, output.Count);
         }
 
         private class TestPodcastItem : IPodcastItem

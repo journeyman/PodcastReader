@@ -16,9 +16,8 @@
         <StackPanel>
             <TextBox Name="SubscriptionUrl" 
                      TextWrapping="Wrap"
-                     Text="http://haskellcast.com/feed.xml"
+                     Text="http://thespaceshow.wordpress.com/feed/"
                      />
-            <!--<TextBox Name="SubscriptionUrl" Text="http://hobbytalks.org/rss.xml" />-->
             <Button 
                 Command="{Binding AddSubscriptionCommand}" 
                 CommandParameter="{Binding Text, ElementName=SubscriptionUrl}" 
