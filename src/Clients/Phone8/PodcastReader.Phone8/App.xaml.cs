@@ -46,7 +46,8 @@ namespace PodcastReader.Phone8
                 Application.Current.Host.Settings.EnableFrameRateCounter = true;
                 //to prevend debugger attaching to background agent instead of the app 
                 //(source http://msdn.microsoft.com/en-us/library/windowsphone/develop/hh394039(v=vs.105).aspx#BKMK_BackgroundAudioBestPractices)
-                BackgroundAudioPlayer.Instance.Close();
+                //commented because it throws UnauthorizedException on start (and doesnt messed up Debugger as said in the msdn article)
+                //BackgroundAudioPlayer.Instance.Close();
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
