@@ -272,6 +272,10 @@
       <Project>{f9459904-f785-4255-866a-a619787cb895}</Project>
       <Name>ReactiveUI_WP8</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Audio\AudioPlaybackAgent\Audio.AudioPlaybackAgent.csproj">
+      <Project>{bdbb4467-a77d-4467-ad13-6e8d25f0e1ac}</Project>
+      <Name>Audio.AudioPlaybackAgent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PodcastReader.Phone8.Infrastructure\PodcastReader.Infrastructure.csproj">
       <Project>{2723D721-478E-48B8-9503-57A8CC0317C2}</Project>
       <Name>PodcastReader.Infrastructure</Name>
