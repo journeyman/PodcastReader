@@ -1,4 +1,5 @@
 ﻿using Microsoft.Phone.Controls;
+using Microsoft.Phone.Reactive;
 using PodcastReader.Phone8.ViewModels;
 using ReactiveUI;
 
@@ -12,7 +13,13 @@ namespace PodcastReader.Phone8.Views
         {
             InitializeComponent();
 
-            this.BindCommand(ViewModel, x => x.AddSubscriptionCommand, x => x.addSubscriptionButton);
+            this.WhenActivated(d =>
+            {
+                var binding = this.BindCommand(ViewModel, x => x.AddSubscriptionCommand, x => x.addSubscriptionButton);
+
+                d(binding);
+            });
+        
         }
 
         public MainViewModel ViewModel 

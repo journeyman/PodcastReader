@@ -5,17 +5,20 @@ using Splat;
 
 namespace PodcastReader.Phone8.ViewModels
 {
-    public class MainViewModel : RoutableViewModelBase
+    public class MainViewModel : RoutableViewModelBase, ISupportsActivation
     {
         private readonly IFeedPreviewsLoader _feedPreviews;
 
         public MainViewModel(IFeedPreviewsLoader feedPreviews)
         {
+            this.Activator = new ViewModelActivator();
+
             _feedPreviews = feedPreviews;
 
             this.AddSubscriptionCommand = NavigateCommand.WithParameter(() => Locator.Current.GetService<AddSubscriptionViewModel>());
             this.Feeds = feedPreviews.CreateCollection().CreateDerivedCollection(f => f, null, FreshFirstOrderer);
-            feedPreviews.Load();
+
+            this.WhenActivated(d => feedPreviews.Load());
         }
 
         private int FreshFirstOrderer(IFeedPreview a, IFeedPreview b)
@@ -29,5 +32,6 @@ namespace PodcastReader.Phone8.ViewModels
         public IReactiveCommand AddSubscriptionCommand { get; private set; }
 
         public IReadOnlyReactiveList<IFeedPreview> Feeds { get; private set; }
+        public ViewModelActivator Activator { get; private set; }
     }
 }

@@ -87,6 +87,8 @@
   <ItemGroup>
     <Compile Include="Audio\BufferingPlayerClient.cs" />
     <Compile Include="Cache.cs" />
+    <Compile Include="Models\Podcasts\PodcastId.cs" />
+    <Compile Include="Caching\PodcastsCache.cs" />
     <Compile Include="Interfaces\IAudioTrackInfo.cs" />
     <Compile Include="Interfaces\IPlayerClient.cs" />
     <Compile Include="Interfaces\ISubscription.cs" />

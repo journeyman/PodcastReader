@@ -99,10 +99,14 @@
     <Compile Include="Infrastructure\AppBootstrapper.cs" />
     <Compile Include="Infrastructure\AppLifetime.cs" />
     <Compile Include="Infrastructure\Commands\CommandBase.cs" />
+    <Compile Include="Infrastructure\Http\AwaitableDownload.cs" />
+    <Compile Include="Infrastructure\Http\BackgroundDownloader.cs" />
+    <Compile Include="Infrastructure\Http\IBackgroundDownloader.cs" />
     <Compile Include="Infrastructure\NInjectDependencyResolver.cs" />
     <Compile Include="Infrastructure\NInjectExtensions.cs" />
     <Compile Include="Infrastructure\PlayerClient.cs" />
     <Compile Include="Infrastructure\Screen.cs" />
+    <Compile Include="Infrastructure\Storage\Storage.cs" />
     <Compile Include="Infrastructure\SubscriptionsCache.cs" />
     <Compile Include="Infrastructure\SubscriptionsManager.cs" />
     <Compile Include="Infrastructure\TypeExtensions.cs" />
@@ -295,6 +299,7 @@
       <Name>Magellan.WP</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
