@@ -1,44 +1,16 @@
-﻿using System;
+using System;
 using System.Net.Http;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
-using Akavache;
+using PodcastReader.Infrastructure.Entities.Feeds;
 using PodcastReader.Infrastructure.Interfaces;
+using PodcastReader.Infrastructure.Models.Loaders;
 using PodcastReader.Infrastructure.Utils;
-using PodcastReader.Phone8.Infrastructure.Http;
-using PodcastReader.Phone8.Interfaces.Loaders;
-using PodcastReader.Phone8.Interfaces.Models;
-using PodcastReader.Phone8.Models;
 using ReactiveUI;
 using Splat;
 
-namespace PodcastReader.Phone8.Loaders
+namespace PodcastReader.Phone8.Models.Loaders
 {
-    public class FeedLoadingException : Exception
-    {
-        public FeedLoadingException(Exception inner) : base(string.Empty, inner){}
-    }
-
-    public class CachingFeedsLoader : IFeedPreviewsLoader
-    {
-        private readonly IFeedPreviewsLoader _inner;
-
-        public CachingFeedsLoader(IFeedPreviewsLoader inner, IBackgroundDownloader downloader, IBlobCache cache)
-        {
-            _inner = inner;
-        }
-
-        public IDisposable Subscribe(IObserver<IFeedPreview> observer)
-        {
-            return _inner.Select(feed => feed).Subscribe(observer);
-        }
-
-        public void Load()
-        {
-            _inner.Load();
-        }
-    }
-
     public class FeedPreviewsLoader : IFeedPreviewsLoader, IEnableLogger
     {
         private readonly ISubscriptionsManager _subscriptionsManager;

@@ -1,14 +1,5 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace PodcastReader.Phone8.Infrastructure.Http
+namespace PodcastReader.Infrastructure.Http
 {
-    public interface IBackgroundDownloader
-    {
-        Task<Uri> Load(string url, IProgress<ProgressValue> progress, CancellationToken cancellation);
-    }
-
     public struct ProgressValue
     {
         private readonly long _current;

@@ -1,10 +1,9 @@
-﻿using System.Diagnostics;
-using System.Linq;
+﻿using System.Linq;
 using Akavache;
 using Ninject;
+using PodcastReader.Infrastructure.Models.Loaders;
 using PodcastReader.Infrastructure.Utils.Logging;
-using PodcastReader.Phone8.Interfaces.Loaders;
-using PodcastReader.Phone8.Loaders;
+using PodcastReader.Phone8.Models.Loaders;
 using ReactiveUI;
 using System.Reflection;
 using PodcastReader.Infrastructure.Interfaces;
@@ -50,7 +49,6 @@ namespace PodcastReader.Phone8.Infrastructure
             this.RegisterViews(kernel);
             this.RegisterViewModels(kernel);
             this.RegisterServices(kernel);
-        
         }
 
         private void RegisterServices(IKernel kernel)

@@ -1,4 +1,4 @@
-﻿namespace PodcastReader.Phone8.Interfaces.Models
+﻿namespace PodcastReader.Infrastructure.Entities.Feeds
 {
     public interface IFeed
     {

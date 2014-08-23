@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Reactive.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using PodcastReader.Infrastructure.Entities.Feeds;
+using PodcastReader.Infrastructure.Models.Loaders;
 using PodcastReader.Phone8.Infrastructure;
-using PodcastReader.Phone8.Interfaces.Loaders;
-using PodcastReader.Phone8.Interfaces.Models;
 using PodcastReader.Phone8.ViewModels;
-using PodcastReader.Phone8.Views;
 using ReactiveUI;
-using Splat;
 
 namespace Tests.Phone
 {

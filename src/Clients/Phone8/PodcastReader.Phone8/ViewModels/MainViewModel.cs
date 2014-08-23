@@ -1,5 +1,6 @@
-﻿using PodcastReader.Phone8.Interfaces.Loaders;
-using PodcastReader.Phone8.Interfaces.Models;
+﻿using PodcastReader.Infrastructure.Entities;
+using PodcastReader.Infrastructure.Entities.Feeds;
+using PodcastReader.Infrastructure.Models.Loaders;
 using ReactiveUI;
 using Splat;
 

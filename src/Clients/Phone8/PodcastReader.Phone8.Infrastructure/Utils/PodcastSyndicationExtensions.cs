@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
-using PodcastReader.Infrastructure.Utils;
-using System;
 
-namespace PodcastReader.Infrastructure
+namespace PodcastReader.Infrastructure.Utils
 {
     public static class PodcastSyndicationExtensions
     {

@@ -3,9 +3,10 @@ using System.Linq;
 using System.Reactive;
 using System.ServiceModel.Syndication;
 using PodcastReader.Infrastructure;
+using PodcastReader.Infrastructure.Entities;
+using PodcastReader.Infrastructure.Entities.Podcasts;
 using PodcastReader.Infrastructure.Utils;
 using PodcastReader.Phone8.Infrastructure;
-using PodcastReader.Phone8.Interfaces.Models;
 using PodcastReader.Phone8.Models;
 using ReactiveUI;
 

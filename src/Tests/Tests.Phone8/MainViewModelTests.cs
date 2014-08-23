@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using PodcastReader.Phone8.Interfaces.Loaders;
+using PodcastReader.Infrastructure.Models.Loaders;
 using PodcastReader.Phone8.ViewModels;
 
 namespace Tests.Phone8

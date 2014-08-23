@@ -2,12 +2,12 @@ using System;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using Microsoft.Phone.Reactive;
-using PodcastReader.Infrastructure;
-using PodcastReader.Phone8.Interfaces.Loaders;
-using PodcastReader.Phone8.Interfaces.Models;
+using PodcastReader.Infrastructure.Entities.Podcasts;
+using PodcastReader.Infrastructure.Models.Loaders;
+using PodcastReader.Infrastructure.Utils;
 using PodcastReader.Phone8.ViewModels;
 
-namespace PodcastReader.Phone8.Loaders
+namespace PodcastReader.Phone8.Models.Loaders
 {
     public class PodcastItemsLoader : IPodcastItemsLoader
     {
@@ -15,7 +15,7 @@ namespace PodcastReader.Phone8.Loaders
 
         public PodcastItemsLoader(SyndicationFeed feed)
         {
-            feed.Items.Where(item => item.IsPodcast())
+            feed.Items.Where(item => PodcastSyndicationExtensions.IsPodcast(item))
                       .ToObservable()
                       .Do(item => item.SourceFeed = feed)
                       .Select(item => new PodcastItemViewModel(item))

@@ -1,6 +1,7 @@
 using System;
+using PodcastReader.Infrastructure.Entities.Feeds;
 
-namespace PodcastReader.Phone8.Interfaces.Models
+namespace PodcastReader.Infrastructure.Entities.Podcasts
 {
     public interface IPodcastItem : IFeedItem
     {

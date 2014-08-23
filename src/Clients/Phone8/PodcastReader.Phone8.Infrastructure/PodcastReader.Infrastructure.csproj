@@ -86,20 +86,35 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Audio\BufferingPlayerClient.cs" />
+    <Compile Include="Entities\Feeds\IFeed.cs" />
+    <Compile Include="Entities\Feeds\IFeedItem.cs" />
+    <Compile Include="Entities\Feeds\IFeedPreview.cs" />
+    <Compile Include="Entities\Podcasts\IPodcastItem.cs" />
+    <Compile Include="Models\Loaders\CachableFeedsLoader.cs" />
     <Compile Include="Cache.cs" />
-    <Compile Include="Models\Podcasts\PodcastId.cs" />
-    <Compile Include="Caching\PodcastsCache.cs" />
+    <Compile Include="Http\AwaitableTransferRequest.cs" />
+    <Compile Include="Http\BackgroundDownloader.cs" />
+    <Compile Include="Http\AwaitableTransferRequestSelectorWrapper.cs" />
+    <Compile Include="Http\IBackgroundDownloader.cs" />
+    <Compile Include="Http\ProgressValue.cs" />
+    <Compile Include="Http\TransferStatusUnknownException.cs" />
+    <Compile Include="Models\Loaders\IFeedPreviewsLoader.cs" />
+    <Compile Include="Entities\Podcasts\PodcastId.cs" />
     <Compile Include="Interfaces\IAudioTrackInfo.cs" />
     <Compile Include="Interfaces\IPlayerClient.cs" />
     <Compile Include="Interfaces\ISubscription.cs" />
     <Compile Include="Interfaces\ISubscriptionsManager.cs" />
-    <Compile Include="PodcastSyndicationExtensions.cs" />
+    <Compile Include="Models\Loaders\IFeedsLoader.cs" />
+    <Compile Include="Models\Loaders\IPodcastItemsLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storage\IBackgroundTransferStorage.cs" />
+    <Compile Include="Storage\IStorage.cs" />
     <Compile Include="Utils\CollectionsExtensions.cs" />
     <Compile Include="Utils\CommonExtensions.cs" />
     <Compile Include="Utils\Logging\CompositeLogger.cs" />
     <Compile Include="Utils\DateTimeExtensions.cs" />
     <Compile Include="Utils\FeedXmlParser.cs" />
+    <Compile Include="Utils\PodcastSyndicationExtensions.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +125,18 @@
     <Reference Include="Splat, Version=1.3.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\Splat.1.3.3\lib\wp8\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>..\..\..\packages\Microsoft.Bcl.Immutable.1.0.34\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\..\..\packages\Microsoft.Net.Http.2.2.22\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\..\..\packages\Microsoft.Net.Http.2.2.22\lib\sl4-windowsphone71\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\..\..\packages\Microsoft.Net.Http.2.2.22\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Core, Version=2.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -136,10 +163,16 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

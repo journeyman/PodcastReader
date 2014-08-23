@@ -99,28 +99,17 @@
     <Compile Include="Infrastructure\AppBootstrapper.cs" />
     <Compile Include="Infrastructure\AppLifetime.cs" />
     <Compile Include="Infrastructure\Commands\CommandBase.cs" />
-    <Compile Include="Infrastructure\Http\AwaitableDownload.cs" />
-    <Compile Include="Infrastructure\Http\BackgroundDownloader.cs" />
-    <Compile Include="Infrastructure\Http\IBackgroundDownloader.cs" />
     <Compile Include="Infrastructure\NInjectDependencyResolver.cs" />
-    <Compile Include="Infrastructure\NInjectExtensions.cs" />
     <Compile Include="Infrastructure\PlayerClient.cs" />
     <Compile Include="Infrastructure\Screen.cs" />
-    <Compile Include="Infrastructure\Storage\Storage.cs" />
     <Compile Include="Infrastructure\SubscriptionsCache.cs" />
     <Compile Include="Infrastructure\SubscriptionsManager.cs" />
     <Compile Include="Infrastructure\TypeExtensions.cs" />
-    <Compile Include="Interfaces\Loaders\IPodcastItemsLoader.cs" />
-    <Compile Include="Interfaces\Loaders\IFeedPreviewsLoader.cs" />
-    <Compile Include="Interfaces\Loaders\IFeedsLoader.cs" />
-    <Compile Include="Interfaces\Models\IFeed.cs" />
-    <Compile Include="Interfaces\Models\IFeedItem.cs" />
-    <Compile Include="Interfaces\Models\IFeedPreview.cs" />
-    <Compile Include="Interfaces\Models\IPodcastItem.cs" />
-    <Compile Include="Loaders\PodcastItemsLoader.cs" />
-    <Compile Include="Loaders\FeedPreviewsLoader.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Models\FeedViewModel.cs" />
+    <Compile Include="Models\Loaders\FeedLoadingException.cs" />
+    <Compile Include="Models\Loaders\FeedPreviewsLoader.cs" />
+    <Compile Include="Models\Loaders\PodcastItemsLoader.cs" />
     <Compile Include="Models\PodcastTrackInfo.cs" />
     <Compile Include="ModuleInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -242,6 +231,9 @@
     </Reference>
     <Reference Include="Splat">
       <HintPath>..\..\..\packages\Splat.1.3.3\lib\wp8\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>..\..\..\packages\Microsoft.Bcl.Immutable.1.0.34\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
       <HintPath>..\..\..\packages\Microsoft.Net.Http.2.2.22\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>

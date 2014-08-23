@@ -1,6 +1,7 @@
 ﻿using System;
+using PodcastReader.Infrastructure.Entities;
+using PodcastReader.Infrastructure.Entities.Podcasts;
 using PodcastReader.Infrastructure.Interfaces;
-using PodcastReader.Phone8.Interfaces.Models;
 
 namespace PodcastReader.Phone8.Models
 {

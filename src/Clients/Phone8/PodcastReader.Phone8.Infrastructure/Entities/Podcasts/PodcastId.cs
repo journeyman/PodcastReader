@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PodcastReader.Infrastructure.Models.Podcasts
+namespace PodcastReader.Infrastructure.Entities.Podcasts
 {
     public struct PodcastId : IEquatable<PodcastId>
     {
