@@ -124,6 +124,7 @@
     <Compile Include="Utils\PropertyChangedExtensions.cs" />
     <Compile Include="Utils\VisualTreeExtensions.cs" />
     <Compile Include="ViewModels\AddSubscriptionViewModel.cs" />
+    <Compile Include="ViewModels\CachingState.cs" />
     <Compile Include="ViewModels\PodcastItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RoutableViewModelBase.cs" />

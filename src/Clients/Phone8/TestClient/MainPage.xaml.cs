@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Navigation;
 using Akavache;
 using System.Linq;
@@ -19,8 +20,8 @@ namespace TestClient
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            txtTest.Text = (await BlobCache.UserAccount.GetAllObjects<string>()).FirstOrDefault() ?? string.Empty;
+            var str = await BlobCache.UserAccount.GetObject<string>(KEY).Catch(Observable.Empty<string>());
+            //txtTest.Text = (await BlobCache.UserAccount.GetAllObjects<string>()).FirstOrDefault() ?? string.Empty;
         }
 
         private async void BtnSubmit_OnClick(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -6,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Phone.BackgroundTransfer;
 using PodcastReader.Infrastructure.Storage;
+using PodcastReader.Infrastructure.Utils;
 
 namespace PodcastReader.Infrastructure.Http
 {
@@ -14,15 +16,29 @@ namespace PodcastReader.Infrastructure.Http
     {
         private readonly IBackgroundTransferStorage _storage;
         private readonly IBackgroundTransferConfig _config;
-        private readonly Func<string, string, bool> _urlEquator;
-        private IImmutableList<BackgroundTransferRequest> _requests = ImmutableList<BackgroundTransferRequest>.Empty;
+        private readonly IEqualityComparer<Uri> _urlEquator;
+        private IImmutableDictionary<Uri, AwaitableTransferRequest> _requests = ImmutableDictionary<Uri, AwaitableTransferRequest>.Empty;
 
         public BackgroundDownloader(IBackgroundTransferStorage storage, IBackgroundTransferConfig config)
         {
             _storage = storage;
             _config = config;
 
-            _urlEquator = (url1, url2) => url1 == url2;
+            _urlEquator = new FuncEqualityComparer<Uri>((url1, url2) => url1 == url2, url => url.GetHashCode());
+        }
+
+        public IImmutableDictionary<Uri, AwaitableTransferRequest> ActiveRequests { get { return _requests; } } 
+
+        /// <summary>
+        /// Completely Sync!!
+        /// </summary>
+        public async Task<IImmutableDictionary<Uri, AwaitableTransferRequest>> Update()
+        {
+            _requests = BackgroundTransferService.Requests
+                .Select(r => new AwaitableTransferRequest(r))
+                .ToImmutableDictionary(r => r.UnderlyingRequest.RequestUri,
+                                       _urlEquator);
+            return _requests;
         }
 
         /// <summary>
@@ -30,16 +46,23 @@ namespace PodcastReader.Infrastructure.Http
         /// </summary>
         public async Task<Uri> Load(string url, IProgress<ProgressValue> progress, CancellationToken cancellation)
         {
-            var request = BackgroundTransferService.Requests.FirstOrDefault(r => _urlEquator(r.RequestUri.AbsoluteUri, url));
-            if (request == null)
+            var uri = new Uri(url);
+            AwaitableTransferRequest awaitableTransfer = null;
+            if (!_requests.TryGetValue(uri, out awaitableTransfer))
             {
-                var resourceUri = new Uri(url);
-                request = new BackgroundTransferRequest(resourceUri, new Uri(_storage.GetTransferUrl(resourceUri.LocalPath)));
-                request.TransferPreferences = _config.Preferences;
-                BackgroundTransferService.Add(request);
+                var request = BackgroundTransferService.Requests.FirstOrDefault(r => _urlEquator.Equals(r.RequestUri, uri));
+                if (request == null)
+                {
+                    var resourceUri = new Uri(url);
+                    request = new BackgroundTransferRequest(resourceUri, new Uri(_storage.GetTransferUrl(resourceUri.LocalPath)));
+                    request.TransferPreferences = _config.Preferences;
+                    BackgroundTransferService.Add(request);
+                }
+                awaitableTransfer = new AwaitableTransferRequest(request);
+                _requests = _requests.Add(uri, awaitableTransfer);
             }
 
-            return await new AwaitableTransferRequest(request).ToDownload();
+            return await awaitableTransfer.ToDownload();
         }
     }
 }

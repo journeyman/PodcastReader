@@ -5,10 +5,12 @@ using System.ServiceModel.Syndication;
 using PodcastReader.Infrastructure;
 using PodcastReader.Infrastructure.Entities;
 using PodcastReader.Infrastructure.Entities.Podcasts;
+using PodcastReader.Infrastructure.Http;
 using PodcastReader.Infrastructure.Utils;
 using PodcastReader.Phone8.Infrastructure;
 using PodcastReader.Phone8.Models;
 using ReactiveUI;
+using Splat;
 
 namespace PodcastReader.Phone8.ViewModels
 {
@@ -27,7 +29,14 @@ namespace PodcastReader.Phone8.ViewModels
 
             this.PlayPodcastCommand = ReactiveCommand.Create();
             this.PlayPodcastCommand.Subscribe(OnPlayPodcast);
+
+            var cachingState = new CachingState(this, Locator.Current.GetService<IBackgroundDownloader>());
+            //TODO: use some heuristics to control expensive caching state initing
+            cachingState.Init();
+            this.CachingState = cachingState;
         }
+
+        public ICachingState CachingState { get; private set; }
 
         public DateTimeOffset DatePublished { get; private set; }
         public string Title { get; private set; }

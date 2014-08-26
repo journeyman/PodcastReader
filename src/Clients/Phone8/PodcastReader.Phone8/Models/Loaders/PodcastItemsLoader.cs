@@ -15,7 +15,7 @@ namespace PodcastReader.Phone8.Models.Loaders
 
         public PodcastItemsLoader(SyndicationFeed feed)
         {
-            feed.Items.Where(item => PodcastSyndicationExtensions.IsPodcast(item))
+            feed.Items.Where(item => item.IsPodcast())
                       .ToObservable()
                       .Do(item => item.SourceFeed = feed)
                       .Select(item => new PodcastItemViewModel(item))

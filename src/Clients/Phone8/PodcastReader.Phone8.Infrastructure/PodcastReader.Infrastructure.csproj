@@ -111,6 +111,7 @@
     <Compile Include="Storage\IStorage.cs" />
     <Compile Include="Utils\CollectionsExtensions.cs" />
     <Compile Include="Utils\CommonExtensions.cs" />
+    <Compile Include="Utils\FuncEqualityComparer.cs" />
     <Compile Include="Utils\Logging\CompositeLogger.cs" />
     <Compile Include="Utils\DateTimeExtensions.cs" />
     <Compile Include="Utils\FeedXmlParser.cs" />
