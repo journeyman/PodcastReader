@@ -41,6 +41,21 @@ namespace PodcastReader.Infrastructure.Http
             return _requests;
         }
 
+        public void ForgetAbout(Uri transferUri)
+        {
+            BackgroundTransferRequest request;
+            AwaitableTransferRequest awaitableRequest;
+            if (_requests.TryGetValue(transferUri, out awaitableRequest))
+            {
+                request = awaitableRequest.UnderlyingRequest;
+            }
+            else
+            {
+                request = BackgroundTransferService.Requests.SingleOrDefault(r => _urlEquator.Equals(r.RequestUri, transferUri));
+            }
+            BackgroundTransferService.Remove(request);
+        }
+
         /// <summary>
         /// A bit synchronous: calls BackgroundTransferService.Requests on calling thread
         /// </summary>
