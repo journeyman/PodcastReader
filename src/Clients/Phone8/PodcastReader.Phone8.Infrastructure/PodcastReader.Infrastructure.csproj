@@ -97,6 +97,7 @@
     <Compile Include="Entities\Feeds\IFeedItem.cs" />
     <Compile Include="Entities\Feeds\IFeedPreview.cs" />
     <Compile Include="Entities\Podcasts\IPodcastItem.cs" />
+    <Compile Include="Http\BackgroundTransferConfig.cs" />
     <Compile Include="Http\IBackgroundTransferConfig.cs" />
     <Compile Include="Models\Loaders\CachableFeedsLoader.cs" />
     <Compile Include="Cache.cs" />
@@ -115,9 +116,12 @@
     <Compile Include="Models\Loaders\IFeedsLoader.cs" />
     <Compile Include="Models\Loaders\IPodcastItemsLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storage\BackgroundTransferStorage.cs" />
     <Compile Include="Storage\IBackgroundTransferStorage.cs" />
     <Compile Include="Storage\IPodcastsStorage.cs" />
     <Compile Include="Storage\IStorage.cs" />
+    <Compile Include="Storage\PodcastsStorage.cs" />
+    <Compile Include="Storage\Storage.cs" />
     <Compile Include="Utils\CollectionsExtensions.cs" />
     <Compile Include="Utils\CommonExtensions.cs" />
     <Compile Include="Utils\FuncEqualityComparer.cs" />

@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using Akavache;
 using Ninject;
+using PodcastReader.Infrastructure.Http;
 using PodcastReader.Infrastructure.Models.Loaders;
+using PodcastReader.Infrastructure.Storage;
 using PodcastReader.Infrastructure.Utils.Logging;
 using PodcastReader.Phone8.Models.Loaders;
 using ReactiveUI;
@@ -59,6 +61,11 @@ namespace PodcastReader.Phone8.Infrastructure
             kernel.Bind<IPlayerClient>().To<BackgroundPlayerClient>().InSingletonScope();
             kernel.Bind<ISubscriptionsManager>().To<SubscriptionsManager>().InSingletonScope();
             kernel.Bind<ISubscriptionsCache>().To<IsoSubscriptionsCache>().InSingletonScope();
+            kernel.Bind<IBackgroundTransferStorage>().To<BackgroundTransferStorage>().InSingletonScope();
+            kernel.Bind<IBackgroundTransferConfig>().To<BackgroundTransferConfig>().InSingletonScope();
+            kernel.Bind<IBackgroundDownloader>().To<BackgroundDownloader>().InSingletonScope();
+            kernel.Bind<IPodcastsStorage>().To<PodcastsStorage>().InSingletonScope();
+            kernel.Bind<IStorage>().To<Storage>().InSingletonScope();
         }
 
         private void RegisterViewModels(IKernel kernel)

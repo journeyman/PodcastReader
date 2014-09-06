@@ -7,6 +7,7 @@ using PodcastReader.Infrastructure.Caching;
 using PodcastReader.Infrastructure.Entities;
 using PodcastReader.Infrastructure.Entities.Podcasts;
 using PodcastReader.Infrastructure.Http;
+using PodcastReader.Infrastructure.Storage;
 using PodcastReader.Infrastructure.Utils;
 using PodcastReader.Phone8.Infrastructure;
 using PodcastReader.Phone8.Models;
@@ -31,7 +32,9 @@ namespace PodcastReader.Phone8.ViewModels
             this.PlayPodcastCommand = ReactiveCommand.Create();
             this.PlayPodcastCommand.Subscribe(OnPlayPodcast);
 
-            var cachingState = new CachingState(this, Locator.Current.GetService<IBackgroundDownloader>());
+            var downloader = Locator.Current.GetService<IBackgroundDownloader>();
+            var storage = Locator.Current.GetService<IPodcastsStorage>();
+            var cachingState = new CachingState(this, downloader, storage);
             //TODO: use some heuristics to control expensive caching state initing
             cachingState.Init();
             this.CachingState = cachingState;

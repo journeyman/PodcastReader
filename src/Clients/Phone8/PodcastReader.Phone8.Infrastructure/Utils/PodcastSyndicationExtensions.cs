@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
+using PodcastReader.Infrastructure.Entities.Podcasts;
 
 namespace PodcastReader.Infrastructure.Utils
 {
@@ -37,6 +38,11 @@ namespace PodcastReader.Infrastructure.Utils
         {
             //MediaType should be something like "audio/mp3"
             return !string.IsNullOrWhiteSpace(This.MediaType) && This.MediaType.ContainsValues(SupportedMediaTypes);
+        }
+
+        public static string GetSlugName(this IPodcastItem podcast)
+        {
+            return string.Format("{0}-{1}", podcast.DatePublished.ToString("yyyy-mm-dd"), podcast.Title.ToSlug());
         }
     }
 }

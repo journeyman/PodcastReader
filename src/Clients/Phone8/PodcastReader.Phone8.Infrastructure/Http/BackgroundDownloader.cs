@@ -41,7 +41,7 @@ namespace PodcastReader.Infrastructure.Http
             return _requests;
         }
 
-        public void ForgetAbout(Uri transferUri)
+        public async Task ForgetAbout(Uri transferUri)
         {
             BackgroundTransferRequest request;
             AwaitableTransferRequest awaitableRequest;
@@ -54,6 +54,7 @@ namespace PodcastReader.Infrastructure.Http
                 request = BackgroundTransferService.Requests.SingleOrDefault(r => _urlEquator.Equals(r.RequestUri, transferUri));
             }
             BackgroundTransferService.Remove(request);
+            await _storage.RemoveFile(request.DownloadLocation);
         }
 
         /// <summary>

@@ -9,5 +9,10 @@ namespace PodcastReader.Infrastructure.Utils
             string containsValuesPattern = string.Format("({0})", string.Join("|", values));
             return Regex.IsMatch(This, containsValuesPattern);
         }
+
+        public static string ToSlug(this string str)
+        {
+            return Regex.Replace(str, @"[^a-zA-Z0-9\s]", "-");
+        }
     }
 }
