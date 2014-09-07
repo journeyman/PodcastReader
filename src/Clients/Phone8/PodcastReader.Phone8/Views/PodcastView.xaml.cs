@@ -11,6 +11,11 @@ namespace PodcastReader.Phone8.Views
         public PodcastView()
         {
             InitializeComponent();
+
+            this.WhenActivated(_ =>
+                {
+                    ViewModel.OnViewActivated();
+                });
         }
 
         public PodcastItemViewModel ViewModel 

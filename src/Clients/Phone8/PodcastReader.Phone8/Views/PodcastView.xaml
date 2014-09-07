@@ -18,6 +18,8 @@
                 <ItemsControl ItemsSource="{Binding Items}" />
             </ScrollViewer>-->
             <Button Content="Play" Command="{Binding PlayPodcastCommand}"/>
+            <CheckBox IsEnabled="False" IsChecked="{Binding CachingState.IsFullyCached}" />
+            <ProgressBar Maximum="{Binding CachingState.FinalSize}" Value="{Binding CachingState.CachedSize}" />
             <TextBlock 
                 Text="{Binding Summary}"
                 TextWrapping="Wrap"

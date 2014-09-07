@@ -18,6 +18,8 @@ namespace PodcastReader.Phone8.ViewModels
 {
     public class PodcastItemViewModel : RoutableViewModelBase, IPodcastItem
     {
+        private readonly CachingState _cachingState;
+
         public PodcastItemViewModel(SyndicationItem item)
         {
             this.DatePublished = item.PublishDate;
@@ -34,10 +36,9 @@ namespace PodcastReader.Phone8.ViewModels
 
             var downloader = Locator.Current.GetService<IBackgroundDownloader>();
             var storage = Locator.Current.GetService<IPodcastsStorage>();
-            var cachingState = new CachingState(this, downloader, storage);
+            _cachingState = new CachingState(this, downloader, storage);
             //TODO: use some heuristics to control expensive caching state initing
-            cachingState.Init();
-            this.CachingState = cachingState;
+            this.CachingState = _cachingState;
         }
 
         public ICachingState CachingState { get; private set; }
@@ -52,6 +53,11 @@ namespace PodcastReader.Phone8.ViewModels
         public void OnPlayPodcast(object _)
         {
             PlayerClient.Default.Play(new PodcastTrackInfo(this));
+        }
+
+        public void OnViewActivated()
+        {
+            _cachingState.Init();
         }
     }
 }
