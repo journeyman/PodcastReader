@@ -5,7 +5,7 @@ using System.Reactive.Threading.Tasks;
 using PodcastReader.Infrastructure.Entities.Feeds;
 using PodcastReader.Infrastructure.Interfaces;
 using PodcastReader.Infrastructure.Models.Loaders;
-using PodcastReader.Infrastructure.Utils;
+using PodcastReader.Phone8.Infrastructure.Utils;
 using ReactiveUI;
 using Splat;
 
@@ -32,7 +32,7 @@ namespace PodcastReader.Phone8.Models.Loaders
                                   };
             
             _feedsObservable = _subscriptionsManager.Subscriptions
-                    .Select(s => s.Uri)
+                    .Select<ISubscription, Uri>(s => s.Uri)
                     .StartWith(predefinedFeeds)
                     .Distinct()
                     .SelectMany(uri => client.GetStringAsync(uri).ToObservable())

@@ -5,11 +5,13 @@ using PodcastReader.Infrastructure.Http;
 using PodcastReader.Infrastructure.Models.Loaders;
 using PodcastReader.Infrastructure.Storage;
 using PodcastReader.Infrastructure.Utils.Logging;
+using PodcastReader.Phone8.Infrastructure.Audio;
+using PodcastReader.Phone8.Infrastructure.Http;
+using PodcastReader.Phone8.Infrastructure.Storage;
 using PodcastReader.Phone8.Models.Loaders;
 using ReactiveUI;
 using System.Reflection;
 using PodcastReader.Infrastructure.Interfaces;
-using PodcastReader.Infrastructure.Audio;
 using Splat;
 
 namespace PodcastReader.Phone8.Infrastructure
@@ -65,7 +67,7 @@ namespace PodcastReader.Phone8.Infrastructure
             kernel.Bind<IBackgroundTransferConfig>().To<BackgroundTransferConfig>().InSingletonScope();
             kernel.Bind<IBackgroundDownloader>().To<BackgroundDownloader>().InSingletonScope();
             kernel.Bind<IPodcastsStorage>().To<PodcastsStorage>().InSingletonScope();
-            kernel.Bind<IStorage>().To<Storage>().InSingletonScope();
+            kernel.Bind<IStorage>().To<WindowsStorage>().InSingletonScope();
         }
 
         private void RegisterViewModels(IKernel kernel)
