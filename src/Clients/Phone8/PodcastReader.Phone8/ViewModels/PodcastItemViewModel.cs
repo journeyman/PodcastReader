@@ -4,8 +4,6 @@ using System.Reactive;
 using System.ServiceModel.Syndication;
 using PodcastReader.Infrastructure;
 using PodcastReader.Infrastructure.Caching;
-using PodcastReader.Infrastructure.Entities;
-using PodcastReader.Infrastructure.Entities.Podcasts;
 using PodcastReader.Infrastructure.Http;
 using PodcastReader.Infrastructure.Storage;
 using PodcastReader.Infrastructure.Utils;

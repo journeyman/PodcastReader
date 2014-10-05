@@ -1,7 +1,8 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using PodcastReader.Infrastructure.Entities.Podcasts;
+using PodcastReader.Core.Entities.Podcasts;
+using PodcastReader.Core.Storage;
 using PodcastReader.Infrastructure.Utils;
 
 namespace PodcastReader.Infrastructure.Storage

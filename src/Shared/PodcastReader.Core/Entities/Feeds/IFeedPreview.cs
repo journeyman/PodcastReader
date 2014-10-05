@@ -1,6 +1,4 @@
-using System;
-
-namespace PodcastReader.Infrastructure.Entities.Feeds
+namespace PodcastReader.Core.Entities.Feeds
 {
     public interface IFeedPreview
     {

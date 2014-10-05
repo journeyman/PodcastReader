@@ -1,6 +1,4 @@
-﻿using PodcastReader.Infrastructure.Entities;
-using PodcastReader.Infrastructure.Entities.Feeds;
-using PodcastReader.Infrastructure.Models.Loaders;
+﻿using PodcastReader.Infrastructure.Models.Loaders;
 using ReactiveUI;
 using Splat;
 

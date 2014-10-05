@@ -4,7 +4,7 @@ using System.Reactive.Subjects;
 using System.Threading;
 using Akavache;
 using JetBrains.Annotations;
-using PodcastReader.Infrastructure.Entities.Podcasts;
+using PodcastReader.Core.Entities.Podcasts;
 using PodcastReader.Infrastructure.Http;
 using PodcastReader.Infrastructure.Storage;
 using ReactiveUI;

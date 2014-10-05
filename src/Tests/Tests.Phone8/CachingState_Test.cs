@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PodcastReader.Infrastructure.Caching;
-using PodcastReader.Infrastructure.Entities.Podcasts;
 using PodcastReader.Infrastructure.Http;
 using PodcastReader.Infrastructure.Storage;
 using Splat;
 
-namespace Tests.Phone.Tests
+namespace Tests.Phone8
 {
     public class InTestModeDetector : IModeDetector
     {

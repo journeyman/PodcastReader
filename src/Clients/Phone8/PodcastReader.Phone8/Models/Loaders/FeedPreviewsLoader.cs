@@ -2,7 +2,6 @@ using System;
 using System.Net.Http;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
-using PodcastReader.Infrastructure.Entities.Feeds;
 using PodcastReader.Infrastructure.Interfaces;
 using PodcastReader.Infrastructure.Models.Loaders;
 using PodcastReader.Phone8.Infrastructure.Utils;

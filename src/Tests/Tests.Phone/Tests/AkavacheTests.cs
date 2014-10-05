@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reactive.Linq;
 using Akavache;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using PodcastReader.Infrastructure.Entities.Feeds;
 using PodcastReader.Infrastructure.Models.Loaders;
 using PodcastReader.Phone8.Infrastructure;
 using PodcastReader.Phone8.ViewModels;

@@ -1,5 +1,5 @@
 using System;
-using PodcastReader.Infrastructure.Entities.Podcasts;
+using PodcastReader.Core.Entities.Podcasts;
 
 namespace PodcastReader.Infrastructure.Models.Loaders
 {

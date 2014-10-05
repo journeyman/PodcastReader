@@ -93,10 +93,6 @@
     <Compile Include="Caching\ITransferRequest.cs" />
     <Compile Include="Caching\OngoingReactiveProgress.cs" />
     <Compile Include="Caching\PodcastCacheInfo.cs" />
-    <Compile Include="Entities\Feeds\IFeed.cs" />
-    <Compile Include="Entities\Feeds\IFeedItem.cs" />
-    <Compile Include="Entities\Feeds\IFeedPreview.cs" />
-    <Compile Include="Entities\Podcasts\IPodcastItem.cs" />
     <Compile Include="Http\BackgroundTransferConfig.cs" />
     <Compile Include="Http\IBackgroundTransferConfig.cs" />
     <Compile Include="Models\Loaders\CachableFeedsLoader.cs" />
@@ -108,7 +104,6 @@
     <Compile Include="Http\ProgressValue.cs" />
     <Compile Include="Http\TransferStatusUnknownException.cs" />
     <Compile Include="Models\Loaders\IFeedPreviewsLoader.cs" />
-    <Compile Include="Entities\Podcasts\PodcastId.cs" />
     <Compile Include="Interfaces\IAudioTrackInfo.cs" />
     <Compile Include="Interfaces\IPlayerClient.cs" />
     <Compile Include="Interfaces\ISubscription.cs" />
@@ -117,9 +112,6 @@
     <Compile Include="Models\Loaders\IPodcastItemsLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\BackgroundTransferStorage.cs" />
-    <Compile Include="Storage\IBackgroundTransferStorage.cs" />
-    <Compile Include="Storage\IPodcastsStorage.cs" />
-    <Compile Include="Storage\IStorage.cs" />
     <Compile Include="Storage\PodcastsStorage.cs" />
     <Compile Include="Storage\Storage.cs" />
     <Compile Include="Utils\CollectionsExtensions.cs" />
@@ -179,6 +171,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\PodcastReader.Core\PodcastReader.Core.csproj">
+      <Project>{993a2809-a822-482b-9979-2aad628d3bfe}</Project>
+      <Name>PodcastReader.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Shared\PodcastReader.FeedsAbstractions\PodcastReader.FeedsAbstractions.csproj">
       <Project>{77418da8-6ca6-43bd-bc76-9555a1cde358}</Project>
       <Name>PodcastReader.FeedsAbstractions</Name>

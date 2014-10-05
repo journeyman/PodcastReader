@@ -1,7 +1,7 @@
 using System;
-using PodcastReader.Infrastructure.Entities.Feeds;
+using PodcastReader.Core.Entities.Feeds;
 
-namespace PodcastReader.Infrastructure.Entities.Podcasts
+namespace PodcastReader.Core.Entities.Podcasts
 {
     public interface IPodcastItem : IFeedItem
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Reactive.Linq;
 using Akavache;
-using PodcastReader.Infrastructure.Entities.Feeds;
+using PodcastReader.Core.Entities.Feeds;
 using PodcastReader.Infrastructure.Http;
 
 namespace PodcastReader.Infrastructure.Models.Loaders
