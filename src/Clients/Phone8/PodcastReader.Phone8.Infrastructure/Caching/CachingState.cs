@@ -5,6 +5,7 @@ using System.Threading;
 using Akavache;
 using JetBrains.Annotations;
 using PodcastReader.Core.Entities.Podcasts;
+using PodcastReader.Core.Storage;
 using PodcastReader.Infrastructure.Http;
 using PodcastReader.Infrastructure.Storage;
 using ReactiveUI;

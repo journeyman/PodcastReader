@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Phone.BackgroundTransfer;
+using PodcastReader.Core.Storage;
 using PodcastReader.Infrastructure.Storage;
 using PodcastReader.Infrastructure.Utils;
 

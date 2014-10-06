@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Reactive.Linq;
+using PodcastReader.Infrastructure.Entities.Feeds;
+using PodcastReader.Infrastructure.Entities.Podcasts;
 using PodcastReader.Infrastructure.Models.Loaders;
 using PodcastReader.Infrastructure.Utils;
 using PodcastReader.Phone8.ViewModels;

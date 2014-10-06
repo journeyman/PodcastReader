@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using Microsoft.Phone.Reactive;
+using PodcastReader.Infrastructure.Entities.Podcasts;
 using PodcastReader.Infrastructure.Models.Loaders;
 using PodcastReader.Infrastructure.Utils;
 using PodcastReader.Phone8.ViewModels;

@@ -1,4 +1,6 @@
-﻿namespace PodcastReader.Core.Entities.Podcasts
+﻿using System;
+
+namespace PodcastReader.Core.Entities.Podcasts
 {
     public struct PodcastId : IEquatable<PodcastId>
     {

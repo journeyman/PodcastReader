@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using PodcastReader.Core.Storage;
 
 namespace PodcastReader.Infrastructure.Storage
 {
