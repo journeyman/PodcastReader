@@ -5,6 +5,7 @@ using Akavache;
 using System.Linq;
 using System.Reactive.Linq;
 using Microsoft.Phone.Controls;
+using TestPortableLib;
 
 namespace TestClient
 {
@@ -20,6 +21,8 @@ namespace TestClient
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            var c1 = new Class1();
+            var are = c1.AreChangeNotificationsEnabled();
             var str = await BlobCache.UserAccount.GetObject<string>(KEY).Catch(Observable.Empty<string>());
             //txtTest.Text = (await BlobCache.UserAccount.GetAllObjects<string>()).FirstOrDefault() ?? string.Empty;
         }

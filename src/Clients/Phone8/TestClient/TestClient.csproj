@@ -159,6 +159,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Libs\Akavache.Sqlite3.dll</HintPath>
     </Reference>
+    <Reference Include="ReactiveUI">
+      <HintPath>..\..\..\..\Libs\ReactiveUI.dll</HintPath>
+    </Reference>
     <Reference Include="Splat">
       <HintPath>..\..\..\packages\Splat.1.3.3\lib\wp8\Splat.dll</HintPath>
     </Reference>
@@ -181,6 +184,12 @@
     <Reference Include="System.Reactive.WindowsRuntime">
       <HintPath>..\..\..\packages\Rx-WinRT.2.2.4\lib\windowsphone8\System.Reactive.WindowsRuntime.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestPortableLib\TestPortableLib.csproj">
+      <Project>{83e66a23-c2f2-4765-b696-5f34bdfe6a11}</Project>
+      <Name>TestPortableLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
