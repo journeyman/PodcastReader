@@ -2,7 +2,7 @@ using ReactiveUI;
 
 namespace PodcastReader.Infrastructure.Caching
 {
-    public interface ICachingState : IReactiveObject
+    public interface ICachingState// : IReactiveObject
     {
         ulong? CachedSize { get; }
         ulong? FinalSize { get; }
