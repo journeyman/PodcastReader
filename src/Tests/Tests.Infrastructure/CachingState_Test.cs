@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PodcastReader.Infrastructure.Caching;
+using PodcastReader.Infrastructure.Entities.Podcasts;
 using PodcastReader.Infrastructure.Http;
 using PodcastReader.Infrastructure.Storage;
 using Splat;
+using Xunit;
 
 namespace Tests.Phone8
 {
@@ -16,7 +17,6 @@ namespace Tests.Phone8
         public bool? InDesignMode() { return false; }
     }
 
-    [TestClass]
     public class CachingState_Test
     {
         public CachingState_Test()
@@ -24,8 +24,8 @@ namespace Tests.Phone8
             ModeDetector.OverrideModeDetector(new InTestModeDetector());
         }
 
-        [TestMethod]
-        public void Test()
+        [Fact]
+        public void Test_Caching_State_Initialization()
         {
             var downloaderMock = new Mock<IBackgroundDownloader>();
             downloaderMock.Setup(
@@ -37,6 +37,9 @@ namespace Tests.Phone8
             podcastMock.Setup(x => x.Title).Returns("title");
 
             var state = new CachingState(podcastMock.Object, downloaderMock.Object, storageMock.Object);
+            state.Init();
+
+            Assert.NotNull(state.Progress);
         }
     }
 }

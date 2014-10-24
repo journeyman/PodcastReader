@@ -1,0 +1,452 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"takew",
+				"takeWhileWithFailure"
+			],
+			[
+				"int",
+				"Int"
+			],
+			[
+				"tree",
+				"tree1"
+			],
+			[
+				"biggest",
+				"biggestProduct	  (Ord a, Num a) => Tree a -> a"
+			],
+			[
+				"bigg",
+				"biggestProduct	  (Ord a, Num a) => Tree a -> a"
+			],
+			[
+				"max",
+				"maximum	Ord a => [a] -> a"
+			],
+			[
+				"draw",
+				"drawTree	Tree String -> String"
+			],
+			[
+				"fromInte",
+				"fromInteger	Num a => Integer -> a"
+			],
+			[
+				"fromIn",
+				"fromInteger	Num a => Integer -> a"
+			],
+			[
+				"fromI",
+				"fromInteger	Num a => Integer -> a"
+			],
+			[
+				"get",
+				"tryGetAccessToken	IO (Maybe AccessToken)"
+			],
+			[
+				"putS",
+				"putStrLn"
+			],
+			[
+				"Byte",
+				"ByteString	(module)"
+			],
+			[
+				"putst",
+				"putStrLn"
+			],
+			[
+				"OAuth",
+				"OAuth2Result	a"
+			],
+			[
+				"visit",
+				"visitUrlAndPasteCode	IO ()"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 58.0,
+		"selected_items":
+		[
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"xml",
+				"Set Syntax: XML"
+			],
+			[
+				"set",
+				"Set Syntax: C#"
+			],
+			[
+				"haskell",
+				"Set Syntax: Haskell"
+			],
+			[
+				"showty",
+				"SublimeHaskell: Show type"
+			],
+			[
+				"haske",
+				"Set Syntax: Haskell"
+			],
+			[
+				"browsemo",
+				"SublimeHaskell: Browse module"
+			],
+			[
+				"show",
+				"SublimeHaskell: Browse Declarations"
+			],
+			[
+				"showsy",
+				"SublimeHaskell: Show symbol info"
+			],
+			[
+				"tode",
+				"SublimeHaskell: Go to Declaration"
+			],
+			[
+				"type",
+				"SublimeHaskell: Show type"
+			],
+			[
+				"module",
+				"SublimeHaskell: Browse module"
+			],
+			[
+				"brows",
+				"SublimeHaskell: Browse module"
+			],
+			[
+				"modu",
+				"SublimeHaskell: Browse module"
+			],
+			[
+				"goto",
+				"SublimeHaskell: Go to Declaration"
+			],
+			[
+				"setsy",
+				"Set Syntax: Haskell"
+			],
+			[
+				"set haskell",
+				"Set Syntax: Literate Haskell"
+			],
+			[
+				"setsyn",
+				"Set Syntax: Haskell"
+			],
+			[
+				"build",
+				"Build: Build"
+			],
+			[
+				"run",
+				"SublimeHaskell: Run"
+			],
+			[
+				"setsyntax hask",
+				"Set Syntax: Haskell"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 144.0,
+		"history":
+		[
+			"show menu",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/cs/pr"
+	],
+	"file_history":
+	[
+		"/D/cs/pr/src/Tests/Tests.Phone8/Tests.Phone8.csproj",
+		"/D/cs/pr/src/Tests/Tests.Infrastructure/Tests.Infrastructure.csproj",
+		"/D/hs/temp/main.hs",
+		"/D/cs/pr/src/Tests/Tests.Phone/Tests.Phone.csproj",
+		"/D/cs/pr/src/Submodules/ReactiveUI/Microsoft.Reactive.Testing/TestScheduler.cs",
+		"/D/cs/pr/src/Clients/Phone8/PodcastReader.Phone8/Infrastructure/TypeExtensions.cs",
+		"/D/cs/pr/src/Submodules/ReactiveUI/packages/repositories.config",
+		"/D/cs/pr/src/Submodules/ReactiveUI/.nuget/packages.config",
+		"/D/cs/pr/src/Submodules/ReactiveUI/ReactiveUI/packages.ReactiveUI.config",
+		"/D/cs/pr/src/Submodules/ReactiveUI/ReactiveUI/ReactiveUI.csproj",
+		"/D/cs/pr/src/Submodules/ReactiveUI/ReactiveUI/ReactiveUI_WP8.csproj",
+		"/D/cs/pr/src/Clients/PodcastReader.Infrastructure/PodcastReader.Infrastructure.csproj",
+		"/D/cs/pr/src/Clients/Phone8/PodcastReader.Phone8/PodcastReader.Phone8.csproj",
+		"/D/cs/pr/src/Submodules/ReactiveUI/ReactiveUI/packages.ReactiveUI_WP8.config",
+		"/D/cs/pr/src/Shared/PodcastReader.Core/PodcastReader.Core.csproj",
+		"/D/cs/HttpServerProxy/.git/refs/remotes/origin/master",
+		"/D/cs/HttpServerProxy/.git/refs/heads/master",
+		"/D/cs/rxui/script/clean-merged-branches",
+		"/D/cs/HttpServerProxy/.git/HEAD",
+		"/D/cs/HttpServerProxy/HttpServerProxy.App/ServerProxy.cs",
+		"/D/fs/SampleTypes/SampleTypes/SampleTypes.fsproj",
+		"/D/cs/HttpServerProxy/.gitignore",
+		"/D/cs/pr/localFeed/akavache.sqlite3.nuspec",
+		"/D/cs/pr/localFeed/akavache.core.nuspec",
+		"/D/cs/pr/src/Submodules/Akavache/Akavache.Sqlite3/Akavache.Sqlite3.nuspec",
+		"/D/cs/pr/src/Submodules/Akavache/MakeRelease.ps1",
+		"/D/cs/pr/src/Submodules/Akavache/akavache-meta.nuspec",
+		"/D/cs/pr/src/Submodules/Akavache/Akavache/akavache.nuspec",
+		"/D/cs/pr/localFeed/Akavache.nuspec",
+		"/D/cs/pr/help.nuspec",
+		"/D/cs/pr/src/Submodules/Akavache/PACKAGING.md",
+		"/D/cs/pr/src/Submodules/Akavache/Akavache.Sqlite3/Akavache.Sqlite3.csproj",
+		"/D/fs/fstests/fstests/bin/Debug/results.txt",
+		"/F/Dropbox/Public/meetup/plan",
+		"/F/Dropbox/Public/meetup/pres/css/extra.css",
+		"/F/Dropbox/Public/meetup/pres/index.html",
+		"/F/Dropbox/Public/meetup/pres/css/reveal.css",
+		"/D/meetup/pres/plan",
+		"/D/meetup/pres/reveal/index.html",
+		"/D/meetup/pres/reveal/css/theme/viber.css",
+		"/D/meetup/pres/reveal/css/theme/README.md",
+		"/D/meetup/pres/reveal/css/reveal.min.css",
+		"/D/meetup/pres/reveal/css/reveal.css",
+		"/D/meetup/pres/reveal/lib/js/html5shiv.js",
+		"/D/meetup/pres/reveal/lib/js/head.min.js",
+		"/D/meetup/pres/reveal/lib/css/zenburn.css",
+		"/D/meetup/pres/pres.sublime-project",
+		"/D/meetup/index.html",
+		"/D/hs/HAD/Y2014/M04/D23.hs",
+		"/D/hs/HAD/main.hs",
+		"/D/hs/HAD/Y2014/M04/D24.hs",
+		"/D/hs/HAD/Y2014/M04/D29.hs",
+		"/D/hs/HAD/HAD.sublime-project",
+		"/D/hs/HAD/modules/HAD.Y2014.M04.D23.hs",
+		"/D/hs/sandbox/funcs.hs",
+		"/D/hs/sandbox/packages/Cesar/src/Cesar.hs",
+		"/D/hs/sandbox/packages/Cesar/src/Main.hs",
+		"/D/hs/http/Cache.cs",
+		"/D/hs/http/Browsers.hs",
+		"/F/Dropbox/Mine/Projects/hs/http/Keys.hs",
+		"/F/Dropbox/Mine/Projects/hs/http/http.sublime-project",
+		"/F/Dropbox/Mine/Projects/hs/http/OAuth.hs",
+		"/F/Dropbox/Mine/Projects/hs/http/Main.hs",
+		"/F/hs/http/Keys.hs"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"F:\\Dropbox\\Mine\\Projects\\hs\\http"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"moq",
+			"targetframe",
+			"interactivity",
+			"Release",
+			"\":[^,]+",
+			"\":[\\w\\d.-\\\"]+",
+			"\":[\\w\\d.-\"]+",
+			"\":[\\w\\d.-]+",
+			"\":0,",
+			"\":[\\w\\d]+,",
+			"\":\\w+,",
+			"\":\\s+,",
+			"\":\\s*,",
+			"\":s*,",
+			"\":/s*,",
+			"\":/w*,",
+			"\":.*,",
+			"width",
+			"FirstName",
+			"highlight",
+			"></",
+			"highlight",
+			"Android",
+			"highlight",
+			"font",
+			" (",
+			"fetchaccesstoken",
+			"issued_to",
+			"--------------------------------------------------",
+			"issued_to"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.exec":
+	{
+		"height": 234.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.haskell_error_checker":
+	{
+		"height": 161.0
+	},
+	"output.haskell_sublime_load":
+	{
+		"height": 100.0
+	},
+	"output.sublime_haskell_hdevtools_type":
+	{
+		"height": 100.0
+	},
+	"output.sublime_haskell_symbol_info":
+	{
+		"height": 100.0
+	},
+	"project": "pr.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"tests.phone",
+				"src\\Tests\\Tests.Phone8\\Tests.Phone8.csproj"
+			],
+			[
+				"tests.",
+				"src\\Tests\\Tests.Infrastructure\\Tests.Infrastructure.csproj"
+			],
+			[
+				"",
+				"Y2014\\M04\\D23.hs"
+			],
+			[
+				"bo",
+				"Browsers.hs"
+			],
+			[
+				"main",
+				"Main.hs"
+			],
+			[
+				"oau",
+				"OAuth.hs"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

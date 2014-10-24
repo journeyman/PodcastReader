@@ -30,9 +30,11 @@ namespace PodcastReader.Infrastructure.Caching
             _storage = storage;
 
             _progress = _progressSubj.ToProperty(this, x => x.Progress);
-            _finalSize = this.WhenAny(x => x.Progress, change => change.Value.FinalState).Select(x => (ulong?)x).ToProperty(this, x => x.FinalSize, null);
-            _isFullyCached = this.WhenAnyObservable(x => x.Progress).Select(x => x == this.Progress.FinalState).ToProperty(this, x => x.IsFullyCached, false);
-            _cachedSize = this.WhenAnyObservable(x => x.Progress).Select(x => (ulong?)x).ToProperty(this, x => x.CachedSize);
+            _finalSize = this.WhenAny(x => x.Progress, change => change.Value == null ? null : (ulong?)change.Value.FinalState).ToProperty(this, x => x.FinalSize, null);
+            _isFullyCached = _progressSubj.Merge().Select(x => x == (this.Progress == null ? null : (ulong?)this.Progress.FinalState)).ToProperty(this, x => x.IsFullyCached, false);
+            //_isFullyCached = this.WhenAnyObservable(x => x.Progress).Select(x => x == this.Progress.FinalState).ToProperty(this, x => x.IsFullyCached, false);
+            _cachedSize = _progressSubj.Merge().Select(x => (ulong?)x).ToProperty(this, x => x.CachedSize);
+            //_cachedSize = this.WhenAnyObservable(x => x.Progress).Select(x => (ulong?)x).ToProperty(this, x => x.CachedSize);
         }
 
         [CanBeNull]

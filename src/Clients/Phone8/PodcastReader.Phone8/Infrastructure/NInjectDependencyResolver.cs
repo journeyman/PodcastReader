@@ -36,5 +36,10 @@ namespace PodcastReader.Phone8.Infrastructure
             var binding = _kernel.Rebind(serviceType).ToMethod(_ => factory());
             if (contract != null) binding.Named(contract);
         }
+
+        public IDisposable ServiceRegistrationCallback(Type serviceType, string contract, Action<IDisposable> callback)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

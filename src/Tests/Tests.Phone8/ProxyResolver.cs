@@ -52,5 +52,10 @@ namespace Tests.Phone8
 
             _inner.Register(factory, serviceType, contract);
         }
+
+        public IDisposable ServiceRegistrationCallback(Type serviceType, string contract, Action<IDisposable> callback)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

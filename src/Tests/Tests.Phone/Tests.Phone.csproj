@@ -87,6 +87,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Tests\AkavacheTests.cs" />
+    <Compile Include="Tests\CachingState_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -135,6 +136,10 @@
     <ProjectReference Include="..\..\Clients\Phone8\PodcastReader.Phone8\PodcastReader.Phone8.csproj">
       <Project>{8e0c268f-5b45-4dc9-9f72-53b8c3f9f6e5}</Project>
       <Name>PodcastReader.Phone8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Clients\PodcastReader.Infrastructure\PodcastReader.Infrastructure.csproj">
+      <Project>{d19da4ce-5acf-4434-831b-0bccd7888ad5}</Project>
+      <Name>PodcastReader.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI_WP8.csproj">
       <Project>{f9459904-f785-4255-866a-a619787cb895}</Project>

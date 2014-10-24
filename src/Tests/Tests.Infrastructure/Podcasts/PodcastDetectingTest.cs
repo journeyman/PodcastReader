@@ -1,4 +1,5 @@
 ﻿using PodcastReader.Infrastructure.Utils;
+using Xunit;
 
 namespace Tests.Infrastructure
 {
@@ -11,8 +12,8 @@ namespace Tests.Infrastructure
             var containsMP3 = "audio/mp3".ContainsValues(values);
             var containsWAV = "audio/wav1asdf".ContainsValues(values);
 
-            Assert.IsTrue(containsMP3);
-            Assert.IsTrue(containsWAV);
+            Assert.True(containsMP3);
+            Assert.True(containsWAV);
         }
     }
 }

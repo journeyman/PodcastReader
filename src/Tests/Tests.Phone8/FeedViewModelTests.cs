@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reactive.Concurrency;
 using System.Reactive.Subjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PodcastReader.Infrastructure.Entities.Podcasts;
 using PodcastReader.Infrastructure.Models.Loaders;
 using PodcastReader.Phone8.Models;
 using ReactiveUI;

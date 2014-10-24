@@ -40,7 +40,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Moq, Version=4.2.1402.2112, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+    <Reference Include="Moq">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
     </Reference>
@@ -82,7 +82,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CachingState_Test.cs" />
     <Compile Include="FeedViewModelTests.cs" />
     <Compile Include="MainViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +96,14 @@
     <ProjectReference Include="..\..\Clients\Phone8\PodcastReader.Phone8\PodcastReader.Phone8.csproj">
       <Project>{8e0c268f-5b45-4dc9-9f72-53b8c3f9f6e5}</Project>
       <Name>PodcastReader.Phone8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Clients\PodcastReader.Infrastructure\PodcastReader.Infrastructure.csproj">
+      <Project>{d19da4ce-5acf-4434-831b-0bccd7888ad5}</Project>
+      <Name>PodcastReader.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\PodcastReader.FeedsAbstractions\PodcastReader.FeedsAbstractions.csproj">
+      <Project>{77418da8-6ca6-43bd-bc76-9555a1cde358}</Project>
+      <Name>PodcastReader.FeedsAbstractions</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI_WP8.csproj">
       <Project>{f9459904-f785-4255-866a-a619787cb895}</Project>
