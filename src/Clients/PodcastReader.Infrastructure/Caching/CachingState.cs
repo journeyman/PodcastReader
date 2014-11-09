@@ -11,6 +11,24 @@ using ReactiveUI;
 
 namespace PodcastReader.Infrastructure.Caching
 {
+    public class CachingStateVM : ReactiveObject
+    {
+        [NotNull] private readonly ObservableAsPropertyHelper<bool> _isFullyCached;
+        [NotNull] private readonly ObservableAsPropertyHelper<ulong?> _finalSize;
+        [NotNull] private readonly ObservableAsPropertyHelper<ulong?> _cachedSize;
+
+        public CachingStateVM(IReactiveProgress<ProgressValue> progress)
+        {
+            _finalSize = progress.Select(x => x.Total == 0UL ? null : (ulong?)x.Total).ToProperty(this, x => x.FinalSize, null);
+            _cachedSize = progress.Select(x => (ulong?)x.Current).ToProperty(this, x => x.CachedSize, 0UL);
+            _isFullyCached = progress.Select(x => x.Current != 0UL && x.Current == x.Total).ToProperty(this, x => x.IsFullyCached, false);
+        }
+
+        public ulong? CachedSize { get; private set; }
+        public ulong? FinalSize { get; private set; }
+        public bool IsFullyCached { get; private set; }
+    }
+
     public class CachingState : ReactiveObject, ICachingState
     {
         [NotNull] private readonly IPodcastItem _item;
@@ -58,16 +76,16 @@ namespace PodcastReader.Infrastructure.Caching
                     {
                         //if (not downloaded OR download not finished)
                         var progress = new OngoingReactiveProgress();
-                        var transferUri =
-                            await _downloader.Load(_item.PodcastUri.AbsoluteUri, progress, CancellationToken.None);
+                        //TODO: progress.Subscribe( { save CacheInfo as progress goes} );
+                        var transferUri = await _downloader.Load(_item.PodcastUri.AbsoluteUri, progress, CancellationToken.None);
                         //TODO: think how to implement via Move (should atomically call Move and Save info into cache)
                         var realUri = await _storage.CopyFromTransferTempStorage(transferUri, _item);
                         var newCacheInfo = new PodcastCacheInfo()
-                        {
-                            FileUri = realUri,
-                            FinalSize = progress.FinalState,
-                            Downloaded = progress.FinalState
-                        };
+                            {
+                                FileUri = realUri,
+                                FinalSize = progress.FinalState,
+                                Downloaded = progress.FinalState
+                            };
                         await Cache.Local.InsertObject(_item.PodcastUri.AbsoluteUri, newCacheInfo);
                         await _downloader.ForgetAbout(transferUri);
                         observable = Observable.Return(progress);

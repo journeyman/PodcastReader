@@ -6,40 +6,39 @@ using PodcastReader.Infrastructure.Caching;
 using PodcastReader.Infrastructure.Entities.Podcasts;
 using PodcastReader.Infrastructure.Http;
 using PodcastReader.Infrastructure.Storage;
-using Splat;
 using Xunit;
 
-namespace Tests.Phone8
+namespace Tests.Infrastructure
 {
-    public class InTestModeDetector : IModeDetector
+    public class CachingState_Test : PR_Test_Portable
     {
-        public bool? InUnitTestRunner() { return true; }
-        public bool? InDesignMode() { return false; }
-    }
-
-    public class CachingState_Test
-    {
-        public CachingState_Test()
+        private void setupCachingState(Action<IProgress<ProgressValue>> whenProgress)
         {
-            ModeDetector.OverrideModeDetector(new InTestModeDetector());
+            var downloaderMock = new Mock<IBackgroundDownloader>();
+            downloaderMock.Setup(x => x.Load(It.IsAny<string>(), It.IsAny<IProgress<ProgressValue>>(), It.IsAny<CancellationToken>()))
+                .Returns<string, IProgress<ProgressValue>, CancellationToken>((url, p, ct) => p.)
+            
         }
 
         [Fact]
         public void Test_Caching_State_Initialization()
         {
             var downloaderMock = new Mock<IBackgroundDownloader>();
-            downloaderMock.Setup(
-                x => x.Load(It.IsAny<string>(), It.IsAny<IProgress<ProgressValue>>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new Uri("http://google.com")));
+            downloaderMock.Setup(x => x.Load(It.IsAny<string>(), It.IsAny<IProgress<ProgressValue>>(), It.IsAny<CancellationToken>()))
+                          .Returns(Task.FromResult(new Uri("http://google.com")));
             var storageMock = new Mock<IPodcastsStorage>();
-            storageMock.Setup(x => x.CopyFromTransferTempStorage(It.IsAny<Uri>(), It.IsAny<IPodcastItem>())).Returns(Task.FromResult(new Uri("http://google.com")));
+            storageMock.Setup(x => x.CopyFromTransferTempStorage(It.IsAny<Uri>(), It.IsAny<IPodcastItem>()))
+                       .Returns(Task.FromResult(new Uri("http://google.com")));
             var podcastMock = new Mock<IPodcastItem>();
             podcastMock.Setup(x => x.Title).Returns("title");
+            podcastMock.Setup(x => x.PodcastUri).Returns(new Uri("http://google.com"));
 
             var state = new CachingState(podcastMock.Object, downloaderMock.Object, storageMock.Object);
             state.Init();
 
             Assert.NotNull(state.Progress);
+            Assert.True(state.IsFullyCached);
+            Assert.Equal(0d, state.FinalSize);
         }
     }
 }

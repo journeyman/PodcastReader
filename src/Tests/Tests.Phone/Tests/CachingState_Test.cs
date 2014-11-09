@@ -7,26 +7,14 @@ using PodcastReader.Infrastructure.Caching;
 using PodcastReader.Infrastructure.Entities.Podcasts;
 using PodcastReader.Infrastructure.Http;
 using PodcastReader.Infrastructure.Storage;
-using Splat;
 
-namespace Tests.Phone8
+namespace Tests.Phone
 {
-    public class InTestModeDetector : IModeDetector
-    {
-        public bool? InUnitTestRunner() { return true; }
-        public bool? InDesignMode() { return false; }
-    }
-
     [TestClass]
-    public class CachingState_Test
+    public class CachingState_Test : PR_Test
     {
-        public CachingState_Test()
-        {
-            ModeDetector.OverrideModeDetector(new InTestModeDetector());
-        }
-
         [TestMethod]
-        public void Test()
+        public void Test_Caching_State_Initialization1()
         {
             var downloaderMock = new Mock<IBackgroundDownloader>();
             downloaderMock.Setup(
@@ -38,6 +26,7 @@ namespace Tests.Phone8
             podcastMock.Setup(x => x.Title).Returns("title");
 
             var state = new CachingState(podcastMock.Object, downloaderMock.Object, storageMock.Object);
+            state.Init();
 
             Assert.IsNotNull(state.Progress);
         }
