@@ -36,8 +36,6 @@ namespace PodcastReader.Phone8.ViewModels
             var downloader = Locator.Current.GetService<IBackgroundDownloader>();
             var storage = Locator.Current.GetService<IPodcastsStorage>();
             _cachingState = new CachingState(this, downloader, storage);
-            //TODO: use some heuristics to control expensive caching state initing
-            this.CachingState = _cachingState;
         }
 
         public ICachingState CachingState { get; private set; }
@@ -56,7 +54,9 @@ namespace PodcastReader.Phone8.ViewModels
 
         public void OnViewActivated()
         {
-            _cachingState.Init();
+            //TODO: use some heuristics to control expensive caching state initing
+            var progress = _cachingState.Init();
+            CachingState = new CachingStateVm(progress);
         }
     }
 }

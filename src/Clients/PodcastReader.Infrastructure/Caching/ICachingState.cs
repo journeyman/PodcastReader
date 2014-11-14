@@ -7,6 +7,5 @@ namespace PodcastReader.Infrastructure.Caching
         ulong? CachedSize { get; }
         ulong? FinalSize { get; }
         bool IsFullyCached { get; }
-        IReactiveProgress<ulong> Progress { get; }
     }
 }

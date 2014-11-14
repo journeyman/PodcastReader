@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Cache.cs" />
     <Compile Include="Caching\CachingState.cs" />
+    <Compile Include="Caching\CachingStateVm.cs" />
+    <Compile Include="Caching\DeferredReactiveProgress.cs" />
     <Compile Include="Caching\FinishedReactiveProgress.cs" />
     <Compile Include="Caching\ICachingState.cs" />
     <Compile Include="Caching\IReactiveProgress.cs" />
