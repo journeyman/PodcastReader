@@ -85,19 +85,16 @@
     <Compile Include="Utils\FuncEqualityComparer.cs" />
     <Compile Include="Utils\Logging\CompositeLogger.cs" />
     <Compile Include="Utils\PodcastSyndicationExtensions.cs" />
+    <Compile Include="Utils\RxExtensions.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Submodules\Akavache\Akavache\Akavache_Portable.csproj">
-      <Project>{eb73addd-2fe9-44c0-a1ab-20709b979b64}</Project>
-      <Name>Akavache_Portable</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI.csproj">
-      <Project>{464cb812-f99f-401b-be4c-e8f0515cd19d}</Project>
-      <Name>ReactiveUI</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <Reference Include="Akavache">
+      <HintPath>..\..\..\Libs\Akavache.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveUI">
+      <HintPath>..\..\..\Libs\ReactiveUI.dll</HintPath>
+    </Reference>
     <Reference Include="Splat">
       <HintPath>..\..\packages\Splat.1.3.3\lib\Portable-net45+win+wpa81+wp80\Splat.dll</HintPath>
     </Reference>

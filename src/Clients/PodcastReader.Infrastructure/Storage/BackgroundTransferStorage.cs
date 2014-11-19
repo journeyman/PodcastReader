@@ -17,7 +17,7 @@ namespace PodcastReader.Infrastructure.Storage
 
         public string GetTransferUrl(string relativeUrl)
         {
-            return Path.Combine(TRANSFER_PATH, relativeUrl);
+            return Path.Combine(TRANSFER_PATH, Path.GetFileName(relativeUrl));
         }
 
         public async Task RemoveFile(Uri downloadLocation)

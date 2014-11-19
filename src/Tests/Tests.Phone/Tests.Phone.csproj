@@ -87,7 +87,6 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Tests\AkavacheTests.cs" />
-    <Compile Include="Tests\CachingState_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

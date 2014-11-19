@@ -1,10 +1,12 @@
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using PodcastReader.Infrastructure.Entities.Feeds;
 using PodcastReader.Infrastructure.Interfaces;
 using PodcastReader.Infrastructure.Models.Loaders;
+using PodcastReader.Infrastructure.Utils;
 using PodcastReader.Phone8.Infrastructure.Utils;
 using ReactiveUI;
 using Splat;
@@ -13,6 +15,15 @@ namespace PodcastReader.Phone8.Models.Loaders
 {
     public class FeedPreviewsLoader : IFeedPreviewsLoader, IEnableLogger
     {
+        private static readonly string[] TEST_FEEDS = 
+            {
+                "http://feeds.feedburner.com/Hanselminutes?format=xml",
+                "http://feeds.feedburner.com/netRocksFullMp3Downloads?format=xml",
+                "http://hobbytalks.org/rss.xml",
+                "http://haskellcast.com/feed.xml",
+                "http://thespaceshow.wordpress.com/feed/",
+        };
+
         private readonly ISubscriptionsManager _subscriptionsManager;
         private readonly IObservable<IFeedPreview> _feedsObservable;
 
@@ -22,30 +33,14 @@ namespace PodcastReader.Phone8.Models.Loaders
 
             var client = new HttpClient();
 
-            var predefinedFeeds = new[]
-                                  {
-                                      new Uri(TEST_FEED_URL0),
-                                      new Uri(TEST_FEED_URL1),
-                                      new Uri(TEST_FEED_URL2),
-                                      new Uri(TEST_FEED_URL3),
-                                      new Uri(TEST_FEED_URL4),
-                                  };
-            
             _feedsObservable = _subscriptionsManager.Subscriptions
-                    .Select<ISubscription, Uri>(s => s.Uri)
-                    .StartWith(predefinedFeeds)
-                    .Distinct()
-                    .SelectMany(uri => client.GetStringAsync(uri).ToObservable())
-                    .Select(FeedXmlParser.Parse)
-                    .Select(feed => new FeedViewModel(feed.Title.Text, new PodcastItemsLoader(feed)))
-                    .LoggedCatch<IFeedPreview, FeedPreviewsLoader, Exception>(this, ex => Observable.Throw<IFeedPreview>(new FeedLoadingException(ex)));
+                .Select(s => s.Uri)
+                .StartWith(TEST_FEEDS.Select(x => new Uri(x)))
+                .Distinct()
+                .SelectManyAndSkipOnException(uri => client.GetStringAsync(uri).ToObservable())
+                .SelectAndSkipOnException(FeedXmlParser.Parse)
+                .Select(feed => new FeedViewModel(feed.Title.Text, new PodcastItemsLoader(feed)));
         }
-
-        private const string TEST_FEED_URL0 = "http://feeds.feedburner.com/Hanselminutes?format=xml";
-        private const string TEST_FEED_URL1 = "http://feeds.feedburner.com/netRocksFullMp3Downloads?format=xml";
-        private const string TEST_FEED_URL2 = "http://hobbytalks.org/rss.xml";
-        private const string TEST_FEED_URL3 = "http://haskellcast.com/feed.xml";
-        private const string TEST_FEED_URL4 = "http://thespaceshow.wordpress.com/feed/";
 
         public IDisposable Subscribe(IObserver<IFeedPreview> observer)
         {

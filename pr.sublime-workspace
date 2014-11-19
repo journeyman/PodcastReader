@@ -71,11 +71,19 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/Submodules/ReactiveUI/ReactiveUI/ReactiveUI_WP8.csproj",
+			"settings":
+			{
+				"buffer_size": 9038,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 104.0,
+		"height": 376.0,
 		"selected_items":
 		[
 			[
@@ -191,11 +199,27 @@
 	[
 		"/D/cs/pr",
 		"/D/cs/pr/src",
-		"/D/cs/pr/src/Tests",
-		"/D/cs/pr/src/Tests/Tests.Phone8"
+		"/D/cs/pr/src/Tests"
 	],
 	"file_history":
 	[
+		"/D/cs/pr/src/Submodules/ReactiveUI/ReactiveUI_VSAll.sln",
+		"/D/cs/pr/src/Submodules/ReactiveUI/ReactiveUI.sln",
+		"/D/cs/pr/README.md",
+		"/D/cs/pr/src/Submodules/ReactiveUI/docs/basics/rx-events.md",
+		"/D/cs/pr/src/Submodules/Akavache/Akavache/Akavache_Portable.csproj",
+		"/D/cs/pr/src/Clients/PodcastReader.Infrastructure/PodcastReader.Infrastructure.csproj",
+		"/D/cs/pr/src/PodcastReader.sln",
+		"/D/cs/pr/src/Submodules/ReactiveUI/Playground-iOS/Playground-iOS.csproj",
+		"/D/cs/pr/pr.sublime-project",
+		"/D/cs/pr/src/Submodules/Akavache/Akavache.sln",
+		"/D/cs/pr/src/Submodules/Akavache/Akavache/akavache.nuspec",
+		"/D/cs/pr/src/Submodules/Akavache/Akavache.Deprecated/Akavache.Deprecated.csproj",
+		"/D/cs/pr/src/Clients/PodcastReader.Infrastructure/app.config",
+		"/D/cs/pr/src/Tests/Tests.Infrastructure/Tests.Infrastructure.csproj",
+		"/D/cs/pr/src/Submodules/ReactiveUI/Playground-iOS/Info.plist",
+		"/D/cs/pr/src/packages/Fody.1.24.0/Tools/install.ps1",
+		"/D/cs/pr/src/Clients/PodcastReader.Infrastructure/Interfaces/ISubscription.cs",
 		"/d/cs/pr/src/Submodules/Akavache/Akavache.Deprecated/Akavache.Deprecated.csproj",
 		"/d/cs/pr/src/Submodules/Akavache/Akavache.Mobile/Akavache.Mobile_Monodroid.csproj",
 		"/d/cs/pr/src/Submodules/Akavache/Akavache.Mobile/Akavache.Mobile_Monotouch.csproj",
@@ -213,19 +237,14 @@
 		"/d/cs/pr/src/Submodules/ReactiveUI/ReactiveUI/ReactiveUI_WP8.csproj",
 		"/d/cs/pr/src/Tests/Tests.Phone8/Tests.Phone8.csproj",
 		"/D/cs/pr/src/Clients/Phone8/TestClient/TestClient.csproj",
-		"/D/cs/pr/src/Tests/Tests.Infrastructure/Tests.Infrastructure.csproj",
 		"/D/cs/pr/src/Clients/Phone8/PodcastReader.Phone8/PodcastReader.Phone8.csproj",
 		"/D/cs/pr/src/Tests/Tests.Phone8/Tests.Phone8.csproj",
 		"/D/cs/pr/src/Tests/Tests.Phone/Tests.Phone.csproj",
 		"/D/cs/pr/src/Submodules/Magellan.WP/Controls/ZonePlaceHolder.cs",
-		"/D/cs/pr/pr.sublime-project",
 		"/d/cs/pr/src/Clients/Phone8/PodcastReader.Phone8/obj/x86/Debug/XapCacheFile.xml",
-		"/D/cs/pr/src/Submodules/Akavache/Akavache/Akavache_Portable.csproj",
 		"/D/cs/pr/src/Submodules/Akavache/Akavache/Akavache_WP8.csproj",
 		"/D/cs/pr/src/Submodules/Akavache/Akavache_VSAll.sln",
-		"/D/cs/pr/src/Submodules/Akavache/Akavache.sln",
 		"/D/cs/pr/src/Submodules/ReactiveUI/ReactiveUI/Cocoa/AppKitAutoSuspendHelper.cs",
-		"/D/cs/pr/src/Clients/PodcastReader.Infrastructure/app.config",
 		"/D/hs/temp/main.hs",
 		"/D/cs/pr/src/Submodules/ReactiveUI/Microsoft.Reactive.Testing/TestScheduler.cs",
 		"/D/cs/pr/src/Clients/Phone8/PodcastReader.Phone8/Infrastructure/TypeExtensions.cs",
@@ -234,7 +253,6 @@
 		"/D/cs/pr/src/Submodules/ReactiveUI/ReactiveUI/packages.ReactiveUI.config",
 		"/D/cs/pr/src/Submodules/ReactiveUI/ReactiveUI/ReactiveUI.csproj",
 		"/D/cs/pr/src/Submodules/ReactiveUI/ReactiveUI/ReactiveUI_WP8.csproj",
-		"/D/cs/pr/src/Clients/PodcastReader.Infrastructure/PodcastReader.Infrastructure.csproj",
 		"/D/cs/pr/src/Submodules/ReactiveUI/ReactiveUI/packages.ReactiveUI_WP8.config",
 		"/D/cs/pr/src/Shared/PodcastReader.Core/PodcastReader.Core.csproj",
 		"/D/cs/HttpServerProxy/.git/refs/remotes/origin/master",
@@ -249,7 +267,6 @@
 		"/D/cs/pr/src/Submodules/Akavache/Akavache.Sqlite3/Akavache.Sqlite3.nuspec",
 		"/D/cs/pr/src/Submodules/Akavache/MakeRelease.ps1",
 		"/D/cs/pr/src/Submodules/Akavache/akavache-meta.nuspec",
-		"/D/cs/pr/src/Submodules/Akavache/Akavache/akavache.nuspec",
 		"/D/cs/pr/localFeed/Akavache.nuspec",
 		"/D/cs/pr/help.nuspec",
 		"/D/cs/pr/src/Submodules/Akavache/PACKAGING.md",
@@ -308,6 +325,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"reactive.core",
+			"splat",
 			"2.2.4",
 			"moq",
 			"targetframe",
@@ -357,8 +376,39 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/Submodules/ReactiveUI/ReactiveUI/ReactiveUI_WP8.csproj",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9038,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4811,
+								4811
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1027.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -428,6 +478,22 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"reactive_wp8",
+				"src\\Submodules\\ReactiveUI\\ReactiveUI\\ReactiveUI_WP8.csproj"
+			],
+			[
+				"podcainf",
+				"src\\Clients\\PodcastReader.Infrastructure\\PodcastReader.Infrastructure.csproj"
+			],
+			[
+				"akavache_por",
+				"src\\Submodules\\Akavache\\Akavache\\Akavache_Portable.csproj"
+			],
+			[
+				"infra",
+				"src\\Tests\\Tests.Infrastructure\\Tests.Infrastructure.csproj"
+			],
 			[
 				"testclient.",
 				"src\\Clients\\Phone8\\TestClient\\TestClient.csproj"

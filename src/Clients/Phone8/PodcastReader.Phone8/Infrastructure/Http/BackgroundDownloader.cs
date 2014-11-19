@@ -71,7 +71,7 @@ namespace PodcastReader.Phone8.Infrastructure.Http
                 if (request == null)
                 {
                     var resourceUri = new Uri(url);
-                    request = new BackgroundTransferRequest(resourceUri, new Uri(_storage.GetTransferUrl(resourceUri.LocalPath)));
+                    request = new BackgroundTransferRequest(resourceUri, new Uri(_storage.GetTransferUrl(resourceUri.LocalPath), UriKind.Relative));
                     request.TransferPreferences = _config.Preferences.ToNative();
                     BackgroundTransferService.Add(request);
                 }
