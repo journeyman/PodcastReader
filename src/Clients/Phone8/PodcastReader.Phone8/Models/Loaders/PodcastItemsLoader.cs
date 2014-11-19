@@ -11,26 +11,24 @@ namespace PodcastReader.Phone8.Models.Loaders
 {
     public class PodcastItemsLoader : IPodcastItemsLoader
     {
-        readonly ISubject<IPodcastItem> _subject = new ReplaySubject<IPodcastItem>();
+        private readonly SyndicationFeed _feed;
+        private IConnectableObservable<PodcastItemViewModel> _observable;
 
         public PodcastItemsLoader(SyndicationFeed feed)
         {
-            feed.Items.Where(item => item.IsPodcast())
-                      .ToObservable()
-                      .Do(item => item.SourceFeed = feed)
-                      .Select(item => new PodcastItemViewModel(item))
-                      .Subscribe(_subject);
+            _feed = feed;
 
-            //foreach (var syndicationItem in feed.Items.Where(item => item.IsPodcast()))
-            //{
-            //    syndicationItem.SourceFeed = feed;
-            //    _subject.OnNext(new PodcastItemViewModel(syndicationItem));
-            //}
+            _observable = Observable.Defer(() =>
+                            feed.Items.Where(item => item.IsPodcast())
+                                .ToObservable()
+                                .Do(item => item.SourceFeed = feed)
+                                .Select(item => new PodcastItemViewModel(item)))
+                      .Publish();
         }
 
         public IDisposable Subscribe(IObserver<IPodcastItem> observer)
         {
-            return _subject.Subscribe(observer);
+            return _observable.RefCount().Subscribe(observer);
         }
     }
 }

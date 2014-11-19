@@ -39,6 +39,7 @@ namespace PodcastReader.Phone8.Models.Loaders
                 .Distinct()
                 .SelectManyAndSkipOnException(uri => client.GetStringAsync(uri).ToObservable())
                 .SelectAndSkipOnException(FeedXmlParser.Parse)
+                .ObserveOnDispatcher()
                 .Select(feed => new FeedViewModel(feed.Title.Text, new PodcastItemsLoader(feed)));
         }
 
