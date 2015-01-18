@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CachingState_Test.cs" />
+    <Compile Include="Podcasts\SomePodcastsUtilityMethodsTests.cs" />
     <Compile Include="Podcasts\PodcastDetectingTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PR_Test_Portable.cs" />
@@ -100,6 +101,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -12,7 +12,8 @@ namespace PodcastReader.Infrastructure.Utils
 
         public static string ToSlug(this string str)
         {
-            return Regex.Replace(str, @"[^a-zA-Z0-9\s]", "-");
+            //[\x00\x08\x0B\x0C\x0E-\x1F] - means unprintable chars
+            return Regex.Replace(str, @"[-\s\x00\x08\x0B\x0C\x0E-\x1F]+", "-");
         }
     }
 }
