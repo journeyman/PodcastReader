@@ -19,7 +19,7 @@ namespace Tests.Infrastructure
             var vm = new CachingStateVm(progress);
             
             Assert.Equal(0UL, vm.CachedSize);
-            Assert.Equal(null, vm.FinalSize);
+            Assert.Equal(0UL, vm.FinalSize);
             Assert.False(vm.IsFullyCached);
         }
 
