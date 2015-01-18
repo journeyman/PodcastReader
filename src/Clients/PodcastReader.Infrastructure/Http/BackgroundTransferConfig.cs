@@ -6,6 +6,9 @@ namespace PodcastReader.Infrastructure.Http
         {
             //Default
             Preferences = PRTransferPreferences.AllowBattery;
+#if DEBUG
+            Preferences = PRTransferPreferences.AllowCellularAndBattery;
+#endif
         }
 
         public PRTransferPreferences Preferences { get; set; }
