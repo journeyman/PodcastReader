@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using PodcastReader.Infrastructure.Entities.Podcasts;
@@ -40,9 +41,12 @@ namespace PodcastReader.Infrastructure.Utils
             return !string.IsNullOrWhiteSpace(This.MediaType) && This.MediaType.ContainsValues(SupportedMediaTypes);
         }
 
-        public static string GetSlugName(this IPodcastItem podcast)
+        public static string GetSlugFileName(this IPodcastItem podcast)
         {
-            return string.Format("{0}-{1}", podcast.DatePublished.ToString("yyyy-mm-dd"), podcast.Title.ToSlug());
+            var date = podcast.DatePublished.ToString("yyyy-mm-dd");
+            var title = podcast.Title.ToSlug();
+            var ext = Path.GetExtension(podcast.PodcastUri.OriginalString);
+            return string.Format("{0}-{1}{2}", date, title, ext);
         }
     }
 }

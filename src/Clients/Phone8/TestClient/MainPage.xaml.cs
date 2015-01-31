@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Navigation;
 using Akavache;
 using System.Linq;
 using System.Reactive.Linq;
+using Windows.Storage;
 using Microsoft.Phone.Controls;
 using TestPortableLib;
 
@@ -11,8 +14,6 @@ namespace TestClient
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        private const string KEY = "key";
-
         public MainPage()
         {
             InitializeComponent();
@@ -21,15 +22,14 @@ namespace TestClient
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            var c1 = new Class1();
-            var are = c1.AreChangeNotificationsEnabled();
-            var str = await BlobCache.UserAccount.GetObject<string>(KEY).Catch(Observable.Empty<string>());
-            //txtTest.Text = (await BlobCache.UserAccount.GetAllObjects<string>()).FirstOrDefault() ?? string.Empty;
+            var file = await ApplicationData.Current.LocalFolder.CreateFileAsync("test", CreationCollisionOption.ReplaceExisting);
         }
 
         private async void BtnSubmit_OnClick(object sender, RoutedEventArgs e)
         {
-            await BlobCache.UserAccount.InsertObject(KEY, txtTest.Text);
+            var path = Path.Combine(ApplicationData.Current.LocalFolder.Path, "test");
+            Debug.WriteLine(path);
+            var file = await StorageFile.GetFileFromPathAsync(path);
         }
     }
 }

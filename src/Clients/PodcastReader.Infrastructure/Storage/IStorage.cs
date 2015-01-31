@@ -5,7 +5,7 @@ namespace PodcastReader.Infrastructure.Storage
 {
     public interface IStorage
     {
-        Task Move(Uri from, Uri to);
+        Task Move(string from, string to);
         Task RemoveFile(Uri uri);
     }
 }

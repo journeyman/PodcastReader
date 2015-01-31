@@ -8,7 +8,7 @@ namespace PodcastReader.Infrastructure.Storage
 {
     public class PodcastsStorage : IPodcastsStorage
     {
-        private const string PODCASTS_BASE_PATH = "isostore:/podcasts";
+        private const string PODCASTS_BASE_PATH = "/podcasts";
         private readonly IStorage _storage;
 
         public PodcastsStorage(IStorage storage)
@@ -16,16 +16,16 @@ namespace PodcastReader.Infrastructure.Storage
             _storage = storage;
         }
 
-        private static Uri ResolveUriForPodcast(IPodcastItem podcast)
+        private static string ResolveUriForPodcast(IPodcastItem podcast)
         {
-            return new Uri(Path.Combine(PODCASTS_BASE_PATH, podcast.GetSlugName()), UriKind.Absolute);
+            return Path.Combine(PODCASTS_BASE_PATH, podcast.GetSlugFileName());
         }
 
         public async Task<Uri> CopyFromTransferTempStorage(Uri tempUri, IPodcastItem podcast)
         {
-            var targetUri = ResolveUriForPodcast(podcast);
-            await _storage.Move(tempUri, targetUri).ConfigureAwait(false);
-            return targetUri;
+            var targetPath = ResolveUriForPodcast(podcast);
+            await _storage.Move(tempUri.OriginalString, targetPath).ConfigureAwait(false);
+            return new Uri(targetPath, UriKind.Relative);
         }
     }
 }
