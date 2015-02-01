@@ -40,7 +40,8 @@ namespace PodcastReader.Infrastructure.Caching
                 //TODO: progress.Subscribe( { save CacheInfo as progress goes} );
                 var transferUri = await _downloader.Load(_item.PodcastUri.AbsoluteUri, progress, CancellationToken.None);
                 //TODO: think how to implement via Move (should atomically call Move and Save info into cache)
-                var realUri = await _storage.CopyFromTransferTempStorage(transferUri, _item);
+                var realUri = _storage.ResolveUriForPodcast(_item);
+                realUri = await _storage.MoveFromTransferTempStorage(transferUri, _item);
                 var newCacheInfo = new PodcastCacheInfo()
                 {
                     FileUri = realUri,

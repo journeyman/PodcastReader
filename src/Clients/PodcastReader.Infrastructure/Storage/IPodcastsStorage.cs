@@ -6,6 +6,7 @@ namespace PodcastReader.Infrastructure.Storage
 {
     public interface IPodcastsStorage
     {
-        Task<Uri> CopyFromTransferTempStorage(Uri tempUri, IPodcastItem podcast);
+        Task<Uri> MoveFromTransferTempStorage(Uri tempUri, IPodcastItem podcast);
+        Uri ResolveUriForPodcast(IPodcastItem podcast);
     }
 }

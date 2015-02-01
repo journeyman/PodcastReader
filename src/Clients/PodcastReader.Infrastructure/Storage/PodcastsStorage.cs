@@ -16,16 +16,17 @@ namespace PodcastReader.Infrastructure.Storage
             _storage = storage;
         }
 
-        private static string ResolveUriForPodcast(IPodcastItem podcast)
+        public Uri ResolveUriForPodcast(IPodcastItem podcast)
         {
-            return Path.Combine(PODCASTS_BASE_PATH, podcast.GetSlugFileName());
+            var path = Path.Combine(PODCASTS_BASE_PATH, podcast.GetSlugFileName());
+            return new Uri(path, UriKind.Relative);
         }
 
-        public async Task<Uri> CopyFromTransferTempStorage(Uri tempUri, IPodcastItem podcast)
+        public async Task<Uri> MoveFromTransferTempStorage(Uri tempUri, IPodcastItem podcast)
         {
-            var targetPath = ResolveUriForPodcast(podcast);
-            await _storage.Move(tempUri.OriginalString, targetPath).ConfigureAwait(false);
-            return new Uri(targetPath, UriKind.Relative);
+            var targetUri = ResolveUriForPodcast(podcast);
+            await _storage.Move(tempUri.OriginalString, targetUri.OriginalString).ConfigureAwait(false);
+            return targetUri;
         }
     }
 }

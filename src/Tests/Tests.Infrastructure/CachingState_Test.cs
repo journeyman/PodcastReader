@@ -61,7 +61,7 @@ namespace Tests.Infrastructure
             downloaderMock.Setup(x => x.Load(It.IsAny<string>(), It.IsAny<IProgress<ProgressValue>>(), It.IsAny<CancellationToken>()))
                           .Returns(Task.FromResult(new Uri("http://google.com")));
             var storageMock = new Mock<IPodcastsStorage>();
-            storageMock.Setup(x => x.CopyFromTransferTempStorage(It.IsAny<Uri>(), It.IsAny<IPodcastItem>()))
+            storageMock.Setup(x => x.MoveFromTransferTempStorage(It.IsAny<Uri>(), It.IsAny<IPodcastItem>()))
                        .Returns(Task.FromResult(new Uri("http://google.com")));
             var podcastMock = new Mock<IPodcastItem>();
             podcastMock.Setup(x => x.Title).Returns("title");

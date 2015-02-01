@@ -110,6 +110,13 @@ namespace PodcastReader.Phone8
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
+#if DEBUG
+            e.Handled = true;
+
+            MessageBox.Show(e.ExceptionObject.ToString(), e.ExceptionObject.GetType().Name, MessageBoxButton.OK);
+#endif
+            Debug.WriteLine(e.ExceptionObject);
+
             if (Debugger.IsAttached)
             {
                 // An unhandled exception has occurred; break into the debugger
