@@ -20,7 +20,7 @@
         <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextTitle2Style}" />
         
         <ScrollViewer Grid.Row="1">
-            <ItemsControl ItemsSource="{Binding Items}"
+            <ItemsControl Margin="24 0" ItemsSource="{Binding Items}"
                           Style="{StaticResource FeedItemsListStyle}" />
         </ScrollViewer>        
     </Grid>
