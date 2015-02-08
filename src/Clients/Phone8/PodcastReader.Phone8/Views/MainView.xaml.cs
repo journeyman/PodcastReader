@@ -1,11 +1,10 @@
-﻿using Microsoft.Phone.Controls;
-using Microsoft.Phone.Reactive;
+﻿using System.Windows.Controls;
 using PodcastReader.Phone8.ViewModels;
 using ReactiveUI;
 
 namespace PodcastReader.Phone8.Views
 {
-    public partial class MainView : PhoneApplicationPage, IViewFor<MainViewModel>
+    public partial class MainView : UserControl, IViewFor<MainViewModel>
     {
         private MainViewModel _viewModel;
 

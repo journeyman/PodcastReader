@@ -1,10 +1,10 @@
-﻿using PodcastReader.Phone8.Models;
+﻿using System.Windows.Controls;
+using PodcastReader.Phone8.Models;
 using ReactiveUI;
-using Magellan.WP.Controls;
 
 namespace PodcastReader.Phone8.Views
 {
-    public partial class FeedDetailsView : Layout, IViewFor<FeedViewModel>
+    public partial class FeedDetailsView : UserControl, IViewFor<FeedViewModel>
     {
         private FeedViewModel _viewModel;
 

@@ -1,25 +1,28 @@
-﻿<m:Layout 
-    Source="/PodcastReader.Phone8;component/Views/Layouts/HeaderedLayout.xaml"
+﻿<UserControl
     x:Class="PodcastReader.Phone8.Views.FeedDetailsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:m="clr-namespace:Magellan.WP.Controls;assembly=Magellan.WP"
-    HorizontalContentAlignment="Stretch"
-    VerticalContentAlignment="Stretch"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignData Source=Design/DesignFeedDetailsVM.xaml}"
     >
     <FrameworkElement.Resources>
         <ResourceDictionary Source="../Resources/Styles/FeedDetailsViewStyles.xaml" />    
     </FrameworkElement.Resources>
     
-    <m:Zone ZonePlaceHolderName="Header">
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
         <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextTitle2Style}" />
-    </m:Zone>
         
-    <m:Zone ZonePlaceHolderName="Content">
-            <ScrollViewer>
-                <ItemsControl ItemsSource="{Binding Items}"
-                              Style="{StaticResource FeedItemsListStyle}" />
-            </ScrollViewer>
-    </m:Zone>
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Items}"
+                          Style="{StaticResource FeedItemsListStyle}" />
+        </ScrollViewer>        
+    </Grid>
         
-</m:Layout>
+</UserControl>

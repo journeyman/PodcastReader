@@ -12,7 +12,7 @@
 
         <m:ZonePlaceHolder Name="Header"/>
         
-        <m:ZonePlaceHolder Name="Content" Grid.Row="1" />
+        <m:ZonePlaceHolder Name="Content" Margin="24 0" Grid.Row="1" />
         
     </Grid>
     

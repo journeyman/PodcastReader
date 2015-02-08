@@ -138,17 +138,18 @@
     <Compile Include="Views\AddSubscriptionView.xaml.cs">
       <DependentUpon>AddSubscriptionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Design\DesignFeedViewModel.cs" />
     <Compile Include="Views\FeedDetailsView.xaml.cs">
       <DependentUpon>FeedDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PodcastView.xaml.cs">
       <DependentUpon>PodcastView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HostView.xaml.cs">
       <DependentUpon>HostView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -168,19 +169,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\FeedDetailsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\Design\DesignFeedDetailsVM.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FeedDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PodcastView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\HostView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
