@@ -27,7 +27,7 @@ namespace PodcastReader.Phone8.Infrastructure.Http
             _urlEquator = new FuncEqualityComparer<Uri>((url1, url2) => url1 == url2, url => url.GetHashCode());
         }
 
-        public IImmutableDictionary<Uri, IAwaitableTransfer> ActiveRequests { get { return _requests; } } 
+        public IImmutableDictionary<Uri, IAwaitableTransfer> ActiveRequests => _requests;
 
         /// <summary>
         /// Completely Sync!!
@@ -35,9 +35,9 @@ namespace PodcastReader.Phone8.Infrastructure.Http
         public async Task<IImmutableDictionary<Uri, IAwaitableTransfer>> Update()
         {
             _requests = BackgroundTransferService.Requests
-                .Select(r => new {Transfer = (IAwaitableTransfer)new AwaitableTransferRequest(r), RequestUri = r.RequestUri})
-                .ToImmutableDictionary(x => x.RequestUri, x => x.Transfer,
-                                       _urlEquator);
+                //TODO: refactor to be able to assign Progress reporting to ongoing AwaitableTransferRequests
+                .Select(r => new {Transfer = (IAwaitableTransfer)new AwaitableTransferRequest(r, null), RequestUri = r.RequestUri})
+                .ToImmutableDictionary(x => x.RequestUri, x => x.Transfer, _urlEquator);
             return _requests;
         }
 
@@ -45,14 +45,15 @@ namespace PodcastReader.Phone8.Infrastructure.Http
         {
             BackgroundTransferRequest request;
             IAwaitableTransfer awaitableRequest;
-            if (_requests.TryGetValue(transferUri, out awaitableRequest))
+            //TODO: optimize retrieving request from cache (for now remote uri is used as key, not a transfer)
+            //if (_requests.TryGetValue(transferUri, out awaitableRequest))
+            //{
+            //    var actual = (AwaitableTransferRequest) awaitableRequest;
+            //    request = actual.UnderlyingRequest;
+            //}
+            //else
             {
-                var actual = (AwaitableTransferRequest) awaitableRequest;
-                request = actual.UnderlyingRequest;
-            }
-            else
-            {
-                request = BackgroundTransferService.Requests.SingleOrDefault(r => _urlEquator.Equals(r.RequestUri, transferUri));
+                request = BackgroundTransferService.Requests.SingleOrDefault(r => _urlEquator.Equals(r.DownloadLocation, transferUri));
             }
             BackgroundTransferService.Remove(request);
             await _storage.RemoveFile(request.DownloadLocation);
@@ -75,7 +76,7 @@ namespace PodcastReader.Phone8.Infrastructure.Http
                     request.TransferPreferences = _config.Preferences.ToNative();
                     BackgroundTransferService.Add(request);
                 }
-                awaitableTransfer = new AwaitableTransferRequest(request);
+                awaitableTransfer = new AwaitableTransferRequest(request, progress);
                 _requests = _requests.Add(uri, awaitableTransfer);
             }
 

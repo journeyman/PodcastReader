@@ -43,5 +43,6 @@ namespace PodcastReader.Phone8.Views.Design
         public Uri PodcastUri { get; set; }
         public string Title { get; set; }
         public string Summary { get; set; }
+        public Uri OriginalUri { get; }
     }
 }

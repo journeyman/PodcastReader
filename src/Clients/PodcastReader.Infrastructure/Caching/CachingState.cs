@@ -52,7 +52,6 @@ namespace PodcastReader.Infrastructure.Caching
                     Downloaded = progress.FinalState.Total
                 };
                 await Cache.Local.InsertObject(_item.OriginalUri.OriginalString, newCacheInfo);
-                await _downloader.ForgetAbout(transferUri);
             }
             else
             {

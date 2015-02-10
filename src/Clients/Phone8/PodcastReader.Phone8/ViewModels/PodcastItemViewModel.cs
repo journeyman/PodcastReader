@@ -92,9 +92,13 @@ namespace PodcastReader.Phone8.ViewModels
 
         public void OnPlayPodcast(object _)
         {
-            var trackUri = PodcastUri;
+            var trackUri = OriginalUri;
             if (CachingState != null && CachingState.IsFullyCached)
-                trackUri = CachingState.CachedUri;
+            {
+                //fixing to BG player compliant url
+                var url = CachingState.CachedUri.OriginalString.TrimStart('/', '\\');
+                trackUri = new Uri(url, UriKind.Relative);
+            }
 
             PlayerClient.Default.Play(new PodcastTrackInfo(trackUri, Title, Summary));
         }

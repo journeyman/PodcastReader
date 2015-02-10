@@ -2,17 +2,14 @@ namespace PodcastReader.Infrastructure.Http
 {
     public struct ProgressValue
     {
-        private readonly ulong _current;
-        private readonly ulong _total;
-
         public ProgressValue(ulong current, ulong total)
         {
-            _current = current;
-            _total = total;
+            Current = current;
+            Total = total;
         }
 
-        public ulong Current { get { return _current; } }
-        public ulong Total { get { return _total; } }
+        public ulong Current { get; }
+        public ulong Total { get; }
     }
 
 }

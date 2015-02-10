@@ -12,7 +12,7 @@ namespace PodcastReader.Infrastructure.Caching
 
         public IDisposable Subscribe(IObserver<T> observer)
         {
-            return Observable.Return(FinalState).Subscribe(observer);
+            return Observable.Return(FinalState).StartWith(FinalState).Subscribe(observer);
         }
 
         public T FinalState { get; private set; }
