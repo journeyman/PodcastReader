@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
 using Akavache;
 using PodcastReader.Infrastructure;
 using PodcastReader.Infrastructure.Interfaces;
+using PodcastReader.Infrastructure.Storage;
 using Splat;
 
 namespace PodcastReader.Phone8.Infrastructure
 {
-    public interface ISubscriptionsCache
-    {
-        Task<IEnumerable<ISubscription>> LoadSubscriptions();
-        Task SaveSubscription(ISubscription subscription);
-    }
-
     public class IsoSubscriptionsCache : ISubscriptionsCache, IEnableLogger
     {
         private const string CACHE_KEY_FMT = "sub{0}";

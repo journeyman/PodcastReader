@@ -12,6 +12,7 @@ using PodcastReader.Phone8.Models.Loaders;
 using ReactiveUI;
 using System.Reflection;
 using PodcastReader.Infrastructure.Interfaces;
+using PodcastReader.Infrastructure.Utils;
 using Splat;
 
 namespace PodcastReader.Phone8.Infrastructure
@@ -53,6 +54,8 @@ namespace PodcastReader.Phone8.Infrastructure
             this.RegisterViews(kernel);
             this.RegisterViewModels(kernel);
             this.RegisterServices(kernel);
+
+            DebugState.Set();
         }
 
         private void RegisterServices(IKernel kernel)

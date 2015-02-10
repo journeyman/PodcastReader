@@ -15,14 +15,7 @@ namespace PodcastReader.Phone8.Models.Loaders
 {
     public class FeedPreviewsLoader : IFeedPreviewsLoader, IEnableLogger
     {
-        private static readonly string[] TEST_FEEDS = 
-            {
-                "http://feeds.feedburner.com/Hanselminutes?format=xml",
-                "http://feeds.feedburner.com/netRocksFullMp3Downloads?format=xml",
-                "http://hobbytalks.org/rss.xml",
-                "http://haskellcast.com/feed.xml",
-                "http://thespaceshow.wordpress.com/feed/",
-        };
+        
 
         private readonly ISubscriptionsManager _subscriptionsManager;
         private readonly IObservable<IFeedPreview> _feedsObservable;
@@ -35,7 +28,6 @@ namespace PodcastReader.Phone8.Models.Loaders
 
             _feedsObservable = _subscriptionsManager.Subscriptions
                 .Select(s => s.Uri)
-                .StartWith(TEST_FEEDS.Select(x => new Uri(x)))
                 .Distinct()
                 .SelectManyAndSkipOnException(uri => client.GetStringAsync(uri).ToObservable())
                 .SelectAndSkipOnException(FeedXmlParser.Parse)
