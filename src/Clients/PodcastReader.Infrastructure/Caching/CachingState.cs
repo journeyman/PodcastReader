@@ -33,7 +33,7 @@ namespace PodcastReader.Infrastructure.Caching
 
         private async void TheInit([NotNull] DeferredReactiveProgress target)
         {
-            var cacheInfo = await Cache.Local.GetObject<PodcastCacheInfo>(_item.PodcastUri.AbsoluteUri)
+            var cacheInfo = await Cache.Local.GetObject<PodcastCacheInfo>(_item.OriginalUri.OriginalString)
                 .Catch(Observable.Return<PodcastCacheInfo>(null));
             
             if (cacheInfo == null || cacheInfo.Downloaded < cacheInfo.FinalSize)
@@ -51,7 +51,7 @@ namespace PodcastReader.Infrastructure.Caching
                     FinalSize = progress.FinalState.Total,
                     Downloaded = progress.FinalState.Total
                 };
-                await Cache.Local.InsertObject(_item.PodcastUri.AbsoluteUri, newCacheInfo);
+                await Cache.Local.InsertObject(_item.OriginalUri.OriginalString, newCacheInfo);
                 await _downloader.ForgetAbout(transferUri);
             }
             else

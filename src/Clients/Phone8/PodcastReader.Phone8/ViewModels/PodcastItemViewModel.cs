@@ -66,12 +66,9 @@ namespace PodcastReader.Phone8.ViewModels
 
     public class PodcastItemViewModel : RoutableViewModelBase, IPodcastItem
     {
-        private readonly Uri _podcastRemoteUri;
-
         public PodcastItemViewModel(SyndicationItem item)
         {
-            _podcastRemoteUri = item.GetPodcastUris().First();
-
+            OriginalUri = item.GetPodcastUris().First();
             DatePublished = item.PublishDate;
             Title = item.Title.Text;
 
@@ -88,7 +85,8 @@ namespace PodcastReader.Phone8.ViewModels
         public DateTimeOffset DatePublished { get; }
         public string Title { get; }
         public string Summary { get; }
-        public Uri PodcastUri => CachingState?.CachedUri ?? _podcastRemoteUri;
+        public Uri OriginalUri { get; }
+        public Uri PodcastUri => CachingState?.CachedUri ?? OriginalUri;
 
         public IReactiveCommand<object> PlayPodcastCommand { get; }
 

@@ -8,5 +8,6 @@ namespace PodcastReader.Infrastructure.Entities.Podcasts
         Uri PodcastUri { get; }
         string Title { get; }
         string Summary { get; }
+        Uri OriginalUri { get; }
     }
 }
