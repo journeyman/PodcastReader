@@ -1,21 +1,20 @@
 ﻿using System;
-using PodcastReader.Infrastructure.Entities.Podcasts;
 using PodcastReader.Infrastructure.Interfaces;
 
 namespace PodcastReader.Phone8.Models
 {
     public class PodcastTrackInfo : IAudioTrackInfo
     {
-        public PodcastTrackInfo(IPodcastItem podcastItem)
+        public PodcastTrackInfo(Uri trackUri, string title, string artist)
         {
-            Title = podcastItem.Title;
-            Uri = podcastItem.PodcastUri;
-            Artist = podcastItem.Summary;//why the hell not?
+            Uri = trackUri;
+            Title = title;
+            Artist = artist;
         }
 
-        public string Title { get; private set; }
-        public Uri Uri { get; private set; }
-        public string Artist { get; private set; }
-        public Uri AlbumArt { get; private set; }
+        public string Title { get; }
+        public Uri Uri { get; }
+        public string Artist { get; }
+        public Uri AlbumArt { get; }
     }
 }

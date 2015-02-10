@@ -3,19 +3,16 @@ using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Reactive;
 using System.ServiceModel.Syndication;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
-using PodcastReader.Infrastructure;
 using PodcastReader.Infrastructure.Caching;
 using PodcastReader.Infrastructure.Entities.Podcasts;
 using PodcastReader.Infrastructure.Http;
 using PodcastReader.Infrastructure.Storage;
 using PodcastReader.Infrastructure.Utils;
 using PodcastReader.Phone8.Infrastructure;
-using PodcastReader.Phone8.Infrastructure.Http;
 using PodcastReader.Phone8.Models;
 using ReactiveUI;
 using Splat;
@@ -69,49 +66,52 @@ namespace PodcastReader.Phone8.ViewModels
 
     public class PodcastItemViewModel : RoutableViewModelBase, IPodcastItem
     {
-        private readonly CachingState _cachingState;
+        private readonly Uri _podcastRemoteUri;
 
         public PodcastItemViewModel(SyndicationItem item)
         {
-            this.DatePublished = item.PublishDate;
-            this.Title = item.Title.Text;
+            _podcastRemoteUri = item.GetPodcastUris().First();
+
+            DatePublished = item.PublishDate;
+            Title = item.Title.Text;
 
             string summary = item.Summary.IfNotNull(its => its.Text) ??
                              item.ElementExtensions.FirstOrDefault(ext => ext.OuterName == "summary").IfNotNull(ext => ext.GetObject<string>(), string.Empty);
             
-            this.Summary = summary;
-            this.PodcastUri = item.GetPodcastUris().First();
+            Summary = summary;
 
-            this.PlayPodcastCommand = ReactiveCommand.Create();
-            this.PlayPodcastCommand.Subscribe(OnPlayPodcast);
+            PlayPodcastCommand = ReactiveCommand.Create();
+            PlayPodcastCommand.Subscribe(OnPlayPodcast);
         }
 
         public ICachingState CachingState { get; private set; }
+        public DateTimeOffset DatePublished { get; }
+        public string Title { get; }
+        public string Summary { get; }
+        public Uri PodcastUri => CachingState?.CachedUri ?? _podcastRemoteUri;
 
-        public DateTimeOffset DatePublished { get; private set; }
-        public string Title { get; private set; }
-        public string Summary { get; private set; }
-        public Uri PodcastUri { get; private set; }
-
-        public IReactiveCommand<object> PlayPodcastCommand { get; private set; }
+        public IReactiveCommand<object> PlayPodcastCommand { get; }
 
         public void OnPlayPodcast(object _)
         {
-            PlayerClient.Default.Play(new PodcastTrackInfo(this));
+            var trackUri = PodcastUri;
+            if (CachingState != null && CachingState.IsFullyCached)
+                trackUri = CachingState.CachedUri;
+
+            PlayerClient.Default.Play(new PodcastTrackInfo(trackUri, Title, Summary));
         }
 
         public void OnViewActivated()
         {
-            //TODO: use some heuristics to control expensive caching state initing
-
             if (CachingState != null)
                 return;
 
             var downloader = Locator.Current.GetService<IBackgroundDownloader>();
             var storage = Locator.Current.GetService<IPodcastsStorage>();
-            var cachingState = new CachingState(this, new StubDownloader(), storage);
+            var cachingState = new CachingState(this, downloader, storage);
+            //TODO: use some heuristics to control expensive caching state initing
             var progress = cachingState.Init();
-            CachingState = new CachingStateVm(progress);
+            CachingState = new CachingStateVm(progress, () => cachingState.RealUri);
 
             this.RaisePropertyChanged("CachingState");
         }

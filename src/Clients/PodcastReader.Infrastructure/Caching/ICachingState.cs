@@ -1,3 +1,4 @@
+using System;
 using ReactiveUI;
 
 namespace PodcastReader.Infrastructure.Caching
@@ -8,5 +9,6 @@ namespace PodcastReader.Infrastructure.Caching
         ulong FinalSize { get; }
         bool IsFullyCached { get; }
         bool IsInitialized { get; }
+        Uri CachedUri { get; }
     }
 }

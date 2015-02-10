@@ -1,3 +1,4 @@
+using System;
 using System.Reactive.Linq;
 using System.Threading;
 using Akavache;
@@ -20,6 +21,9 @@ namespace PodcastReader.Infrastructure.Caching
             _downloader = downloader;
             _storage = storage;
         }
+
+        public Uri RealUri { get; private set; }
+
         public IReactiveProgress<ProgressValue> Init()
         {
             var progress = new DeferredReactiveProgress(default(ProgressValue));
@@ -40,11 +44,10 @@ namespace PodcastReader.Infrastructure.Caching
                 //TODO: progress.Subscribe( { save CacheInfo as progress goes} );
                 var transferUri = await _downloader.Load(_item.PodcastUri.AbsoluteUri, progress, CancellationToken.None);
                 //TODO: think how to implement via Move (should atomically call Move and Save info into cache)
-                var realUri = _storage.ResolveUriForPodcast(_item);
-                realUri = await _storage.MoveFromTransferTempStorage(transferUri, _item);
+                RealUri = await _storage.MoveFromTransferTempStorage(transferUri, _item);
                 var newCacheInfo = new PodcastCacheInfo()
                 {
-                    FileUri = realUri,
+                    FileUri = RealUri,
                     FinalSize = progress.FinalState.Total,
                     Downloaded = progress.FinalState.Total
                 };
@@ -53,6 +56,7 @@ namespace PodcastReader.Infrastructure.Caching
             }
             else
             {
+                RealUri = cacheInfo.FileUri;
                 var progress = new FinishedReactiveProgress<ProgressValue>(new ProgressValue(cacheInfo.Downloaded, cacheInfo.FinalSize));
                 target.SetRealReactiveProgress(progress);
             }
