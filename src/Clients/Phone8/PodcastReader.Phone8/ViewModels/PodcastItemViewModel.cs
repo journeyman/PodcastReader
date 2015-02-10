@@ -93,7 +93,8 @@ namespace PodcastReader.Phone8.ViewModels
         public void OnPlayPodcast(object _)
         {
             var trackUri = OriginalUri;
-            if (CachingState != null && CachingState.IsFullyCached)
+            //TODO: fix IsFullyCached logic for downloaded in background file
+            if (CachingState?.CachedUri != null)
             {
                 //fixing to BG player compliant url
                 var url = CachingState.CachedUri.OriginalString.TrimStart('/', '\\');
