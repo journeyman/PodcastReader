@@ -27,7 +27,7 @@
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <NuGetPackageImportStamp>fc948900</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>eaa0224f</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -93,6 +93,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AkavacheSqliteLinkerOverride.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -227,13 +228,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Akavache, Version=3.99.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Libs\Akavache.dll</HintPath>
+    <Reference Include="Akavache, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\akavache.core.4.1.1\lib\wp8\Akavache.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Akavache.Sqlite3, Version=3.99.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Libs\Akavache.Sqlite3.dll</HintPath>
+    <Reference Include="Akavache.Sqlite3, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\akavache.sqlite3.4.1.1\lib\Portable-Net45+Win8+WP8+Wpa81\Akavache.Sqlite3.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Unofficial.Blend.Interactivity.1.0.0\lib\wp8\Microsoft.Expression.Interactions.dll</HintPath>
@@ -245,8 +246,13 @@
     <Reference Include="Ninject">
       <HintPath>..\..\..\packages\Ninject.3.2.2.0\lib\sl4-windowsphone71\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="Splat">
-      <HintPath>..\..\..\packages\Splat.1.3.3\lib\wp8\Splat.dll</HintPath>
+    <Reference Include="ReactiveUI, Version=6.4.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\reactiveui-core.6.4.0.1\lib\WP8\ReactiveUI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Splat, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Splat.1.6.0\lib\wp8\Splat.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Collections.Immutable">
       <HintPath>..\..\..\packages\Microsoft.Bcl.Immutable.1.0.34\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
@@ -276,8 +282,13 @@
     <Reference Include="System.Reactive.PlatformServices">
       <HintPath>..\..\..\packages\Rx-PlatformServices.2.2.5\lib\windowsphone8\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reactive.Windows.Threading">
-      <HintPath>..\..\..\packages\Rx-Xaml.2.2.5\lib\windowsphone8\System.Reactive.Windows.Threading.dll</HintPath>
+    <Reference Include="System.Reactive.Windows.Threading, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rx-XAML.2.2.5\lib\windowsphone8\System.Reactive.Windows.Threading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.WindowsRuntime, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rx-WinRT.2.2.5\lib\windowsphone8\System.Reactive.WindowsRuntime.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.ServiceModel.Syndication">
       <HintPath>..\..\..\..\Libs\System.ServiceModel.Syndication.dll</HintPath>
@@ -288,10 +299,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI_WP8.csproj">
-      <Project>{f9459904-f785-4255-866a-a619787cb895}</Project>
-      <Name>ReactiveUI_WP8</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\PodcastReader.Infrastructure\PodcastReader.Infrastructure.csproj">
       <Project>{D19DA4CE-5ACF-4434-831B-0BCCD7888AD5}</Project>
       <Name>PodcastReader.Infrastructure</Name>
@@ -303,10 +310,6 @@
     <ProjectReference Include="..\Audio\StorageStreamingAgent\Audio.StorageStreamingAgent.csproj">
       <Project>{A1D08278-829F-4D05-8D6E-C18CA0E327B7}</Project>
       <Name>Audio.StorageStreamingAgent</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Submodules\Magellan.WP\Magellan.WP.csproj">
-      <Project>{60146683-34C4-464E-9169-7B76F9D5C365}</Project>
-      <Name>Magellan.WP</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
@@ -320,11 +323,11 @@
   </Target>
   -->
   <ProjectExtensions />
-  <Import Project="..\..\..\packages\SQLitePCL.raw_basic.0.4.0-alpha\build\wp8\SQLitePCL.raw_basic.targets" Condition="Exists('..\..\..\packages\SQLitePCL.raw_basic.0.4.0-alpha\build\wp8\SQLitePCL.raw_basic.targets')" />
+  <Import Project="..\..\..\packages\SQLitePCL.raw_basic.0.7.0\build\wp8\SQLitePCL.raw_basic.targets" Condition="Exists('..\..\..\packages\SQLitePCL.raw_basic.0.7.0\build\wp8\SQLitePCL.raw_basic.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\packages\SQLitePCL.raw_basic.0.4.0-alpha\build\wp8\SQLitePCL.raw_basic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\SQLitePCL.raw_basic.0.4.0-alpha\build\wp8\SQLitePCL.raw_basic.targets'))" />
+    <Error Condition="!Exists('..\..\..\packages\SQLitePCL.raw_basic.0.7.0\build\wp8\SQLitePCL.raw_basic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\SQLitePCL.raw_basic.0.7.0\build\wp8\SQLitePCL.raw_basic.targets'))" />
   </Target>
 </Project>

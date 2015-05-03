@@ -20,4 +20,5 @@ NuGet-Release
 
 src/PodcastReader.sln.ide/
 src/packages/*
+src/.vs/
 !packages/repositories.config

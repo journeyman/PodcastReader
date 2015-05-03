@@ -186,10 +186,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI_WP8.csproj">
-      <Project>{f9459904-f785-4255-866a-a619787cb895}</Project>
-      <Name>ReactiveUI_WP8</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TestPortableLib\TestPortableLib.csproj">
       <Project>{83e66a23-c2f2-4765-b696-5f34bdfe6a11}</Project>
       <Name>TestPortableLib</Name>

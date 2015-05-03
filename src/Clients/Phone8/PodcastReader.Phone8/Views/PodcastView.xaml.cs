@@ -1,10 +1,11 @@
 ﻿using PodcastReader.Phone8.ViewModels;
 using ReactiveUI;
-using Magellan.WP.Controls;
 
 namespace PodcastReader.Phone8.Views
 {
-    public partial class PodcastView : Layout, IViewFor<PodcastItemViewModel>
+	using System.Windows.Controls;
+
+	public partial class PodcastView : UserControl, IViewFor<PodcastItemViewModel>
     {
         private PodcastItemViewModel _viewModel;
 

@@ -140,10 +140,6 @@
       <Project>{d19da4ce-5acf-4434-831b-0bccd7888ad5}</Project>
       <Name>PodcastReader.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Submodules\ReactiveUI\ReactiveUI\ReactiveUI_WP8.csproj">
-      <Project>{f9459904-f785-4255-866a-a619787cb895}</Project>
-      <Name>ReactiveUI_WP8</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Akavache, Version=3.99.0.0, Culture=neutral, processorArchitecture=MSIL">
