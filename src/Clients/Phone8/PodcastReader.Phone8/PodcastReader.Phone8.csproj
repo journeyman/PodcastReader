@@ -136,6 +136,7 @@
     <Compile Include="ViewModels\PodcastItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RoutableViewModelBase.cs" />
+    <Compile Include="ViewModels\StubDownloader.cs" />
     <Compile Include="Views\AddSubscriptionView.xaml.cs">
       <DependentUpon>AddSubscriptionView.xaml</DependentUpon>
     </Compile>

@@ -2,7 +2,7 @@ using System;
 
 namespace PodcastReader.Infrastructure.Caching
 {
-    public class PodcastCacheInfo
+    public class CacheInfo
     {
         public ulong FinalSize { get; set; }
         public ulong Downloaded { get; set; }

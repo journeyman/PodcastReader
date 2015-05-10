@@ -29,10 +29,7 @@ namespace PodcastReader.Phone8.Infrastructure.Http
 
         public IImmutableDictionary<Uri, IAwaitableTransfer> ActiveRequests => _requests;
 
-        /// <summary>
-        /// Completely Sync!!
-        /// </summary>
-        public async Task<IImmutableDictionary<Uri, IAwaitableTransfer>> Update()
+        public IImmutableDictionary<Uri, IAwaitableTransfer> Update()
         {
             _requests = BackgroundTransferService.Requests
                 //TODO: refactor to be able to assign Progress reporting to ongoing AwaitableTransferRequests

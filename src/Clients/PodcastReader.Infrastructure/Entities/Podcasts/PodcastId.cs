@@ -4,27 +4,37 @@ namespace PodcastReader.Infrastructure.Entities.Podcasts
 {
     public struct PodcastId : IEquatable<PodcastId>
     {
-        private readonly string _url;
-
         public PodcastId(string url)
         {
-            _url = url;
+            Url = url;
         }
 
-        public string Url
-        {
-            get { return _url; }
-        }
+        public string Url { get; }
 
         public bool Equals(PodcastId other)
         {
-            if (string.IsNullOrWhiteSpace(_url)
-                || string.IsNullOrWhiteSpace(other._url)
-                || _url != other._url)
-            {
-                return false;
-            }
-            return true;
+            return this == other;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            return obj is PodcastId && Equals((PodcastId) obj);
+        }
+
+        public static bool operator ==(PodcastId a, PodcastId b)
+        {
+            return !string.IsNullOrWhiteSpace(a.Url) && !string.IsNullOrWhiteSpace(b.Url) && a.Url == b.Url;
+        }
+
+        public static bool operator !=(PodcastId a, PodcastId b)
+        {
+            return !(a == b);
+        }
+        
+        public override int GetHashCode()
+        {
+            return Url?.GetHashCode() ?? 0;
         }
     }
 }

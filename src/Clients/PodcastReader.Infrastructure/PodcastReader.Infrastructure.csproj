@@ -51,7 +51,8 @@
     <Compile Include="Caching\IReactiveProgress.cs" />
     <Compile Include="Caching\ITransferRequest.cs" />
     <Compile Include="Caching\OngoingReactiveProgress.cs" />
-    <Compile Include="Caching\PodcastCacheInfo.cs" />
+    <Compile Include="Caching\CacheInfo.cs" />
+    <Compile Include="Caching\PodcastsCache.cs" />
     <Compile Include="Entities\Feeds\IFeed.cs" />
     <Compile Include="Entities\Feeds\IFeedItem.cs" />
     <Compile Include="Entities\Feeds\IFeedPreview.cs" />

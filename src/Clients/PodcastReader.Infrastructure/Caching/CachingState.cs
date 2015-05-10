@@ -1,6 +1,7 @@
 using System;
 using System.Reactive.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Akavache;
 using JetBrains.Annotations;
 using PodcastReader.Infrastructure.Entities.Podcasts;
@@ -9,8 +10,26 @@ using PodcastReader.Infrastructure.Storage;
 
 namespace PodcastReader.Infrastructure.Caching
 {
+    public class FilesLoader
+    {
+        private readonly IBackgroundDownloader _downloader;
+        private readonly IStorage _storage;
+
+        public FilesLoader(IBackgroundDownloader downloader, IStorage storage)
+        {
+            _downloader = downloader;
+            _storage = storage;
+        }
+
+        public IAwaitableTransfer LoadFile(Uri remoteUri)
+        {
+            _downloader.
+        }
+    }
+
     public class CachingState
     {
+        [NotNull] private readonly DeferredReactiveProgress _progress = new DeferredReactiveProgress(default(ProgressValue));
         [NotNull] private readonly IPodcastItem _item;
         [NotNull] private readonly IBackgroundDownloader _downloader;
         [NotNull] private readonly IPodcastsStorage _storage;
@@ -22,19 +41,19 @@ namespace PodcastReader.Infrastructure.Caching
             _storage = storage;
         }
 
-        public Uri RealUri { get; private set; }
+        public IReactiveProgress<ProgressValue> Progress => _progress;
 
-        public IReactiveProgress<ProgressValue> Init()
+        public Uri CachedUri { get; private set; }
+
+        public async void Init()
         {
-            var progress = new DeferredReactiveProgress(default(ProgressValue));
-            TheInit(progress);
-            return progress;
+            await TheInit(_progress).ConfigureAwait(false);
         }
 
-        private async void TheInit([NotNull] DeferredReactiveProgress target)
+        private async Task TheInit([NotNull] DeferredReactiveProgress target)
         {
-            var cacheInfo = await Cache.Local.GetObject<PodcastCacheInfo>(_item.OriginalUri.OriginalString)
-                .Catch(Observable.Return<PodcastCacheInfo>(null));
+            var cacheInfo = await Cache.Local.GetObject<CacheInfo>(_item.OriginalUri.OriginalString)
+                .Catch(Observable.Return<CacheInfo>(null));
             
             if (cacheInfo == null || cacheInfo.Downloaded < cacheInfo.FinalSize)
             {
@@ -44,10 +63,10 @@ namespace PodcastReader.Infrastructure.Caching
                 //TODO: progress.Subscribe( { save CacheInfo as progress goes} );
                 var transferUri = await _downloader.Load(_item.PodcastUri.AbsoluteUri, progress, CancellationToken.None);
                 //TODO: think how to implement via Move (should atomically call Move and Save info into cache)
-                RealUri = await _storage.MoveFromTransferTempStorage(transferUri, _item);
-                var newCacheInfo = new PodcastCacheInfo()
+                CachedUri = await _storage.MoveFromTransferTempStorage(transferUri, _item);
+                var newCacheInfo = new CacheInfo()
                 {
-                    FileUri = RealUri,
+                    FileUri = CachedUri,
                     FinalSize = progress.FinalState.Total,
                     Downloaded = progress.FinalState.Total
                 };
@@ -55,7 +74,7 @@ namespace PodcastReader.Infrastructure.Caching
             }
             else
             {
-                RealUri = cacheInfo.FileUri;
+                CachedUri = cacheInfo.FileUri;
                 var progress = new FinishedReactiveProgress<ProgressValue>(new ProgressValue(cacheInfo.Downloaded, cacheInfo.FinalSize));
                 target.SetRealReactiveProgress(progress);
             }

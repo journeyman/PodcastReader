@@ -9,7 +9,6 @@ namespace PodcastReader.Infrastructure.Http
     {
         Task<Uri> Load(string url, IProgress<ProgressValue> progress, CancellationToken cancellation);
         IImmutableDictionary<Uri, IAwaitableTransfer> ActiveRequests { get; }
-        Task<IImmutableDictionary<Uri, IAwaitableTransfer>> Update();
         Task ForgetAbout(Uri transferUri);
     }
 }

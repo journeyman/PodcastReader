@@ -6,9 +6,18 @@ using PodcastReader.Infrastructure.Utils;
 
 namespace PodcastReader.Infrastructure.Storage
 {
-    public class PodcastsStorage : IPodcastsStorage
+    public static class PodcastUris
     {
         private const string PODCASTS_BASE_PATH = "/podcasts";
+
+        public static string GetStorageUrl(this IPodcastItem podcast)
+        {
+            return Path.Combine(PODCASTS_BASE_PATH, podcast.GetSlugFileName());
+        }
+    }
+
+    public class PodcastsStorage : IPodcastsStorage
+    {
         private readonly IStorage _storage;
 
         public PodcastsStorage(IStorage storage)
@@ -18,7 +27,7 @@ namespace PodcastReader.Infrastructure.Storage
 
         public Uri ResolveUriForPodcast(IPodcastItem podcast)
         {
-            var path = Path.Combine(PODCASTS_BASE_PATH, podcast.GetSlugFileName());
+            var path = podcast.GetStorageUrl();
             return new Uri(path, UriKind.Relative);
         }
 

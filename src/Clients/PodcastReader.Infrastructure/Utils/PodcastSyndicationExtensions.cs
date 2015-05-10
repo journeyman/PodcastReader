@@ -45,7 +45,7 @@ namespace PodcastReader.Infrastructure.Utils
         {
             var date = podcast.DatePublished.ToString("yyyy-mm-dd");
             var title = podcast.Title.ToSlug();
-            var ext = Path.GetExtension(podcast.PodcastUri.OriginalString);
+            var ext = Path.GetExtension(podcast.OriginalUri.OriginalString);
             return string.Format("{0}-{1}{2}", date, title, ext);
         }
     }
