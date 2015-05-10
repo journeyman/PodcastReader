@@ -3,6 +3,7 @@ using System.Reactive.Linq;
 using Akavache;
 using Microsoft.Phone.Shell;
 using PodcastReader.Infrastructure;
+using PodcastReader.Infrastructure.Caching;
 using PodcastReader.Phone8.ViewModels;
 using Splat;
 
@@ -40,6 +41,7 @@ namespace PodcastReader.Phone8.Infrastructure
             BlobCache.ApplicationName = "PodcastReader";
 
             var b = new AppBootstrapper(); //IoC registrations
+			FileCache.Instance.Init();
         }
 
         private void RunInitedApp()

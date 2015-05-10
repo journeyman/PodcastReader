@@ -37,11 +37,12 @@ namespace PodcastReader.Infrastructure.Caching
         public void Init()
         {
             var cachedInfoSource = Cache.Local.GetAllObjects<CacheInfo>()
-                .SelectMany(x => x)
-                .Select(x => new FileModel(new PodcastId(x.FileUri.OriginalString), x));
+                .SelectMany(x => x);
+			
+            cachedInfoSource.Select(x => new FileModel(new PodcastId(x.FileUri.OriginalString), x))
+							.Subscribe(_cachedFiles);
 
-            cachedInfoSource.Subscribe(_cachedFiles);
-            cachedInfoSource.Subscribe(x => _memCache.Add(x.Id, x));
+            cachedInfoSource.Subscribe(x => UpdateOrCreateCacheEntry(new PodcastId(x.FileUri.OriginalString), x));
         }
 
         public IObservable<FileModel> CachedFiles => _cachedFiles;

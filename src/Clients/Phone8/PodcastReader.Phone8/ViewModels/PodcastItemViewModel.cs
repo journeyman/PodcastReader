@@ -13,7 +13,7 @@ using Splat;
 
 namespace PodcastReader.Phone8.ViewModels
 {
-    public class PodcastItemViewModel : RoutableViewModelBase, IPodcastItem
+	public class PodcastItemViewModel : RoutableViewModelBase, IPodcastItem
     {
         private readonly ObservableAsPropertyHelper<ICachingState> _cachingState;
 

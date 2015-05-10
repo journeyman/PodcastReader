@@ -2,7 +2,7 @@
 
 namespace PodcastReader.Phone8.Infrastructure.Converters
 {
-    public class BoolToVisibilityConverter : ConverterBase<bool, Visibility>
+	public class BoolToVisibilityConverter : ConverterBase<bool, Visibility>
     {
         public override Visibility ConvertSafe(bool value)
         {

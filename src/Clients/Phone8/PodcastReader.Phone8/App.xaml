@@ -10,7 +10,8 @@
     <Application.Resources>
         <phone8:Localized x:Key="Localized" />
 
-        <converters:BoolToVisibilityConverter x:Key="TrueToVisibleConverter" />
+        <converters:BoolInverseConverter x:Key="BoolInverseConverter" />
+		<converters:BoolToVisibilityConverter x:Key="TrueToVisibleConverter" />
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
