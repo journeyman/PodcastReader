@@ -23,7 +23,7 @@ namespace PodcastReader.Infrastructure.Caching
 
         public IAwaitableTransfer LoadFile(Uri remoteUri)
         {
-            _downloader.
+	        return _downloader.Load(remoteUri, null, CancellationToken.None);
         }
     }
 
@@ -61,9 +61,9 @@ namespace PodcastReader.Infrastructure.Caching
                 var progress = new OngoingReactiveProgress1();
                 target.SetRealReactiveProgress(progress);
                 //TODO: progress.Subscribe( { save CacheInfo as progress goes} );
-                var transferUri = await _downloader.Load(_item.PodcastUri.AbsoluteUri, progress, CancellationToken.None);
+                var transfer = await _downloader.Load(_item.PodcastUri, progress, CancellationToken.None);
                 //TODO: think how to implement via Move (should atomically call Move and Save info into cache)
-                CachedUri = await _storage.MoveFromTransferTempStorage(transferUri, _item);
+                CachedUri = await _storage.MoveFromTransferTempStorage(transfer.DownloadLocation, _item);
                 var newCacheInfo = new CacheInfo()
                 {
                     FileUri = CachedUri,

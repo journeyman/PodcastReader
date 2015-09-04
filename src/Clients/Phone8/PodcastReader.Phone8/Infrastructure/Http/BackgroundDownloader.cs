@@ -27,9 +27,9 @@ namespace PodcastReader.Phone8.Infrastructure.Http
             _urlEquator = new FuncEqualityComparer<Uri>((url1, url2) => url1 == url2, url => url.GetHashCode());
         }
 
-        public IImmutableDictionary<Uri, IAwaitableTransfer> ActiveRequests => _requests;
+	    public IImmutableDictionary<Uri, IAwaitableTransfer> ActiveRequests => _requests;
 
-        public IImmutableDictionary<Uri, IAwaitableTransfer> Update()
+	    public IImmutableDictionary<Uri, IAwaitableTransfer> Update()
         {
             _requests = BackgroundTransferService.Requests
                 //TODO: refactor to be able to assign Progress reporting to ongoing AwaitableTransferRequests
@@ -59,17 +59,15 @@ namespace PodcastReader.Phone8.Infrastructure.Http
         /// <summary>
         /// A bit synchronous: calls BackgroundTransferService.Requests on calling thread
         /// </summary>
-        public async Task<Uri> Load(string url, IProgress<ProgressValue> progress, CancellationToken cancellation)
+        public IAwaitableTransfer Load(Uri uri, IProgress<ProgressValue> progress, CancellationToken cancellation)
         {
-            var uri = new Uri(url);
             IAwaitableTransfer awaitableTransfer = null;
             if (!_requests.TryGetValue(uri, out awaitableTransfer))
             {
                 var request = BackgroundTransferService.Requests.FirstOrDefault(r => _urlEquator.Equals(r.RequestUri, uri));
                 if (request == null)
                 {
-                    var resourceUri = new Uri(url);
-                    request = new BackgroundTransferRequest(resourceUri, new Uri(_storage.GetTransferUrl(resourceUri.LocalPath), UriKind.Relative));
+                    request = new BackgroundTransferRequest(uri, new Uri(_storage.GetTransferUrl(uri.LocalPath), UriKind.Relative));
                     request.TransferPreferences = _config.Preferences.ToNative();
                     BackgroundTransferService.Add(request);
                 }
@@ -77,7 +75,7 @@ namespace PodcastReader.Phone8.Infrastructure.Http
                 _requests = _requests.Add(uri, awaitableTransfer);
             }
 
-            return await awaitableTransfer.ToDownload();
+            return awaitableTransfer;
         }
     }
 }

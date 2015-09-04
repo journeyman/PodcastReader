@@ -1,6 +1,5 @@
 using System;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 namespace PodcastReader.Infrastructure.Http
 {
@@ -18,7 +17,15 @@ namespace PodcastReader.Infrastructure.Http
             return new AwaitableTransferRequestSelectorWrapper<Uri>(awaitableRequest, r => r.UploadLocation);
         }
 
-        public struct AwaitableTransferRequestSelectorWrapper<T>
+		public static TaskAwaiter<IAwaitableTransfer> GetAwaiter(this IAwaitableTransfer transfer)
+		{
+			return transfer
+				.TransferTask
+				.ContinueWith(t => transfer)
+				.GetAwaiter();
+		}
+
+		public struct AwaitableTransferRequestSelectorWrapper<T>
         {
             private readonly IAwaitableTransfer _awaitableTransfer;
             private readonly Func<IAwaitableTransfer, T> _resultSelector;
@@ -34,15 +41,9 @@ namespace PodcastReader.Infrastructure.Http
                 var localCopy = this;
                 return _awaitableTransfer
                     .TransferTask
-                    .ContinueWith(async t =>
-                    {
-                        await t;
-                        return localCopy._resultSelector(localCopy._awaitableTransfer);
-                    })
-                    .Unwrap()
+                    .ContinueWith(t => localCopy._resultSelector(localCopy._awaitableTransfer))
                     .GetAwaiter();
             }
         }
-
-    }
+	}
 }

@@ -7,7 +7,7 @@ namespace PodcastReader.Infrastructure.Http
 {
     public interface IBackgroundDownloader
     {
-        Task<Uri> Load(string url, IProgress<ProgressValue> progress, CancellationToken cancellation);
+        IAwaitableTransfer Load(Uri url, IProgress<ProgressValue> progress, CancellationToken cancellation);
         IImmutableDictionary<Uri, IAwaitableTransfer> ActiveRequests { get; }
         Task ForgetAbout(Uri transferUri);
     }

@@ -14,10 +14,11 @@ namespace PodcastReader.Infrastructure.Caching
         public FileModel(PodcastId id, [CanBeNull]CacheInfo cacheInfo)
         {
             Id = id;
-        }
+			UpdateCachingState(cacheInfo);
+		}
 
         public PodcastId Id { get; set; }
-        public CachingState State { get; }
+        public ICachingState State { get; }
 
         public void UpdateCachingState(CacheInfo entry)
         {

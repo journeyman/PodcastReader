@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using PodcastReader.Infrastructure.Utils;
 
-namespace PodcastReader.Phone8.UI.Converters
+namespace PodcastReader.Phone8.Ui.Converters
 {
     public class DateToTimeAgoConverter : IValueConverter
     {

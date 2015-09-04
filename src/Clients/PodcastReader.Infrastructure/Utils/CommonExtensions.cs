@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Splat;
+using System;
 
 namespace PodcastReader.Infrastructure.Utils
 {
@@ -11,5 +12,10 @@ namespace PodcastReader.Infrastructure.Utils
                 return fallback;
             return selector(This);
         }
+
+		public static void RegisterLazySingleton<TService>(this IMutableDependencyResolver container, Func<TService> valueFactory, string contract = null)
+		{
+			container.RegisterLazySingleton(() => valueFactory(), typeof(TService), contract);
+		}
     }
 }

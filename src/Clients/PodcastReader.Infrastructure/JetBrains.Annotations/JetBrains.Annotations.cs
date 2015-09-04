@@ -397,6 +397,7 @@ namespace JetBrains.Annotations
     /// starting from web root (~)
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter)]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1813:AvoidUnsealedAttributes")]
     internal class PathReferenceAttribute : Attribute
     {
         public PathReferenceAttribute() { }
@@ -414,36 +415,42 @@ namespace JetBrains.Annotations
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
     internal sealed class AspMvcAreaMasterLocationFormatAttribute : Attribute
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "format")]
         public AspMvcAreaMasterLocationFormatAttribute(string format) { }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
     internal sealed class AspMvcAreaPartialViewLocationFormatAttribute : Attribute
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "format")]
         public AspMvcAreaPartialViewLocationFormatAttribute(string format) { }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
     internal sealed class AspMvcAreaViewLocationFormatAttribute : Attribute
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "format")]
         public AspMvcAreaViewLocationFormatAttribute(string format) { }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
     internal sealed class AspMvcMasterLocationFormatAttribute : Attribute
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "format")]
         public AspMvcMasterLocationFormatAttribute(string format) { }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
     internal sealed class AspMvcPartialViewLocationFormatAttribute : Attribute
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "format")]
         public AspMvcPartialViewLocationFormatAttribute(string format) { }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
     internal sealed class AspMvcViewLocationFormatAttribute : Attribute
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "format")]
         public AspMvcViewLocationFormatAttribute(string format) { }
     }
 

@@ -7,9 +7,9 @@ namespace PodcastReader.Phone8.ViewModels
 	{
 		public DownloadsViewModel()
 		{
-			Item = FileCache.Instance.CachedFiles.CreateCollection(x => x);
+			Items = FileCache.Instance.CachedFiles.CreateCollection(x => x);
 		}
 
-		public IReactiveList<FileModel> Item { get; set; }
+		public IReactiveDerivedList<FileModel> Items { get; set; }
 	}
 }

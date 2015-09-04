@@ -58,7 +58,7 @@ namespace PodcastReader.Phone8.Infrastructure
             DebugState.Set();
         }
 
-        private void RegisterServices(IKernel kernel)
+		private void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IBlobCache>().ToMethod(_ => BlobCache.UserAccount).InSingletonScope();
             kernel.Bind<ILogger>().ToMethod(_ => new PRDebugLogger()).InSingletonScope();

@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    xmlns:converters="clr-namespace:PodcastReader.Phone8.UI.Converters"
+    xmlns:converters="clr-namespace:PodcastReader.Phone8.Ui.Converters"
     mc:Ignorable="d"
     d:DesignHeight="800"
     d:DesignWidth="480">
