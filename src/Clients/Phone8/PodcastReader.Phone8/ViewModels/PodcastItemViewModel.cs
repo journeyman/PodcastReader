@@ -32,7 +32,7 @@ namespace PodcastReader.Phone8.ViewModels
             PlayPodcastCommand = ReactiveCommand.Create();
             PlayPodcastCommand.Subscribe(OnPlayPodcast);
 
-            _cachingState = FileCache.Instance.CachedFiles.FirstOrDefaultAsync(x => x.Id == Id).Select(x => x.State).ToProperty(this, x => x.CachingState);
+            _cachingState = FileCache.Instance.CachedFiles.FirstOrDefaultAsync(x => x.Id == Id).Select(x => new CachingStateVm(x.State)).ToProperty(this, x => x.CachingState);
         }
 
         public PodcastId Id { get; }
@@ -73,5 +73,11 @@ namespace PodcastReader.Phone8.ViewModels
 
             //this.RaisePropertyChanged("CachingState");
         }
+
+	    public void Download()
+	    {
+	        var loader = Locator.Current.GetService<DownloadsManager>();
+	        loader.LoadFile(this.PodcastUri);
+	    }
     }
 }

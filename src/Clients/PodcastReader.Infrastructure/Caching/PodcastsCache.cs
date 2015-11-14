@@ -14,15 +14,16 @@ namespace PodcastReader.Infrastructure.Caching
         public FileModel(PodcastId id, [CanBeNull]CacheInfo cacheInfo)
         {
             Id = id;
+            State = new CachingState();
 			UpdateCachingState(cacheInfo);
 		}
 
         public PodcastId Id { get; set; }
-        public ICachingState State { get; }
+        public CachingState State { get; }
 
         public void UpdateCachingState(CacheInfo entry)
         {
-            
+            State
         }
     }
 
@@ -30,20 +31,22 @@ namespace PodcastReader.Infrastructure.Caching
     {
         readonly ReplaySubject<FileModel> _cachedFiles = new ReplaySubject<FileModel>(); 
         readonly Dictionary<PodcastId, FileModel> _memCache = new Dictionary<PodcastId, FileModel>(); 
+        readonly TaskCompletionSource<object> _initTask = new TaskCompletionSource<object>(); 
 
         public static readonly FileCache Instance = new FileCache();
 
         private FileCache() {}
 
-        public void Init()
+        public async Task Init()
         {
-            var cachedInfoSource = Cache.Local.GetAllObjects<CacheInfo>()
-                .SelectMany(x => x);
-			
-            cachedInfoSource.Select(x => new FileModel(new PodcastId(x.FileUri.OriginalString), x))
-							.Subscribe(_cachedFiles);
+            var dataFromCache = Cache.Local.GetAllObjects<CacheInfo>()
+                 .SelectMany(x => x)
+                 .Select(x => new FileModel(new PodcastId(x.FileUri.OriginalString), x));
 
-            cachedInfoSource.Subscribe(x => UpdateOrCreateCacheEntry(new PodcastId(x.FileUri.OriginalString), x));
+            dataFromCache.Subscribe(x => { }, () => _initTask.SetResult(null));
+            dataFromCache.Subscribe(_cachedFiles);
+
+            await WaitInit().ConfigureAwait(false);
         }
 
         public IObservable<FileModel> CachedFiles => _cachedFiles;
@@ -53,13 +56,21 @@ namespace PodcastReader.Infrastructure.Caching
             FileModel existingEnry;
             if (!_memCache.TryGetValue(id, out existingEnry))
             {
-                _memCache.Add(id, new FileModel(id, entry));
+                var fileModel = new FileModel(id, entry);
+                _memCache.Add(id, fileModel);
+                _cachedFiles.OnNext(fileModel);
             }
             else
             {
                 existingEnry.UpdateCachingState(entry);
             }
+
             await Cache.Local.InsertObject(id.Url, entry);
+        }
+
+        public async Task WaitInit()
+        {
+            await _initTask.Task.ConfigureAwait(false);
         }
     }
 }
