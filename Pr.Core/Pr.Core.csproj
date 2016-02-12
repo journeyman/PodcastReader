@@ -35,9 +35,60 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AkavacheSqliteLinkerOverride.cs" />
+    <Compile Include="Cache.cs" />
+    <Compile Include="Caching\CacheInfo.cs" />
+    <Compile Include="Caching\CachingState.cs" />
+    <Compile Include="Caching\CachingStateVm.cs" />
+    <Compile Include="Caching\DeferredReactiveProgress.cs" />
+    <Compile Include="Caching\FinishedReactiveProgress.cs" />
+    <Compile Include="Caching\ICachingState.cs" />
+    <Compile Include="Caching\IReactiveProgress.cs" />
+    <Compile Include="Caching\ITransferRequest.cs" />
+    <Compile Include="Caching\OngoingReactiveProgress.cs" />
+    <Compile Include="Caching\PodcastsCache.cs" />
+    <Compile Include="Entities\Feeds\IFeed.cs" />
+    <Compile Include="Entities\Feeds\IFeedItem.cs" />
+    <Compile Include="Entities\Feeds\IFeedPreview.cs" />
+    <Compile Include="Entities\Podcasts\IPodcastItem.cs" />
+    <Compile Include="Entities\Podcasts\PodcastId.cs" />
+    <Compile Include="Http\AwaitableTransferRequestSelectorWrapper.cs" />
+    <Compile Include="Http\BackgroundTransferConfig.cs" />
+    <Compile Include="Http\IAwaitableTransfer.cs" />
+    <Compile Include="Http\IBackgroundDownloader.cs" />
+    <Compile Include="Http\IBackgroundTransferConfig.cs" />
+    <Compile Include="Http\ProgressValue.cs" />
+    <Compile Include="Http\PRTransferPreferences.cs" />
+    <Compile Include="Http\TransferStatusUnknownException.cs" />
+    <Compile Include="Interfaces\IAudioTrackInfo.cs" />
+    <Compile Include="Interfaces\IPlayerClient.cs" />
+    <Compile Include="Interfaces\ISubscription.cs" />
+    <Compile Include="Interfaces\ISubscriptionsManager.cs" />
+    <Compile Include="JetBrains.Annotations\JetBrains.Annotations.cs" />
+    <Compile Include="Models\Loaders\CachableFeedsLoader.cs" />
+    <Compile Include="Models\Loaders\IFeedPreviewsLoader.cs" />
+    <Compile Include="Models\Loaders\IFeedsLoader.cs" />
+    <Compile Include="Models\Loaders\IPodcastItemsLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storage\BackgroundTransferStorage.cs" />
+    <Compile Include="Storage\IBackgroundTransferStorage.cs" />
+    <Compile Include="Storage\IPodcastsStorage.cs" />
+    <Compile Include="Storage\IStorage.cs" />
+    <Compile Include="Storage\ISubscriptionsCache.cs" />
+    <Compile Include="Storage\PodcastsStorage.cs" />
+    <Compile Include="Utils\CollectionsExtensions.cs" />
+    <Compile Include="Utils\CommonExtensions.cs" />
+    <Compile Include="Utils\DateTimeExtensions.cs" />
+    <Compile Include="Utils\DebugState.cs" />
+    <Compile Include="Utils\FuncEqualityComparer.cs" />
+    <Compile Include="Utils\Logging\CompositeLogger.cs" />
+    <Compile Include="Utils\PodcastSyndicationExtensions.cs" />
+    <Compile Include="Utils\RxExtensions.cs" />
+    <Compile Include="Utils\StringExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

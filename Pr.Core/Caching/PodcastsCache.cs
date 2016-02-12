@@ -14,7 +14,7 @@ namespace PodcastReader.Infrastructure.Caching
         public FileModel(PodcastId id, [CanBeNull]CacheInfo cacheInfo)
         {
             Id = id;
-            State = new CachingState();
+            //State = new CachingState();
 			UpdateCachingState(cacheInfo);
 		}
 
@@ -23,7 +23,7 @@ namespace PodcastReader.Infrastructure.Caching
 
         public void UpdateCachingState(CacheInfo entry)
         {
-            State
+            //State
         }
     }
 
