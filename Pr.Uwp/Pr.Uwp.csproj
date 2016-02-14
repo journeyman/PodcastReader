@@ -111,6 +111,7 @@
     <Compile Include="Infrastructure\Http\TransferPreferencesExt.cs" />
     <Compile Include="Infrastructure\NInjectDependencyResolver.cs" />
     <Compile Include="Infrastructure\PlayerClient.cs" />
+    <Compile Include="Infrastructure\PrApp.cs" />
     <Compile Include="Infrastructure\Screen.cs" />
     <Compile Include="Infrastructure\Storage\WindowsStorage.cs" />
     <Compile Include="Infrastructure\SubscriptionsCache.cs" />

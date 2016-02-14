@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows.Data;
+using Xamarin.Forms;
 
 namespace Pr.Phone8.Infrastructure.Converters
 {
-    public abstract class ConverterBase<TIn, TOut> : IValueConverter
+    public abstract class ConverterBase<TIn, TOut> : IValueConverter, Windows.UI.Xaml.Data.IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -17,5 +17,15 @@ namespace Pr.Phone8.Infrastructure.Converters
         }
 
         public abstract TOut ConvertSafe(TIn value);
+
+	    public object Convert(object value, Type targetType, object parameter, string language)
+	    {
+			return ConvertSafe((TIn)value);
+		}
+
+	    public object ConvertBack(object value, Type targetType, object parameter, string language)
+	    {
+		    throw new NotImplementedException();
+	    }
     }
 }

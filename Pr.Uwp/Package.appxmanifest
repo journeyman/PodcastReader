@@ -28,7 +28,7 @@
   </Resources>
 
   <Applications>
-    <Application Id="App"
+    <Application Id="PrApp"
       Executable="$targetnametoken$.exe"
       EntryPoint="Pr.Uwp.App">
       <uap:VisualElements

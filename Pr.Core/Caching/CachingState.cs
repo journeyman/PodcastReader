@@ -25,34 +25,35 @@ namespace Pr.Core.Caching
 
         public IAwaitableTransfer LoadFile(Uri remoteUri)
         {
-            var progress = new OngoingReactiveProgress1();
-            var transfer = _downloader.Load(remoteUri, progress, CancellationToken.None);
-            //TODO: FileCache.TryGetFileModel
-            var fileModel = await _fileCache.CachedFiles.FirstOrDefaultAsync();
+			//var progress = new OngoingReactiveProgress1();
+			//var transfer = _downloader.Load(remoteUri, progress, CancellationToken.None);
+			////TODO: FileCache.TryGetFileModel
+			//var fileModel = await _fileCache.CachedFiles.FirstOrDefaultAsync();
 
-            if (fileModel != null || cacheInfo.Downloaded < cacheInfo.FinalSize)
-            {
-                //if (not downloaded OR download not finished)
-                var progress = new OngoingReactiveProgress1();
-                target.SetRealReactiveProgress(progress);
-                //TODO: progress.Subscribe( { save CacheInfo as progress goes} );
-                var transfer = await _downloader.Load(_item.PodcastUri, progress, CancellationToken.None);
-                //TODO: think how to implement via Move (should atomically call Move and Save info into cache)
-                CachedUri = await _storage.MoveFromTransferTempStorage(transfer.DownloadLocation, _item);
-                var newCacheInfo = new CacheInfo()
-                {
-                    FileUri = CachedUri,
-                    FinalSize = progress.FinalState.Total,
-                    Downloaded = progress.FinalState.Total
-                };
-                await Cache.Local.InsertObject(_item.OriginalUri.OriginalString, newCacheInfo);
-            }
-            else
-            {
-                CachedUri = cacheInfo.FileUri;
-                var progress = new FinishedReactiveProgress<ProgressValue>(new ProgressValue(cacheInfo.Downloaded, cacheInfo.FinalSize));
-                target.SetRealReactiveProgress(progress);
-            }
+			//if (fileModel != null || cacheInfo.Downloaded < cacheInfo.FinalSize)
+			//{
+			//    //if (not downloaded OR download not finished)
+			//    var progress = new OngoingReactiveProgress1();
+			//    target.SetRealReactiveProgress(progress);
+			//    //TODO: progress.Subscribe( { save CacheInfo as progress goes} );
+			//    var transfer = await _downloader.Load(_item.PodcastUri, progress, CancellationToken.None);
+			//    //TODO: think how to implement via Move (should atomically call Move and Save info into cache)
+			//    CachedUri = await _storage.MoveFromTransferTempStorage(transfer.DownloadLocation, _item);
+			//    var newCacheInfo = new CacheInfo()
+			//    {
+			//        FileUri = CachedUri,
+			//        FinalSize = progress.FinalState.Total,
+			//        Downloaded = progress.FinalState.Total
+			//    };
+			//    await Cache.Local.InsertObject(_item.OriginalUri.OriginalString, newCacheInfo);
+			//}
+			//else
+			//{
+			//    CachedUri = cacheInfo.FileUri;
+			//    var progress = new FinishedReactiveProgress<ProgressValue>(new ProgressValue(cacheInfo.Downloaded, cacheInfo.FinalSize));
+			//    target.SetRealReactiveProgress(progress);
+			//}
+			return null;
         }
     }
 
@@ -81,34 +82,34 @@ namespace Pr.Core.Caching
 
         private async Task TheInit([NotNull] DeferredReactiveProgress target)
         {
-            await FileCache.Instance.WaitInit();
+            //await FileCache.Instance.WaitInit();
 
-            //TODO: FileCache.TryGetFileModel
-            var fileModel = await FileCache.Instance.CachedFiles.FirstOrDefaultAsync();
+            ////TODO: FileCache.TryGetFileModel
+            //var fileModel = await FileCache.Instance.CachedFiles.FirstOrDefaultAsync();
             
-            if (fileModel != null || cacheInfo.Downloaded < cacheInfo.FinalSize)
-            {
-                //if (not downloaded OR download not finished)
-                var progress = new OngoingReactiveProgress1();
-                target.SetRealReactiveProgress(progress);
-                //TODO: progress.Subscribe( { save CacheInfo as progress goes} );
-                var transfer = await _downloader.Load(_item.PodcastUri, progress, CancellationToken.None);
-                //TODO: think how to implement via Move (should atomically call Move and Save info into cache)
-                CachedUri = await _storage.MoveFromTransferTempStorage(transfer.DownloadLocation, _item);
-                var newCacheInfo = new CacheInfo()
-                {
-                    FileUri = CachedUri,
-                    FinalSize = progress.FinalState.Total,
-                    Downloaded = progress.FinalState.Total
-                };
-                await Cache.Local.InsertObject(_item.OriginalUri.OriginalString, newCacheInfo);
-            }
-            else
-            {
-                CachedUri = cacheInfo.FileUri;
-                var progress = new FinishedReactiveProgress<ProgressValue>(new ProgressValue(cacheInfo.Downloaded, cacheInfo.FinalSize));
-                target.SetRealReactiveProgress(progress);
-            }
+            //if (fileModel != null || cacheInfo.Downloaded < cacheInfo.FinalSize)
+            //{
+            //    //if (not downloaded OR download not finished)
+            //    var progress = new OngoingReactiveProgress1();
+            //    target.SetRealReactiveProgress(progress);
+            //    //TODO: progress.Subscribe( { save CacheInfo as progress goes} );
+            //    var transfer = await _downloader.Load(_item.PodcastUri, progress, CancellationToken.None);
+            //    //TODO: think how to implement via Move (should atomically call Move and Save info into cache)
+            //    CachedUri = await _storage.MoveFromTransferTempStorage(transfer.DownloadLocation, _item);
+            //    var newCacheInfo = new CacheInfo()
+            //    {
+            //        FileUri = CachedUri,
+            //        FinalSize = progress.FinalState.Total,
+            //        Downloaded = progress.FinalState.Total
+            //    };
+            //    await Cache.Local.InsertObject(_item.OriginalUri.OriginalString, newCacheInfo);
+            //}
+            //else
+            //{
+            //    CachedUri = cacheInfo.FileUri;
+            //    var progress = new FinishedReactiveProgress<ProgressValue>(new ProgressValue(cacheInfo.Downloaded, cacheInfo.FinalSize));
+            //    target.SetRealReactiveProgress(progress);
+            //}
         }
     }
 }

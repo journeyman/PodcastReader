@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Windows.UI.Xaml;
 
 namespace Pr.Phone8.Infrastructure.Converters
 {
