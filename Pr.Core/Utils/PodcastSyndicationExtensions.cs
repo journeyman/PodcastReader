@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.ServiceModel.Syndication;
-using PodcastReader.Infrastructure.Entities.Podcasts;
+using Pr.Core.Entities.Podcasts;
 
-namespace PodcastReader.Infrastructure.Utils
+namespace Pr.Core.Utils
 {
     public static class PodcastSyndicationExtensions
     {

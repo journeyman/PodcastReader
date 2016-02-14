@@ -1,10 +1,10 @@
 using System;
 using System.Reactive.Linq;
 using JetBrains.Annotations;
-using PodcastReader.Infrastructure.Http;
+using Pr.Core.Http;
 using ReactiveUI;
 
-namespace PodcastReader.Infrastructure.Caching
+namespace Pr.Core.Caching
 {
     public class CachingStateVm : ReactiveObject, ICachingState
     {

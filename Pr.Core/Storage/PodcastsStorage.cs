@@ -1,10 +1,10 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using PodcastReader.Infrastructure.Entities.Podcasts;
-using PodcastReader.Infrastructure.Utils;
+using Pr.Core.Entities.Podcasts;
+using Pr.Core.Utils;
 
-namespace PodcastReader.Infrastructure.Storage
+namespace Pr.Core.Storage
 {
     public static class PodcastUris
     {

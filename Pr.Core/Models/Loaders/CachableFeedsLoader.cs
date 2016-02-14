@@ -1,10 +1,10 @@
 using System;
 using System.Reactive.Linq;
 using Akavache;
-using PodcastReader.Infrastructure.Entities.Feeds;
-using PodcastReader.Infrastructure.Http;
+using Pr.Core.Entities.Feeds;
+using Pr.Core.Http;
 
-namespace PodcastReader.Infrastructure.Models.Loaders
+namespace Pr.Core.Models.Loaders
 {
     public class CachableFeedsLoader : IFeedPreviewsLoader
     {

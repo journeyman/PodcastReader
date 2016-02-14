@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reactive.Linq;
 
-namespace PodcastReader.Infrastructure.Utils
+namespace Pr.Core.Utils
 {
     public static class RxExtensions
     {

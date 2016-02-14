@@ -1,6 +1,6 @@
 using System;
 
-namespace PodcastReader.Infrastructure.Caching
+namespace Pr.Core.Caching
 {
     public class CacheInfo
     {

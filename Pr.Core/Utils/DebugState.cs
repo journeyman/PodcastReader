@@ -5,12 +5,12 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PodcastReader.Infrastructure.Interfaces;
-using PodcastReader.Infrastructure.Storage;
+using Pr.Core.Interfaces;
+using Pr.Core.Storage;
 using ReactiveUI;
 using Splat;
 
-namespace PodcastReader.Infrastructure.Utils
+namespace Pr.Core.Utils
 {
     public static class DebugState
     {

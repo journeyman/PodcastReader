@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PodcastReader.Infrastructure.Http
+namespace Pr.Core.Http
 {
     public interface IBackgroundDownloader
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace PodcastReader.Infrastructure.Http
+namespace Pr.Core.Http
 {
     public static class Exts
     {

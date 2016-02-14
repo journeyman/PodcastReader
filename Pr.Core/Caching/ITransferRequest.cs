@@ -1,4 +1,4 @@
-namespace PodcastReader.Infrastructure.Caching
+namespace Pr.Core.Caching
 {
     public interface ITransferRequest
     {

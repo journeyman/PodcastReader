@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PodcastReader.Infrastructure.Utils
+namespace Pr.Core.Utils
 {
     public class FuncEqualityComparer<T> : IEqualityComparer<T>
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PodcastReader.Infrastructure.Interfaces
+namespace Pr.Core.Interfaces
 {
     public interface ISubscription
     {

@@ -1,4 +1,4 @@
-namespace PodcastReader.Infrastructure.Http
+namespace Pr.Core.Http
 {
     public class BackgroundTransferConfig : IBackgroundTransferConfig
     {

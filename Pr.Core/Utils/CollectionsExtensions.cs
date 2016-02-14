@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PodcastReader.Infrastructure.Utils
+namespace Pr.Core.Utils
 {
     public static class CollectionsExtensions
     {

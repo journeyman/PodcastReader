@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace PodcastReader.Infrastructure.Storage
+namespace Pr.Core.Storage
 {
     public class BackgroundTransferStorage : IBackgroundTransferStorage
     {

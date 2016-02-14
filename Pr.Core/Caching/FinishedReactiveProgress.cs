@@ -1,7 +1,7 @@
 using System;
 using System.Reactive.Linq;
 
-namespace PodcastReader.Infrastructure.Caching
+namespace Pr.Core.Caching
 {
     public class FinishedReactiveProgress<T> : IReactiveProgress<T>
     {

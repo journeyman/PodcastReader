@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
-using PodcastReader.Infrastructure.Entities.Podcasts;
+using Pr.Core.Entities.Podcasts;
 
-namespace PodcastReader.Infrastructure.Storage
+namespace Pr.Core.Storage
 {
     public interface IPodcastsStorage
     {

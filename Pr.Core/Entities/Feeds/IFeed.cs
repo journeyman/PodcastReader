@@ -1,4 +1,4 @@
-﻿namespace PodcastReader.Infrastructure.Entities.Feeds
+﻿namespace Pr.Core.Entities.Feeds
 {
     public interface IFeed
     {

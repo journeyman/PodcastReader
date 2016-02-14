@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using Splat;
 
-namespace PodcastReader.Infrastructure.Utils.Logging
+namespace Pr.Core.Utils.Logging
 {
     public class CompositeLogger : ILogger
     {

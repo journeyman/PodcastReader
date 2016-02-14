@@ -1,11 +1,10 @@
 ﻿using Akavache;
 using Splat;
 
-namespace PodcastReader.Infrastructure
+namespace Pr.Core
 {
     public static class Cache
     {
-        private static readonly IBlobCache _local = Locator.Current.GetService<IBlobCache>();
-        public static IBlobCache Local {get { return _local; }}
+	    public static IBlobCache Local { get; } = Locator.Current.GetService<IBlobCache>();
     }
 }

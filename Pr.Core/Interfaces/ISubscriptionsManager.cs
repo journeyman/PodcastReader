@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace PodcastReader.Infrastructure.Interfaces
+namespace Pr.Core.Interfaces
 {
     public interface ISubscriptionsManager
     {

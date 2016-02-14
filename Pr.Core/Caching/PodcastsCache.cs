@@ -5,9 +5,9 @@ using System.Reactive.Subjects;
 using System.Threading.Tasks;
 using Akavache;
 using JetBrains.Annotations;
-using PodcastReader.Infrastructure.Entities.Podcasts;
+using Pr.Core.Entities.Podcasts;
 
-namespace PodcastReader.Infrastructure.Caching
+namespace Pr.Core.Caching
 {
     public class FileModel
     {

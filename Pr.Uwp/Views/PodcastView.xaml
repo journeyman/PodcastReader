@@ -1,0 +1,30 @@
+﻿<UserControl 
+    x:Class="Pr.Phone8.Views.PodcastView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    HorizontalContentAlignment="Stretch"
+    VerticalContentAlignment="Stretch"
+    >
+	
+	<Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextTitle1Style}" />
+        
+        <StackPanel Background="Transparent" Margin="24 0" Grid.Row="1">
+            <Button Content="Play" Command="{Binding PlayPodcastCommand}"/>
+            <CheckBox x:Name="CheckBox" IsEnabled="{Binding CachingState.IsInitialized}" IsChecked="{Binding CachingState.IsFullyCached}" />
+            <ProgressBar x:Name="ProgressBar"
+                         Visibility="{Binding CachingState.IsInitialized, Converter={StaticResource TrueToVisibleConverter}}"
+                         Maximum="{Binding CachingState.FinalSize}" Value="{Binding CachingState.CachedSize}" />
+            <TextBlock 
+                Text="{Binding Summary}"
+                TextWrapping="Wrap"
+                />
+        </StackPanel>
+    </Grid>
+        
+</UserControl>

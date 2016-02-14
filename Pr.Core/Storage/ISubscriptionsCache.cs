@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using PodcastReader.Infrastructure.Interfaces;
+using Pr.Core.Interfaces;
 
-namespace PodcastReader.Infrastructure.Storage
+namespace Pr.Core.Storage
 {
     public interface ISubscriptionsCache
     {

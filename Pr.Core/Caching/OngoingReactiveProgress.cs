@@ -1,9 +1,9 @@
 using System;
 using System.Diagnostics;
 using System.Reactive.Subjects;
-using PodcastReader.Infrastructure.Http;
+using Pr.Core.Http;
 
-namespace PodcastReader.Infrastructure.Caching
+namespace Pr.Core.Caching
 {
     public class OngoingReactiveProgress1 : IReactiveProgress<ProgressValue>, IProgress<ProgressValue>
     {

@@ -1,7 +1,7 @@
 using System;
 using ReactiveUI;
 
-namespace PodcastReader.Infrastructure.Caching
+namespace Pr.Core.Caching
 {
     public interface ICachingState : IReactiveNotifyPropertyChanged<IReactiveObject>, IHandleObservableErrors
     {

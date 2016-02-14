@@ -4,11 +4,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Akavache;
 using JetBrains.Annotations;
-using PodcastReader.Infrastructure.Entities.Podcasts;
-using PodcastReader.Infrastructure.Http;
-using PodcastReader.Infrastructure.Storage;
+using Pr.Core.Entities.Podcasts;
+using Pr.Core.Http;
+using Pr.Core.Storage;
 
-namespace PodcastReader.Infrastructure.Caching
+namespace Pr.Core.Caching
 {
     public class DownloadsManager
     {

@@ -1,7 +1,7 @@
 using System;
-using PodcastReader.Infrastructure.Entities.Feeds;
+using Pr.Core.Entities.Feeds;
 
-namespace PodcastReader.Infrastructure.Models.Loaders
+namespace Pr.Core.Models.Loaders
 {
     public interface IFeedPreviewsLoader : IObservable<IFeedPreview>
     {

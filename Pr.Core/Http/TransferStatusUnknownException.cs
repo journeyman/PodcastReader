@@ -1,6 +1,6 @@
 using System;
 
-namespace PodcastReader.Infrastructure.Http
+namespace Pr.Core.Http
 {
     public class TransferStatusUnknownException : Exception { }
 }
