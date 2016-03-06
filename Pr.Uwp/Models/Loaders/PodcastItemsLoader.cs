@@ -1,7 +1,8 @@
 using System;
 using System.Linq;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using System.ServiceModel.Syndication;
-using Microsoft.Phone.Reactive;
 using Pr.Core.Utils;
 using Pr.Core.Entities.Podcasts;
 using Pr.Core.Models.Loaders;
@@ -12,7 +13,7 @@ namespace Pr.Phone8.Models.Loaders
     public class PodcastItemsLoader : IPodcastItemsLoader
     {
         private readonly SyndicationFeed _feed;
-        private IConnectableObservable<PodcastItemViewModel> _observable;
+        private readonly IConnectableObservable<PodcastItemViewModel> _observable;
 
         public PodcastItemsLoader(SyndicationFeed feed)
         {

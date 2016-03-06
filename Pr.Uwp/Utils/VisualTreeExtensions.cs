@@ -9,10 +9,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Media;
+using Windows.Foundation;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Media;
 
 namespace Pr.Phone8.Utils
 {
@@ -501,17 +502,16 @@ namespace Pr.Phone8.Utils
         /// <returns>The group, if found</returns>
         public static VisualStateGroup GetVisualStateGroup(this FrameworkElement root, string groupName, bool searchAncestors)
         {
-            IList groups = VisualStateManager.GetVisualStateGroups(root);
-            foreach (object o in groups)
+            var groups = VisualStateManager.GetVisualStateGroups(root);
+            foreach (var group in groups)
             {
-                VisualStateGroup group = o as VisualStateGroup;
                 if (group != null && group.Name == groupName)
                     return group;
             }
 
             if (searchAncestors)
             {
-                FrameworkElement parent = root.GetVisualParent();
+                var parent = root.GetVisualParent();
                 if (parent != null)
                     return parent.GetVisualStateGroup(groupName, true);
             }
@@ -752,7 +752,7 @@ namespace Pr.Phone8.Utils
 
             // Create an event handler that unhooks itself before calling the
             // action and then attach it to the LayoutUpdated event.
-            EventHandler handler = null;
+            EventHandler<object> handler = null;
             handler = (s, e) =>
             {
                 //TODO: is this the right thing to do?

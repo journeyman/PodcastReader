@@ -1,9 +1,9 @@
-﻿using System.Windows;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
+using Pr.Uwp.UI.Converters;
 
 namespace Pr.Phone8.Infrastructure.Converters
 {
-	public class BoolToVisibilityConverter : ConverterBase<bool, Visibility>
+	public class BoolToVisibilityConverterUwp : ConverterBaseUwp<bool, Visibility>
     {
         public override Visibility ConvertSafe(bool value)
         {

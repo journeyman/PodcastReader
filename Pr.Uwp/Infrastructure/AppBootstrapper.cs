@@ -1,8 +1,7 @@
 ﻿using System.Linq;
+using System.Reflection;
 using Akavache;
 using Ninject;
-using ReactiveUI;
-using System.Reflection;
 using Pr.Core.Http;
 using Pr.Core.Interfaces;
 using Pr.Core.Models.Loaders;
@@ -13,6 +12,7 @@ using Pr.Phone8.Infrastructure.Audio;
 using Pr.Phone8.Infrastructure.Http;
 using Pr.Phone8.Infrastructure.Storage;
 using Pr.Phone8.Models.Loaders;
+using ReactiveUI;
 using Splat;
 
 namespace Pr.Phone8.Infrastructure
@@ -47,13 +47,13 @@ namespace Pr.Phone8.Infrastructure
 
 
             //initing Router at the end to postpone call to RxApp static ctor
-            this.Router = testRouter ?? new RoutingState();
+            Router = testRouter ?? new RoutingState();
 
             kernel.Bind<IScreen>().ToConstant(this);
 
-            this.RegisterViews(kernel);
-            this.RegisterViewModels(kernel);
-            this.RegisterServices(kernel);
+            RegisterViews(kernel);
+            RegisterViewModels(kernel);
+            RegisterServices(kernel);
 
             DebugState.Set();
         }
@@ -75,9 +75,9 @@ namespace Pr.Phone8.Infrastructure
 
         private void RegisterViewModels(IKernel kernel)
         {
-            var assembly = Assembly.GetExecutingAssembly();
+	        var assembly = GetType().GetTypeInfo().Assembly;
             var vms = assembly.GetTypes()
-                .Where(t => !t.IsInterface && t.Name.EndsWith("ViewModel"));
+                .Where(t => !t.GetTypeInfo().IsInterface && t.Name.EndsWith("ViewModel"));
 
             foreach (var viewModelType in vms)
             {
@@ -92,7 +92,7 @@ namespace Pr.Phone8.Infrastructure
         /// </summary>
         private void RegisterViews(IKernel kernel)
         {
-            var assembly = Assembly.GetExecutingAssembly();
+	        var assembly = GetType().GetTypeInfo().Assembly;
             var views = assembly.GetTypes()
                     .Select(t => t.GetTypeAndItsRawGenericInterfaceIfExists(typeof (IViewFor<>)))
                     .Where(result => result != null);

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using Akavache;
 using Pr.Core.Caching;
+using Pr.Phone8.Infrastructure;
+using Pr.Ui.Views;
 using Splat;
 using Xamarin.Forms;
 
@@ -11,16 +14,15 @@ namespace Pr.Core.App
 	{
 		public PrApp()
 		{
-			MainPage = new NavigationPage();
 		}
 
 		public static NavigationPage NavigationRoot => (NavigationPage)PrApp.Current.MainPage;
 
-		protected override void OnStart()
+		protected override async void OnStart()
 		{
 			base.OnStart();
 
-			InitApp();
+			await InitApp();
 			RunInitedApp();
 		}
 
@@ -38,26 +40,27 @@ namespace Pr.Core.App
 			SaveAppState();
 		}
 
-		private void OnActivated(bool statePreserved)
+		private async void OnActivated(bool statePreserved)
 		{
 			if (!statePreserved)
 			{
-				InitApp();
+				await InitApp();
 				//RunInitedApp();
 			}
 		}
 
-		private void InitApp()
+		private async Task InitApp()
 		{
 			BlobCache.ApplicationName = "PodcastReader";
 
 			var b = new AppBootstrapper(); //IoC registrations
-			FileCache.Instance.Init();
+			await FileCache.Instance.Init();
 		}
 
 		private void RunInitedApp()
 		{
-			Screen.Router.Navigate.Execute(Locator.Current.GetService<MainViewModel>());
+			MainPage = new NavigationPage(new MainView());
+			//Screen.Router.Navigate.Execute(Locator.Current.GetService<MainViewModel>());
 		}
 
 		private void SaveAppState()

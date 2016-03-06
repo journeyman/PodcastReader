@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Pr.Ui.Converters;assembly=Pr.Ui"
+             x:Class="Pr.Ui.Views.MainView">
+	<ContentPage.Resources>
+            <converters:DateToTimeAgoConverter x:Key="DateToTimeAgoConverter" />
+		
+            <Style x:Key="FeedsListStyle" TargetType="ListView">
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+
+					</DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ContentPage.Resources>
+	
+	<Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <Label Text="podcasts" />
+
+        <Button Grid.Row="1" x:Name="addSubscriptionButton" Text="Add subscription" />
+        
+		<ListView Grid.Row="2" 
+				  ItemsSource="{Binding Feeds}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<StackLayout>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+
+							<Label Text="{Binding Title}" />
+							<Label Grid.Column="1" Text="{Binding LatestPublished, Converter={StaticResource DateToTimeAgoConverter}}" />
+						</Grid>
+					</StackLayout>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+    </Grid>
+</ContentPage>

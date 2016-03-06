@@ -1,10 +1,9 @@
-﻿using Pr.Phone8.ViewModels;
+﻿using Windows.UI.Xaml.Controls;
+using Pr.Phone8.ViewModels;
 using ReactiveUI;
 
 namespace Pr.Phone8.Views
 {
-	using System.Windows.Controls;
-
 	public partial class PodcastView : UserControl, IViewFor<PodcastItemViewModel>
     {
         private PodcastItemViewModel _viewModel;

@@ -1,4 +1,4 @@
-namespace Pr.Phone8.Infrastructure.Converters
+namespace Pr.Ui.Converters
 {
 	public class BoolInverseConverter : ConverterBase<bool, bool>
 	{

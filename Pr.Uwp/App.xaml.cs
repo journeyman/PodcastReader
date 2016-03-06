@@ -4,10 +4,11 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Pr.Uwp.Views;
 
 namespace Pr.Uwp
 {
-    sealed partial class App : Application
+    public sealed partial class App : Application
     {
         public App()
         {
@@ -17,6 +18,8 @@ namespace Pr.Uwp
 			this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
+
+	    public static Frame RootFrame => (Frame)Window.Current.Content;
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
@@ -41,7 +44,7 @@ namespace Pr.Uwp
 
             if (rootFrame.Content == null)
             {
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                rootFrame.Navigate(typeof(HostViewUwp), e.Arguments);
             }
 
             Window.Current.Activate();

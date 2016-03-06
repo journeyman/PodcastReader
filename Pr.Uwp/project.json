@@ -5,7 +5,9 @@
     "Microsoft.ApplicationInsights.PersistenceChannel": "1.2.3",
     "Microsoft.ApplicationInsights.WindowsApps": "1.1.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "Portable.Ninject": "3.3.1",
     "reactiveui": "6.5.0",
+    "Splat": "1.6.2",
     "Xamarin.Forms": "2.0.1.6505"
   },
   "frameworks": {

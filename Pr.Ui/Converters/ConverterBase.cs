@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows.Data;
-using Pr.Core.Utils;
+using Xamarin.Forms;
 
-namespace Pr.Phone8.Ui.Converters
+namespace Pr.Ui.Converters
 {
-    public class DateToTimeAgoConverter : IValueConverter
+    public abstract class ConverterBase<TIn, TOut> : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var date = (DateTimeOffset)value;
-            var timeAgo = DateTime.Now - date;
-            var str = timeAgo.ToTimeAgo();
-            return str;
+            return ConvertSafe((TIn) value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
+
+        public abstract TOut ConvertSafe(TIn value);
     }
 }

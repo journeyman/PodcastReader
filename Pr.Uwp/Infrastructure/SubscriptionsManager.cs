@@ -1,7 +1,6 @@
-﻿using Microsoft.Phone.Reactive;
-using System;
+﻿using System;
+using System.Reactive.Subjects;
 using System.Threading.Tasks;
-using Pr.Core.Caching;
 using Pr.Core.Interfaces;
 using Pr.Core.Storage;
 

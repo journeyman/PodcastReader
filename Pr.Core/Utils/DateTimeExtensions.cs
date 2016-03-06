@@ -9,13 +9,13 @@ namespace Pr.Core.Utils
             if (timeSince.TotalMinutes < 1)
                 return "now";
             if (timeSince.TotalMinutes < 60)
-                return string.Format("{0}m", timeSince.Minutes);
+                return $"{timeSince.Minutes}m";
             if (timeSince.TotalHours < 24)
-                return string.Format("{0}h", timeSince.Hours);
+                return $"{timeSince.Hours}h";
             if (timeSince.TotalDays < 2)
                 return "yesterday";
             if (timeSince.TotalDays < 7)
-                return string.Format("{0}d", timeSince.Days);
+                return $"{timeSince.Days}d";
             if (timeSince.TotalDays < 14)
                 return "week";
             if (timeSince.TotalDays < 21)
@@ -25,12 +25,12 @@ namespace Pr.Core.Utils
             if (timeSince.TotalDays < 60)
                 return "last month";
             if (timeSince.TotalDays < 365)
-                return string.Format("{0}month", Math.Round(timeSince.TotalDays / 30));
+                return $"{Math.Round(timeSince.TotalDays/30)}month";
             if (timeSince.TotalDays < 730)
                 return "last year";
 
             //last but not least...
-            return string.Format("{0}y", Math.Round(timeSince.TotalDays / 365));
+            return $"{Math.Round(timeSince.TotalDays/365)}y";
         }
     }
 }

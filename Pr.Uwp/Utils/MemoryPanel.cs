@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Info;
-using ReactiveUI;
-using System.Windows.Threading;
-using System.Windows.Media;
+using Windows.System;
+using Windows.UI;
+using Windows.UI.Text;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+using Pr.Uwp;
 using Splat;
 
 namespace Pr.Phone8.Utils
@@ -60,34 +61,34 @@ namespace Pr.Phone8.Utils
             timer.Start();
         }
 
-        static void Timer_OnTick(object sender, EventArgs e)
+        static void Timer_OnTick(object sender, object e)
         {
-            string memoryString = string.Format("current: {0}, peak: {1}, limit: {2}",
-                _memoryInfo.Usage.ToPrettyMbString(),
-                _memoryInfo.Peak.ToPrettyMbString(),
-                _memoryInfo.Limit.ToPrettyMbString());
-
-            _instance.SetValue(ContentProperty, memoryString);
+            var memoryString = $"cur: {_memoryInfo.Usage.ToPrettyMbString()}, cap: {_memoryInfo.Limit.ToPrettyMbString()}";
+	        _instance.Content = memoryString;
         }
     }
 
     public class MemoryInfo
     {
-        public long Usage { get { return DeviceStatus.ApplicationCurrentMemoryUsage; } }
-        public long Peak { get { return DeviceStatus.ApplicationPeakMemoryUsage; } }
-        public long Limit { get { return DeviceStatus.ApplicationMemoryUsageLimit; } }
+        public ulong Usage => MemoryManager.AppMemoryUsage;
+	    public ulong Limit => MemoryManager.AppMemoryUsageLimit;
     }
 
     public static class LongExtensions
     {
         public static string ToPrettyMbString(this long num)
         {
-            if (num <= 1024)
-                return num.ToString() + " b";
-            else if (num <= 1024 * 1024)
-                return (num / 1024).ToString() + " Kb";
-            else
-                return (num / (1024 * 1024)).ToString("N2") + " Mb";
+            return ((ulong)num).ToPrettyMbString();
         }
-    }
+
+		public static string ToPrettyMbString(this ulong num)
+		{
+			if (num <= 1024)
+				return num.ToString() + " b";
+			else if (num <= 1024 * 1024)
+				return (num / 1024).ToString() + " Kb";
+			else
+				return (num / (1024 * 1024)).ToString("N2") + " Mb";
+		}
+	}
 }

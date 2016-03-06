@@ -1,6 +1,9 @@
-﻿namespace Pr.Phone8.Ui
+﻿using System;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Input;
+
+namespace Pr.Phone8.Ui
 {
-	using System.Windows;
 	using System.Windows.Input;
 
 	public static class Ext
@@ -31,12 +34,12 @@
 
 		private static void OnTapCommandChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
 		{
-			var frameworkElement = obj as FrameworkElement;
-			frameworkElement.Tap -= PreviewMouseLeftButtonUp;
-			frameworkElement.Tap += PreviewMouseLeftButtonUp;
+			var frameworkElement = (FrameworkElement)obj;
+			frameworkElement.Tapped -= FrameworkElementOnTapped;
+			frameworkElement.Tapped += FrameworkElementOnTapped;
 		}
 
-		private static void PreviewMouseLeftButtonUp(object sender, GestureEventArgs e)
+		private static void FrameworkElementOnTapped(object sender, TappedRoutedEventArgs e)
 		{
 			var obj = sender as DependencyObject;
 
