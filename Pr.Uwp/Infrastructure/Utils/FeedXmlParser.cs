@@ -1,6 +1,6 @@
 using System.IO;
-using System.ServiceModel.Syndication;
 using System.Xml;
+using Windows.Web.Syndication;
 
 namespace Pr.Phone8.Infrastructure.Utils
 {
@@ -11,8 +11,9 @@ namespace Pr.Phone8.Infrastructure.Utils
             //DtdProcessing = DtdProcessing.Ignore is needed for some feeds (e.g. http://www.dotnetrocks.com/feed.aspx)
             using (var reader = XmlReader.Create(new StringReader(xml), new XmlReaderSettings { DtdProcessing = DtdProcessing.Ignore }))
             {
-                var feed = SyndicationFeed.Load(reader);
-                return feed;
+	            var feed = new SyndicationFeed();
+				feed.Load(reader.ReadContentAsString());
+				return feed;
             }
         }
     }

@@ -2,11 +2,11 @@ using System;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using System.ServiceModel.Syndication;
-using Pr.Core.Utils;
+using Windows.Web.Syndication;
 using Pr.Core.Entities.Podcasts;
 using Pr.Core.Models.Loaders;
 using Pr.Phone8.ViewModels;
+using Pr.Uwp.Utils;
 
 namespace Pr.Phone8.Models.Loaders
 {
@@ -22,7 +22,7 @@ namespace Pr.Phone8.Models.Loaders
             _observable = Observable.Defer(() =>
                             feed.Items.Where(item => item.IsPodcast())
                                 .ToObservable()
-                                .Do(item => item.SourceFeed = feed)
+                                //.Do(item => item.SourceFeed = feed)
                                 .Select(item => new PodcastItemViewModel(item)))
                       .Publish();
         }

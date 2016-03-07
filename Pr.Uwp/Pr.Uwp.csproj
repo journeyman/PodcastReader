@@ -99,7 +99,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AppBootstrapper.cs" />
-    <Compile Include="Infrastructure\AppLifetime.cs" />
     <Compile Include="Infrastructure\Audio\BackgroundPlayerClient.cs" />
     <Compile Include="Infrastructure\Audio\BufferingPlayerClient.cs" />
     <Compile Include="Infrastructure\Commands\CommandBase.cs" />
@@ -124,6 +123,7 @@
     <Compile Include="UI\ControlsExtensions.cs" />
     <Compile Include="UI\Converters\ConverterBaseUwp.cs" />
     <Compile Include="Utils\MemoryPanel.cs" />
+    <Compile Include="Utils\PodcastSyndicationExtensions.cs" />
     <Compile Include="Utils\PropertyChangedExtensions.cs" />
     <Compile Include="Utils\RoutableViewModelExtensions.cs" />
     <Compile Include="Utils\VisualTreeExtensions.cs" />
@@ -135,7 +135,6 @@
     <Compile Include="Views\AddSubscriptionView.xaml.cs">
       <DependentUpon>AddSubscriptionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Design\DesignFeedViewModel.cs" />
     <Compile Include="Views\DownloadsView.xaml.cs">
       <DependentUpon>DownloadsView.xaml</DependentUpon>
     </Compile>
@@ -174,10 +173,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Design\DesignFeedDetailsVM.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\DownloadsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -206,11 +201,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.ServiceModel.Syndication">
-      <HintPath>..\Libs\System.ServiceModel.Syndication.dll</HintPath>
-    </Reference>
+    <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsTeam, Version=10.0.10586.0">
+      <Name>Windows Team Extensions for the UWP</Name>
+    </SDKReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

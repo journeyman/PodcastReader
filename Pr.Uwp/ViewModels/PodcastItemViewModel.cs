@@ -1,13 +1,14 @@
 using System;
 using System.Linq;
 using System.Reactive.Linq;
-using System.ServiceModel.Syndication;
+using Windows.Web.Syndication;
 using Pr.Core.Storage;
 using Pr.Core.Utils;
 using Pr.Core.Caching;
 using Pr.Core.Entities.Podcasts;
 using Pr.Phone8.Infrastructure;
 using Pr.Phone8.Models;
+using Pr.Uwp.Utils;
 using ReactiveUI;
 using Splat;
 
@@ -20,11 +21,10 @@ namespace Pr.Phone8.ViewModels
         public PodcastItemViewModel(SyndicationItem item)
         {
             OriginalUri = item.GetPodcastUris().First();
-            DatePublished = item.PublishDate;
+            DatePublished = item.PublishedDate;
             Title = item.Title.Text;
 
-            string summary = item.Summary.IfNotNull(its => its.Text) ??
-                             item.ElementExtensions.FirstOrDefault(ext => ext.OuterName == "summary").IfNotNull(ext => ext.GetObject<string>(), string.Empty);
+	        string summary = item.Summary.IfNotNull(its => its.Text);
             
             Summary = summary;
             Id = new PodcastId(this.GetStorageUrl());

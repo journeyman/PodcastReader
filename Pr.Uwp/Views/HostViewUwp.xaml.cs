@@ -8,7 +8,7 @@ namespace Pr.Uwp.Views
 	{
 		public HostViewUwp()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 
 			LoadApplication(new PrApp());
 		}

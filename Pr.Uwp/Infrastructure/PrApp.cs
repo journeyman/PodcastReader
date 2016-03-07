@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Akavache;
 using Pr.Core.Caching;
 using Pr.Phone8.Infrastructure;
+using Pr.Ui.ViewModels;
 using Pr.Ui.Views;
 using Splat;
 using Xamarin.Forms;
@@ -12,22 +14,25 @@ namespace Pr.Core.App
 {
 	public class PrApp : Application, IEnableLogger
 	{
+		public static NavigationPage NavigationRoot => (NavigationPage)PrApp.Current.MainPage;
+
 		public PrApp()
 		{
+			MainPage = new NavigationPage(new ContentPage { Content =  new Grid { Children = { new Label { Text = "Page Zero"} }} });
 		}
-
-		public static NavigationPage NavigationRoot => (NavigationPage)PrApp.Current.MainPage;
 
 		protected override async void OnStart()
 		{
+			Debug.WriteLine("OnStart");
 			base.OnStart();
 
 			await InitApp();
-			RunInitedApp();
+			await RunInitedApp();
 		}
 
 		protected override void OnResume()
 		{
+			Debug.WriteLine("OnResume");
 			base.OnResume();
 
 			OnActivated(false);
@@ -35,6 +40,7 @@ namespace Pr.Core.App
 
 		protected override void OnSleep()
 		{
+			Debug.WriteLine("OnSleep");
 			base.OnSleep();
 
 			SaveAppState();
@@ -57,9 +63,9 @@ namespace Pr.Core.App
 			await FileCache.Instance.Init();
 		}
 
-		private void RunInitedApp()
+		private async Task RunInitedApp()
 		{
-			MainPage = new NavigationPage(new MainView());
+			await NavigationRoot.PushAsync(new MainView(Locator.Current.GetService<MainViewModel>()));
 			//Screen.Router.Navigate.Execute(Locator.Current.GetService<MainViewModel>());
 		}
 
