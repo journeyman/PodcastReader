@@ -18,7 +18,7 @@ namespace Pr.Core.App
 
 		public PrApp()
 		{
-			MainPage = new NavigationPage(new ContentPage { Content =  new Grid { Children = { new Label { Text = "Page Zero"} }} });
+			MainPage = new NavigationPage(new MainView(Locator.Current.GetService<MainViewModel>()));
 		}
 
 		protected override async void OnStart()
@@ -65,7 +65,7 @@ namespace Pr.Core.App
 
 		private async Task RunInitedApp()
 		{
-			await NavigationRoot.PushAsync(new MainView(Locator.Current.GetService<MainViewModel>()));
+			//await NavigationRoot.PushAsync(new MainView(Locator.Current.GetService<MainViewModel>()));
 			//Screen.Router.Navigate.Execute(Locator.Current.GetService<MainViewModel>());
 		}
 

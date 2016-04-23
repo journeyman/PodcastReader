@@ -13,12 +13,12 @@ namespace Pr.Ui.Views
 			BindingContext = viewModel;
 			ViewModel = viewModel;
 
-			//this.WhenActivated(d =>
-			//{
-			//	var binding = this.BindCommand(ViewModel, x => x.AddSubscriptionCommand, x => x.addSubscriptionButton);
+			this.WhenActivated(d =>
+			{
+				var binding = this.BindCommand(ViewModel, x => x.AddSubscriptionCommand, x => x.addSubscriptionButton);
 
-			//	d(binding);
-			//});
+				d(binding);
+			});
 		}
 
 		object IViewFor.ViewModel

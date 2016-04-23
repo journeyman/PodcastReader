@@ -7,7 +7,6 @@
     xmlns:uwp="using:Xamarin.Forms.Platform.UWP"
     mc:Ignorable="d">
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
 		<TextBlock Text="Host View" Canvas.ZIndex="101" />
     </Grid>
 </uwp:WindowsPage>
