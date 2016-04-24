@@ -8,7 +8,7 @@ namespace Pr.Core.Utils
 		public static string GetSlugFileName(this IPodcastItem podcast)
 		{
 			var date = podcast.DatePublished.ToString("yyyy-mm-dd");
-			var title = podcast.Title.ToSlug();
+			var title = podcast.Title.CleanFilePathForSaving().ToSlug();
 			var ext = Path.GetExtension(podcast.OriginalUri.OriginalString);
 			return $"{date}-{title}{ext}";
 		}

@@ -1,4 +1,5 @@
-﻿using Pr.Core.Entities.Feeds;
+﻿using System;
+using Pr.Core.Entities.Feeds;
 using Pr.Core.Models.Loaders;
 using ReactiveUI;
 
@@ -10,12 +11,10 @@ namespace Pr.Ui.ViewModels
 
         public MainViewModel(IFeedPreviewsLoader feedPreviews)
         {
-            Activator = new ViewModelActivator();
-
             _feedPreviews = feedPreviews;
 
-            //AddSubscriptionCommand = NavigateCommand.WithParameter(() => Locator.Current.GetService<AddSubscriptionViewModel>());
-            Feeds = feedPreviews.CreateCollection().CreateDerivedCollection(f => f, null, FreshFirstOrderer);
+			//AddSubscriptionCommand = NavigateCommand.WithParameter(() => Locator.Current.GetService<AddSubscriptionViewModel>());
+			Feeds = feedPreviews.CreateCollection().CreateDerivedCollection(f => f, null, FreshFirstOrderer);
 
             this.WhenActivated(d => feedPreviews.Load());
         }
@@ -30,6 +29,7 @@ namespace Pr.Ui.ViewModels
 	    public IReactiveCommand AddSubscriptionCommand { get; private set; }
 
         public IReadOnlyReactiveList<IFeedPreview> Feeds { get; private set; }
-        public ViewModelActivator Activator { get; private set; }
+
+	    public ViewModelActivator Activator { get; } = new ViewModelActivator();
     }
 }

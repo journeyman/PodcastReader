@@ -12,7 +12,10 @@ namespace Pr.Phone8.Infrastructure.Utils
             using (var reader = XmlReader.Create(new StringReader(xml), new XmlReaderSettings { DtdProcessing = DtdProcessing.Ignore }))
             {
 	            var feed = new SyndicationFeed();
-				feed.Load(reader.ReadContentAsString());
+				var xmlDoc = new XmlDocument();
+				xmlDoc.Load(reader);
+				feed.Load(xmlDoc.InnerXml);
+				//feed.Load(reader.ReadContentAsString());
 				return feed;
             }
         }

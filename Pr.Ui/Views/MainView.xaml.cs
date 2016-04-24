@@ -9,15 +9,21 @@ namespace Pr.Ui.Views
 		public MainView(MainViewModel viewModel)
 		{
 			InitializeComponent();
-
+			
 			BindingContext = viewModel;
 			ViewModel = viewModel;
 
-			this.WhenActivated(d =>
+			addSubscriptionButton.Clicked += (sender, args) =>
+			{
+				var count = ViewModel.Feeds.Count;
+			};
+
+			this.WhenActivated(toDispose =>
 			{
 				var binding = this.BindCommand(ViewModel, x => x.AddSubscriptionCommand, x => x.addSubscriptionButton);
+				list.ItemsSource = ViewModel.Feeds;
 
-				d(binding);
+				toDispose(binding);
 			});
 		}
 

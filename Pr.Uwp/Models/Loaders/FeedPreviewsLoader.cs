@@ -1,14 +1,11 @@
 using System;
-using System.Linq;
 using System.Net.Http;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
-using Pr.Core.Utils;
 using Pr.Core.Entities.Feeds;
 using Pr.Core.Interfaces;
 using Pr.Core.Models.Loaders;
 using Pr.Phone8.Infrastructure.Utils;
-using ReactiveUI;
 using Splat;
 
 namespace Pr.Phone8.Models.Loaders
@@ -29,9 +26,12 @@ namespace Pr.Phone8.Models.Loaders
             _feedsObservable = _subscriptionsManager.Subscriptions
                 .Select(s => s.Uri)
                 .Distinct()
-                .SelectManyAndSkipOnException(uri => client.GetStringAsync(uri).ToObservable())
-                .SelectAndSkipOnException(FeedXmlParser.Parse)
-                .ObserveOnDispatcher()
+				.SelectMany(uri => client.GetStringAsync(uri).ToObservable())
+                .Select(FeedXmlParser.Parse)
+#if !DEBUG
+				.SkipOnException()
+#endif
+				.ObserveOnDispatcher()
                 .Select(feed => new FeedViewModel(feed.Title.Text, new PodcastItemsLoader(feed)));
         }
 
