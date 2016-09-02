@@ -12,16 +12,15 @@ using Pr.Phone8.Infrastructure.Audio;
 using Pr.Phone8.Infrastructure.Http;
 using Pr.Phone8.Infrastructure.Storage;
 using Pr.Phone8.Models.Loaders;
+using Pr.Ui.Core.Navigation;
 using ReactiveUI;
 using Splat;
 
 namespace Pr.Phone8.Infrastructure
 {
-    public class AppBootstrapper : IScreen
+    public class AppBootstrapper
     {
-        public RoutingState Router { get; private set; }
-
-        public AppBootstrapper(IKernel testKernel = null, RoutingState testRouter = null)
+        public AppBootstrapper(IKernel testKernel = null)
         {
             var kernel = testKernel ?? new StandardKernel();
             
@@ -45,11 +44,7 @@ namespace Pr.Phone8.Infrastructure
 
             LogHost.Default.Level = LogLevel.Debug;
 
-
-            //initing Router at the end to postpone call to RxApp static ctor
-            Router = testRouter ?? new RoutingState();
-
-            kernel.Bind<IScreen>().ToConstant(this);
+            kernel.Bind<IScreen>().ToMethod(_ => new XamFormsAppScreen()).InSingletonScope();
 
             RegisterViews(kernel);
             RegisterViewModels(kernel);

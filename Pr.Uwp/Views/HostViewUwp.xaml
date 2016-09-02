@@ -5,9 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:uwp="using:Xamarin.Forms.Platform.UWP"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+	BottomAppBar="{x:Null}"
+	TopAppBar="{x:Null}">
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<TextBlock Text="Host View" Canvas.ZIndex="101" />
     </Grid>
 </uwp:WindowsPage>
 

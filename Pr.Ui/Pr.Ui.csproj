@@ -35,11 +35,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\AddCommand.cs" />
+    <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Converters\BoolInverseConverter.cs" />
     <Compile Include="Converters\ConverterBase.cs" />
     <Compile Include="Converters\DateToTimeAgoConverter.cs" />
+    <Compile Include="Core\Navigation\Screen.cs" />
+    <Compile Include="Core\Navigation\XamFormsAppScreen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Extensions\RoutableViewModelExtensions.cs" />
+    <Compile Include="ViewModels\AddSubscriptionViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\RoutableViewModelBase.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>

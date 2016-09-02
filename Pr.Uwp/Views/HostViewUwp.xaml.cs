@@ -1,5 +1,4 @@
 ﻿using Pr.Core.App;
-using Xamarin.Forms;
 using Xamarin.Forms.Platform.UWP;
 
 namespace Pr.Uwp.Views
@@ -9,7 +8,7 @@ namespace Pr.Uwp.Views
 		public HostViewUwp()
 		{
 			InitializeComponent();
-
+			
 			LoadApplication(new PrApp());
 		}
 	}

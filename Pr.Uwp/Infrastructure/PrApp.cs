@@ -7,6 +7,7 @@ using Pr.Core.Caching;
 using Pr.Phone8.Infrastructure;
 using Pr.Ui.ViewModels;
 using Pr.Ui.Views;
+using ReactiveUI.XamForms;
 using Splat;
 using Xamarin.Forms;
 
@@ -14,11 +15,14 @@ namespace Pr.Core.App
 {
 	public class PrApp : Application, IEnableLogger
 	{
-		public static NavigationPage NavigationRoot => (NavigationPage)PrApp.Current.MainPage;
+		public static RoutedViewHost NavigationRoot => (RoutedViewHost)PrApp.Current.MainPage;
 
 		public PrApp()
 		{
-			MainPage = new NavigationPage();
+			BlobCache.ApplicationName = "PodcastReader";
+			var b = new AppBootstrapper(); //IoC registrations
+			var navigationRoot = new RoutedViewHost();
+			MainPage = navigationRoot;
 		}
 
 		protected override async void OnStart()
@@ -57,9 +61,6 @@ namespace Pr.Core.App
 
 		private async Task InitApp()
 		{
-			BlobCache.ApplicationName = "PodcastReader";
-
-			var b = new AppBootstrapper(); //IoC registrations
 			await FileCache.Instance.Init();
 		}
 

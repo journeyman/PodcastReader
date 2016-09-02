@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Reactive.Linq;
 using ReactiveUI;
 
-namespace Pr.Phone8
+namespace Pr.Ui.Utils.Extensions
 {
     public static class RoutableViewModelExtensions
     {

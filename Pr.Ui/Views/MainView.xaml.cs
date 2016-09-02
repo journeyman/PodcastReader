@@ -9,7 +9,9 @@ namespace Pr.Ui.Views
 		public MainView(MainViewModel viewModel)
 		{
 			InitializeComponent();
-			
+
+			NavigationPage.SetHasNavigationBar(this, false);
+
 			BindingContext = viewModel;
 			ViewModel = viewModel;
 

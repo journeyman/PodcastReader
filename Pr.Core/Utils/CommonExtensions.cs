@@ -1,5 +1,9 @@
 ﻿using Splat;
 using System;
+using System.IO;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Pr.Core.Utils
 {
@@ -17,5 +21,13 @@ namespace Pr.Core.Utils
 		{
 			container.RegisterLazySingleton(() => valueFactory(), typeof(TService), contract);
 		}
-    }
+
+		public static async Task<string> ReadAsStringAsync(this HttpContent content, Encoding encoding)
+		{
+			using (var reader = new StreamReader((await content.ReadAsStreamAsync()), encoding))
+			{
+				return reader.ReadToEnd();
+			}
+		}
+	}
 }

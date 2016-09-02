@@ -1,4 +1,5 @@
 using Pr.Core.Caching;
+using Pr.Ui.ViewModels;
 using ReactiveUI;
 
 namespace Pr.Phone8.ViewModels

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Pr.Ui.Utils.Extensions;
 using Pr.Core.Entities.Feeds;
 using Pr.Core.Models.Loaders;
 using ReactiveUI;
+using Splat;
 
 namespace Pr.Ui.ViewModels
 {
-    public class MainViewModel : ReactiveObject, ISupportsActivation
+    public class MainViewModel : RoutableViewModelBase, ISupportsActivation
     {
         private readonly IFeedPreviewsLoader _feedPreviews;
 
@@ -13,7 +14,7 @@ namespace Pr.Ui.ViewModels
         {
             _feedPreviews = feedPreviews;
 
-			//AddSubscriptionCommand = NavigateCommand.WithParameter(() => Locator.Current.GetService<AddSubscriptionViewModel>());
+			AddSubscriptionCommand = NavigateCommand.WithParameter(() => Locator.Current.GetService<AddSubscriptionViewModel>());
 			Feeds = feedPreviews.CreateCollection().CreateDerivedCollection(f => f, null, FreshFirstOrderer);
 
             this.WhenActivated(d => feedPreviews.Load());

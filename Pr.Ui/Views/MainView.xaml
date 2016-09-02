@@ -1,25 +1,27 @@
-﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:converters="clr-namespace:Pr.Ui.Converters;assembly=Pr.Ui"
-             x:Class="Pr.Ui.Views.MainView" BackgroundColor="Yellow">
+﻿<ContentPage x:Class="Pr.Ui.Views.MainView"
+			 xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:converters="clr-namespace:Pr.Ui.Converters;assembly=Pr.Ui">
 	<ContentPage.Resources>
 		<ResourceDictionary>
 			<converters:DateToTimeAgoConverter x:Key="DateToTimeAgoConverter" />
 		</ResourceDictionary>
-    </ContentPage.Resources>
+	</ContentPage.Resources>
 	<Grid x:Name="LayoutRoot">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        
-        <Label Text="podcasts" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
 
-        <Button Grid.Row="1" x:Name="addSubscriptionButton" Text="Add subscription" />
-		
-		<ListView Grid.Row="2"
-				  x:Name="list"
+		<Label Text="podcasts" />
+
+		<Button x:Name="addSubscriptionButton"
+				Grid.Row="1"
+				Text="Add subscription" />
+
+		<ListView x:Name="list"
+				  Grid.Row="2"
 				  ItemsSource="{Binding Feeds}">
 			<ListView.ItemTemplate>
 				<DataTemplate>
@@ -37,5 +39,5 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
-    </Grid>
+	</Grid>
 </ContentPage>

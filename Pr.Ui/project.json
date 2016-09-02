@@ -4,14 +4,14 @@
     "akavache": "4.1.2",
     "akavache.sqlite3": "4.1.2",
     "JetBrains.Annotations.Portable": "8.2.0",
-    "Newtonsoft.Json": "6.0.3",
+    "Newtonsoft.Json": "9.0.1",
     "Portable.Ninject": "3.3.1",
-    "reactiveui": "6.5.0",
+    "reactiveui-core": "6.5.0",
     "reactiveui-xamforms": "6.5.0",
     "Rx-Main": "2.3.0-beta2",
     "Splat": "1.6.2",
-    "SQLitePCL.raw_basic": "0.8.6",
-    "System.Collections.Immutable": "1.1.38-beta-23516"
+    "SQLitePCL.raw_basic": "0.9.0-pre8",
+    "System.Collections.Immutable": "1.2.0"
   },
   "frameworks": {
     ".NETPortable,Version=v4.5,Profile=Profile7": {}

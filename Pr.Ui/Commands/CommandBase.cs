@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Pr.Phone8.Infrastructure.Commands
+namespace Pr.Ui.Commands
 {
     public abstract class CommandBase<TParam> : ICommand
     {

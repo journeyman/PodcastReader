@@ -1,11 +1,15 @@
 using System;
+using System.Net;
 using System.Net.Http;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
+using System.Text;
 using Pr.Core.Entities.Feeds;
 using Pr.Core.Interfaces;
 using Pr.Core.Models.Loaders;
+using Pr.Core.Utils;
 using Pr.Phone8.Infrastructure.Utils;
+using ReactiveUI;
 using Splat;
 
 namespace Pr.Phone8.Models.Loaders
@@ -21,13 +25,22 @@ namespace Pr.Phone8.Models.Loaders
         {
             _subscriptionsManager = subscriptionsManager;
 
-            var client = new HttpClient();
+	        var handler = new HttpClientHandler
+	        {
+		        AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
+	        };
+            var client = new HttpClient(handler);
 
             _feedsObservable = _subscriptionsManager.Subscriptions
                 .Select(s => s.Uri)
                 .Distinct()
-				.SelectMany(uri => client.GetStringAsync(uri).ToObservable())
-                .Select(FeedXmlParser.Parse)
+				.SelectMany(async url =>
+				{
+					this.Log().Debug($"loading {url}");
+					var response = await client.GetStringAsync(url);
+					this.Log().Debug($"parsing {url}");
+					return FeedXmlParser.Parse(response);
+				})
 #if !DEBUG
 				.SkipOnException()
 #endif

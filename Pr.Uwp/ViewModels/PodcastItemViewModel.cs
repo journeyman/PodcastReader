@@ -8,6 +8,7 @@ using Pr.Core.Caching;
 using Pr.Core.Entities.Podcasts;
 using Pr.Phone8.Infrastructure;
 using Pr.Phone8.Models;
+using Pr.Ui.ViewModels;
 using Pr.Uwp.Utils;
 using ReactiveUI;
 using Splat;

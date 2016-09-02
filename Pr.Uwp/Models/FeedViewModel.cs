@@ -6,6 +6,7 @@ using Pr.Core.Entities.Feeds;
 using Pr.Core.Entities.Podcasts;
 using Pr.Core.Models.Loaders;
 using Pr.Phone8.ViewModels;
+using Pr.Ui.ViewModels;
 using ReactiveUI;
 
 namespace Pr.Phone8.Models
@@ -39,14 +40,8 @@ namespace Pr.Phone8.Models
 
         public string Title { get; private set; }
 
-        public IFeedItem LastFeedItem
-        {
-            get { return _lastFeedItemProp.Value; }
-        }
+        public IFeedItem LastFeedItem => _lastFeedItemProp.Value;
 
-        public DateTimeOffset LatestPublished
-        {
-            get { return _lastPulbishedProp.Value; }
-        }
+	    public DateTimeOffset LatestPublished => _lastPulbishedProp.Value;
     }
 }

@@ -101,7 +101,6 @@
     <Compile Include="Infrastructure\AppBootstrapper.cs" />
     <Compile Include="Infrastructure\Audio\BackgroundPlayerClient.cs" />
     <Compile Include="Infrastructure\Audio\BufferingPlayerClient.cs" />
-    <Compile Include="Infrastructure\Commands\CommandBase.cs" />
     <Compile Include="Infrastructure\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Infrastructure\Http\AwaitableTransferRequest.cs" />
     <Compile Include="Infrastructure\Http\BackgroundDownloader.cs" />
@@ -125,12 +124,9 @@
     <Compile Include="Utils\MemoryPanel.cs" />
     <Compile Include="Utils\PodcastSyndicationExtensions.cs" />
     <Compile Include="Utils\PropertyChangedExtensions.cs" />
-    <Compile Include="Utils\RoutableViewModelExtensions.cs" />
     <Compile Include="Utils\VisualTreeExtensions.cs" />
-    <Compile Include="ViewModels\AddSubscriptionViewModel.cs" />
     <Compile Include="ViewModels\DownloadsViewModel.cs" />
     <Compile Include="ViewModels\PodcastItemViewModel.cs" />
-    <Compile Include="ViewModels\RoutableViewModelBase.cs" />
     <Compile Include="ViewModels\StubDownloader.cs" />
     <Compile Include="Views\AddSubscriptionView.xaml.cs">
       <DependentUpon>AddSubscriptionView.xaml</DependentUpon>
@@ -207,6 +203,9 @@
     <SDKReference Include="WindowsTeam, Version=10.0.10586.0">
       <Name>Windows Team Extensions for the UWP</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Infrastructure\Commands\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

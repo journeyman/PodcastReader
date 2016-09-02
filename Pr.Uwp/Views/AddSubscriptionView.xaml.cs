@@ -1,5 +1,6 @@
 ﻿using Windows.UI.Xaml.Controls;
 using Pr.Phone8.ViewModels;
+using Pr.Ui.ViewModels;
 using ReactiveUI;
 
 namespace Pr.Phone8.Views
