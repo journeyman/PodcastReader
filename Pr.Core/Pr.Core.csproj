@@ -82,6 +82,7 @@
     <Compile Include="Storage\IStorage.cs" />
     <Compile Include="Storage\ISubscriptionsCache.cs" />
     <Compile Include="Storage\PodcastsStorage.cs" />
+    <Compile Include="Utils\AsyncOperationQueue.cs" />
     <Compile Include="Utils\CollectionsExtensions.cs" />
     <Compile Include="Utils\CommonExtensions.cs" />
     <Compile Include="Utils\DateTimeExtensions.cs" />
