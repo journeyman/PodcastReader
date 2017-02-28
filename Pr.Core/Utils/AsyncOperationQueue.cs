@@ -93,6 +93,11 @@ namespace Pr.Core.Utils
             await tcs.Task;
         }
 
+        public Task Execute<T>(Func<T> func)
+        {
+            return Execute(() => Task.FromResult(func()));
+        }
+
         private void ExecuteInternal(Action action)
         {
             if (_syncContext == null)

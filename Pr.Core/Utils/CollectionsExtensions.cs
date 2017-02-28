@@ -4,7 +4,7 @@ namespace Pr.Core.Utils
 {
     public static class CollectionsExtensions
     {
-        public static TValue GetValueOrFallback<TKey, TValue>(this IDictionary<TKey, TValue> This, TKey key, TValue fallback = default(TValue))
+        public static TValue TryGet<TKey, TValue>(this IDictionary<TKey, TValue> This, TKey key, TValue fallback = default(TValue))
         {
             TValue val;
             if (!This.TryGetValue(key, out val))

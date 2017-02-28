@@ -1,52 +1,39 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Akavache;
+using Pr.Core;
 using Pr.Core.Caching;
 using Pr.Phone8.Infrastructure;
-using Pr.Ui.ViewModels;
-using Pr.Ui.Views;
-using ReactiveUI.XamForms;
+using Pr.Uwp.Views;
 using Splat;
-using Xamarin.Forms;
 
-namespace Pr.Core.App
+namespace Pr.Uwp.Infrastructure
 {
-	public class PrApp : Application, IEnableLogger
+	public class PrApp : IEnableLogger
 	{
-		public static RoutedViewHost NavigationRoot => (RoutedViewHost)PrApp.Current.MainPage;
+		public static HostView NavigationRoot { get; private set; }
 
 		public PrApp()
 		{
 			BlobCache.ApplicationName = "PodcastReader";
 			var b = new AppBootstrapper(); //IoC registrations
-			var navigationRoot = new RoutedViewHost();
-			MainPage = navigationRoot;
+			NavigationRoot = new HostView();
 		}
 
-		protected override async void OnStart()
+		public async void OnStart()
 		{
-			Debug.WriteLine("OnStart");
-			base.OnStart();
-
 			await InitApp();
 			await RunInitedApp();
 		}
 
-		protected override void OnResume()
+		public void OnResume()
 		{
-			Debug.WriteLine("OnResume");
-			base.OnResume();
-
-			OnActivated(false);
+			OnActivated(true);
 		}
 
-		protected override void OnSleep()
+		public void OnSleep()
 		{
-			Debug.WriteLine("OnSleep");
-			base.OnSleep();
-
 			SaveAppState();
 		}
 
@@ -66,7 +53,7 @@ namespace Pr.Core.App
 
 		private async Task RunInitedApp()
 		{
-			await NavigationRoot.PushAsync(new MainView(Locator.Current.GetService<MainViewModel>()));
+			//await NavigationRoot.PushAsync(new MainView(Locator.Current.GetService<MainViewModel>()));
 			//Screen.Router.Navigate.Execute(Locator.Current.GetService<MainViewModel>());
 		}
 

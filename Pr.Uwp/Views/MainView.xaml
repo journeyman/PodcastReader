@@ -1,0 +1,47 @@
+﻿<UserControl
+    x:Class="Pr.Uwp.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Pr.Uwp.UI.Converters"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <converters:DateToTimeAgoConverter x:Key="DateToTimeAgoConverter" />
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="podcasts" />
+
+        <Button x:Name="addSubscriptionButton"
+				Grid.Row="1"
+				Content="Add subscription" />
+
+        <ListBox x:Name="list"
+				  Grid.Row="2"
+				  ItemsSource="{Binding Feeds}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding Title}" />
+                            <TextBlock Grid.Column="1" Text="{Binding LatestPublished, Converter={StaticResource DateToTimeAgoConverter}}" />
+                        </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

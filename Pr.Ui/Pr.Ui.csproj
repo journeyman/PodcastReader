@@ -37,9 +37,6 @@
   <ItemGroup>
     <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
-    <Compile Include="Converters\BoolInverseConverter.cs" />
-    <Compile Include="Converters\ConverterBase.cs" />
-    <Compile Include="Converters\DateToTimeAgoConverter.cs" />
     <Compile Include="Core\Navigation\Screen.cs" />
     <Compile Include="Core\Navigation\XamFormsAppScreen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -47,9 +44,6 @@
     <Compile Include="ViewModels\AddSubscriptionViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RoutableViewModelBase.cs" />
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pr.Core\Pr.Core.csproj">
@@ -58,23 +52,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MainView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Xamarin.Forms.Core.Design, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Forms.2.0.1.6505\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Design\Xamarin.Forms.Core.Design.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml.Design, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Forms.2.0.1.6505\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Design\Xamarin.Forms.Xaml.Design.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

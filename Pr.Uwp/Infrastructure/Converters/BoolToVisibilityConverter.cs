@@ -1,11 +1,11 @@
 ﻿using Windows.UI.Xaml;
 using Pr.Uwp.UI.Converters;
 
-namespace Pr.Phone8.Infrastructure.Converters
+namespace Pr.Uwp.Infrastructure.Converters
 {
-	public class BoolToVisibilityConverterUwp : ConverterBaseUwp<bool, Visibility>
+	public class BoolToVisibilityConverterUwp : ConverterBase<bool, Visibility>
     {
-        public override Visibility ConvertSafe(bool value)
+        public override Visibility ConvertCore(bool value)
         {
             return value ? Visibility.Visible : Visibility.Collapsed;
         }

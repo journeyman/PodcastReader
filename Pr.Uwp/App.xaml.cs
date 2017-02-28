@@ -4,19 +4,21 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Pr.Uwp.Infrastructure;
 using Pr.Uwp.Views;
 
 namespace Pr.Uwp
 {
     public sealed partial class App : Application
     {
+        private PrApp _app;
+
         public App()
         {
-			Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
-				Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
-				Microsoft.ApplicationInsights.WindowsCollectors.Session);
 			this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            _app = new PrApp();
         }
 
 	    public static Frame RootFrame => (Frame)Window.Current.Content;
@@ -28,9 +30,6 @@ namespace Pr.Uwp
             if (rootFrame == null)
             {
                 rootFrame = new Frame();
-
-				Xamarin.Forms.Forms.Init(e);
-
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
@@ -44,7 +43,7 @@ namespace Pr.Uwp
 
             if (rootFrame.Content == null)
             {
-                rootFrame.Navigate(typeof(HostViewUwp), e.Arguments);
+                rootFrame.Navigate(typeof(HostView), e.Arguments);
             }
 
             Window.Current.Activate();
