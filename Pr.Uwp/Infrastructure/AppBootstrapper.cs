@@ -8,15 +8,15 @@ using Pr.Core.Models.Loaders;
 using Pr.Core.Storage;
 using Pr.Core.Utils;
 using Pr.Core.Utils.Logging;
+using Pr.Phone8.Infrastructure;
 using Pr.Phone8.Infrastructure.Audio;
 using Pr.Phone8.Infrastructure.Http;
 using Pr.Phone8.Infrastructure.Storage;
 using Pr.Phone8.Models.Loaders;
-using Pr.Ui.Core.Navigation;
 using ReactiveUI;
 using Splat;
 
-namespace Pr.Phone8.Infrastructure
+namespace Pr.Uwp.Infrastructure
 {
     public class AppBootstrapper
     {
@@ -43,8 +43,6 @@ namespace Pr.Phone8.Infrastructure
             //Locator.Current = new NInjectDependencyResolver(kernel);
 
             LogHost.Default.Level = LogLevel.Debug;
-
-            kernel.Bind<IScreen>().ToMethod(_ => new XamFormsAppScreen()).InSingletonScope();
 
             RegisterViews(kernel);
             RegisterViewModels(kernel);

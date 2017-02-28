@@ -2,44 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Pr.Core.Utils;
+using Pr.Uwp.UI.Navigation;
 
 namespace Pr.Uwp.Views
 {
-    public interface INavigatonStackItem
-    {
-        UIElement Content { get; }
-    }
-
-    public class NavigationStackItem : INavigatonStackItem
-    {
-        public UIElement Content { get; set; }
-
-        public NavigationStackItem(UIElement content)
-        {
-            Content = content;
-        }
-    }
-
-    public interface INavigation
-    {
-        Task Completion { get; }
-    }
-
-    public class Navigation : INavigation
-    {
-        public Navigation(Task completion)
-        {
-            Completion = completion;
-        }
-
-        public Task Completion { get; }
-    }
-
-    public sealed partial class HostView : UserControl
+    public sealed partial class HostView
     {
         private readonly AsyncOperationQueue _queue = new AsyncOperationQueue(SynchronizationContext.Current);
 
@@ -47,7 +16,7 @@ namespace Pr.Uwp.Views
 
         public HostView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         public IList<INavigatonStackItem> BackStack { get; } = new List<INavigatonStackItem>();

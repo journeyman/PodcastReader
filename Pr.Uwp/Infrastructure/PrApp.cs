@@ -14,11 +14,11 @@ namespace Pr.Uwp.Infrastructure
 	{
 		public static HostView NavigationRoot { get; private set; }
 
-		public PrApp()
+		public PrApp(HostView hostView)
 		{
 			BlobCache.ApplicationName = "PodcastReader";
 			var b = new AppBootstrapper(); //IoC registrations
-			NavigationRoot = new HostView();
+			NavigationRoot = hostView;
 		}
 
 		public async void OnStart()
@@ -29,21 +29,11 @@ namespace Pr.Uwp.Infrastructure
 
 		public void OnResume()
 		{
-			OnActivated(true);
 		}
 
 		public void OnSleep()
 		{
 			SaveAppState();
-		}
-
-		private async void OnActivated(bool statePreserved)
-		{
-			if (!statePreserved)
-			{
-				await InitApp();
-				//RunInitedApp();
-			}
 		}
 
 		private async Task InitApp()
@@ -55,6 +45,8 @@ namespace Pr.Uwp.Infrastructure
 		{
 			//await NavigationRoot.PushAsync(new MainView(Locator.Current.GetService<MainViewModel>()));
 			//Screen.Router.Navigate.Execute(Locator.Current.GetService<MainViewModel>());
+		    var view = Locator.Current.GetService<MainView>();
+            NavigationRoot.Navigate(view);
 		}
 
 		private void SaveAppState()

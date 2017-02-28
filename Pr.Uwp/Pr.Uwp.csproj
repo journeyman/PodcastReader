@@ -120,6 +120,10 @@
     <Compile Include="UI\Converters\BoolInverseConverter.cs" />
     <Compile Include="UI\Converters\ConverterBaseUwp.cs" />
     <Compile Include="UI\Converters\DateToTimeAgoConverter.cs" />
+    <Compile Include="UI\Navigation\INavigation.cs" />
+    <Compile Include="UI\Navigation\INavigatonStackItem.cs" />
+    <Compile Include="UI\Navigation\Navigation.cs" />
+    <Compile Include="UI\Navigation\NavigationStackItem.cs" />
     <Compile Include="Utils\MemoryPanel.cs" />
     <Compile Include="Utils\PodcastSyndicationExtensions.cs" />
     <Compile Include="Utils\PropertyChangedExtensions.cs" />

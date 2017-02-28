@@ -15,10 +15,9 @@ namespace Pr.Uwp
 
         public App()
         {
-			this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            InitializeComponent();
 
-            _app = new PrApp();
+            Suspending += OnSuspending;
         }
 
 	    public static Frame RootFrame => (Frame)Window.Current.Content;
@@ -43,10 +42,24 @@ namespace Pr.Uwp
 
             if (rootFrame.Content == null)
             {
-                rootFrame.Navigate(typeof(HostView), e.Arguments);
+                var hostview = new HostView();
+                rootFrame.Content = hostview;
+                _app = new PrApp(hostview);
+                //rootFrame.Navigate(typeof(HostView), e.Arguments);
             }
 
             Window.Current.Activate();
+
+            if (e.PreviousExecutionState == ApplicationExecutionState.Terminated
+                || e.PreviousExecutionState == ApplicationExecutionState.NotRunning
+                || e.PreviousExecutionState == ApplicationExecutionState.ClosedByUser)
+            {
+                _app.OnStart();
+            }
+            else
+            {
+                _app.OnResume();
+            }
         }
 
 		void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
@@ -59,6 +72,8 @@ namespace Pr.Uwp
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+
+            _app.OnSleep();
         }
     }
 }

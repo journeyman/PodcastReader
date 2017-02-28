@@ -14,7 +14,7 @@ namespace Pr.Ui.ViewModels
         {
             _feedPreviews = feedPreviews;
 
-			AddSubscriptionCommand = NavigateCommand.WithParameter(() => Locator.Current.GetService<AddSubscriptionViewModel>());
+			//AddSubscriptionCommand = NavigateCommand.WithParameter(() => Locator.Current.GetService<AddSubscriptionViewModel>());
 			Feeds = feedPreviews.CreateCollection().CreateDerivedCollection(f => f, null, FreshFirstOrderer);
 
             this.WhenActivated(d => feedPreviews.Load());
