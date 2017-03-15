@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Akavache;
 using Pr.Core;
@@ -17,7 +18,7 @@ namespace Pr.Uwp.Infrastructure
 		public PrApp(HostView hostView)
 		{
 			BlobCache.ApplicationName = "PodcastReader";
-			var b = new AppBootstrapper(); //IoC registrations
+			var b = new AppBootstrapper(SynchronizationContext.Current); //IoC registrations
 			NavigationRoot = hostView;
 		}
 

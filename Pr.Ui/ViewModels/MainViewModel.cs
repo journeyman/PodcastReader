@@ -1,8 +1,8 @@
-﻿using Pr.Ui.Utils.Extensions;
+﻿using System;
 using Pr.Core.Entities.Feeds;
 using Pr.Core.Models.Loaders;
+using Pr.Ui.Core.OAuth;
 using ReactiveUI;
-using Splat;
 
 namespace Pr.Ui.ViewModels
 {
@@ -10,11 +10,22 @@ namespace Pr.Ui.ViewModels
     {
         private readonly IFeedPreviewsLoader _feedPreviews;
 
-        public MainViewModel(IFeedPreviewsLoader feedPreviews)
+        public MainViewModel(IFeedPreviewsLoader feedPreviews, Authorizer authorizer)
         {
             _feedPreviews = feedPreviews;
 
-			//AddSubscriptionCommand = NavigateCommand.WithParameter(() => Locator.Current.GetService<AddSubscriptionViewModel>());
+            //AddSubscriptionCommand = NavigateCommand.WithParameter(() => Locator.Current.GetService<AddSubscriptionViewModel>());
+            LoginToFeedlyCommand = ReactiveCommand.CreateAsyncTask(async _ =>
+            {
+                try
+                {
+                    var code = await authorizer.GetCode("https://cloud.feedly.com/subscriptions");
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            });
 			Feeds = feedPreviews.CreateCollection().CreateDerivedCollection(f => f, null, FreshFirstOrderer);
 
             this.WhenActivated(d => feedPreviews.Load());
@@ -28,6 +39,8 @@ namespace Pr.Ui.ViewModels
         }
 
 	    public IReactiveCommand AddSubscriptionCommand { get; private set; }
+
+        public IReactiveCommand LoginToFeedlyCommand { get; set; }
 
         public IReadOnlyReactiveList<IFeedPreview> Feeds { get; private set; }
 

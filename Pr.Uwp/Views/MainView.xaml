@@ -15,18 +15,20 @@
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="podcasts" />
+        <StackPanel>
+            <TextBlock Text="podcasts" />
 
-        <Button x:Name="addSubscriptionButton"
-				Grid.Row="1"
-				Content="Add subscription" />
+            <Button x:Name="addSubscriptionButton"
+				    Content="Add subscription" />
 
+            <Button x:Name="loginToFeedlyButton"
+				    Content="loginToFeedly" />
+        </StackPanel>
         <ListBox x:Name="list"
-				  Grid.Row="2"
+				  Grid.Row="1"
 				  ItemsSource="{Binding Feeds}">
             <ListBox.ItemTemplate>
                 <DataTemplate>

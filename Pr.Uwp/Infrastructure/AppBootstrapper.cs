@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
+using System.Threading;
 using Akavache;
 using Ninject;
 using Pr.Core.Http;
@@ -13,6 +14,9 @@ using Pr.Phone8.Infrastructure.Audio;
 using Pr.Phone8.Infrastructure.Http;
 using Pr.Phone8.Infrastructure.Storage;
 using Pr.Phone8.Models.Loaders;
+using Pr.Ui.Core.Feedly;
+using Pr.Ui.Core.OAuth;
+using Pr.Uwp.UI.Navigation;
 using ReactiveUI;
 using Splat;
 
@@ -20,8 +24,11 @@ namespace Pr.Uwp.Infrastructure
 {
     public class AppBootstrapper
     {
-        public AppBootstrapper(IKernel testKernel = null)
+        private readonly SynchronizationContext _uiSyncContext;
+
+        public AppBootstrapper(SynchronizationContext uiSyncContext, IKernel testKernel = null)
         {
+            _uiSyncContext = uiSyncContext;
             var kernel = testKernel ?? new StandardKernel();
             
              //Set up NInject to do DI
@@ -64,6 +71,9 @@ namespace Pr.Uwp.Infrastructure
             kernel.Bind<IBackgroundDownloader>().To<BackgroundDownloader>().InSingletonScope();
             kernel.Bind<IPodcastsStorage>().To<PodcastsStorage>().InSingletonScope();
             kernel.Bind<IStorage>().To<WindowsStorage>().InSingletonScope();
+            kernel.Bind<SynchronizationContext>().ToConstant(_uiSyncContext).Named("UISynchronizationContext");
+            kernel.Bind<IBrowserPresenter>().To<BrowserController>().InSingletonScope();
+            kernel.Bind<Authorizer>().ToMethod(_ => new Authorizer(FeedlySandboxSettings.Endpoint, FeedlySandboxSettings.OAuthSettings, kernel.Get<IBrowserPresenter>())).InSingletonScope();
         }
 
         private void RegisterViewModels(IKernel kernel)

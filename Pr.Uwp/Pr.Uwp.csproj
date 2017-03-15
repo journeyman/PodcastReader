@@ -105,6 +105,11 @@
     <Compile Include="Infrastructure\NInjectDependencyResolver.cs" />
     <Compile Include="Infrastructure\PlayerClient.cs" />
     <Compile Include="Infrastructure\PrApp.cs" />
+    <Compile Include="Infrastructure\Services\Feedly\IFeedlyApi.cs" />
+    <Compile Include="Infrastructure\Services\OAuth\Authorizer.cs" />
+    <Compile Include="Infrastructure\Services\OAuth\IBrowserPresenter.cs" />
+    <Compile Include="Infrastructure\Services\OAuth\OAuthResponse.cs" />
+    <Compile Include="Infrastructure\Services\OAuth\Settings.cs" />
     <Compile Include="Infrastructure\Storage\WindowsStorage.cs" />
     <Compile Include="Infrastructure\SubscriptionsCache.cs" />
     <Compile Include="Infrastructure\SubscriptionsManager.cs" />
@@ -120,6 +125,7 @@
     <Compile Include="UI\Converters\BoolInverseConverter.cs" />
     <Compile Include="UI\Converters\ConverterBaseUwp.cs" />
     <Compile Include="UI\Converters\DateToTimeAgoConverter.cs" />
+    <Compile Include="UI\Navigation\BrowserController.cs" />
     <Compile Include="UI\Navigation\INavigation.cs" />
     <Compile Include="UI\Navigation\INavigatonStackItem.cs" />
     <Compile Include="UI\Navigation\Navigation.cs" />
@@ -133,6 +139,9 @@
     <Compile Include="ViewModels\StubDownloader.cs" />
     <Compile Include="Views\AddSubscriptionView.xaml.cs">
       <DependentUpon>AddSubscriptionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BrowserDialog.xaml.cs">
+      <DependentUpon>BrowserDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DownloadsView.xaml.cs">
       <DependentUpon>DownloadsView.xaml</DependentUpon>
@@ -173,6 +182,10 @@
     <Page Include="Views\AddSubscriptionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BrowserDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DownloadsView.xaml">
       <Generator>MSBuild:Compile</Generator>

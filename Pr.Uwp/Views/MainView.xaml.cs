@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System.Reactive.Disposables;
+using Windows.UI.Xaml.Controls;
 using Pr.Ui.ViewModels;
 using ReactiveUI;
 
@@ -13,17 +14,18 @@ namespace Pr.Uwp.Views
             DataContext = viewModel;
             ViewModel = viewModel;
 
-            addSubscriptionButton.Click += (sender, args) =>
-            {
-                var count = ViewModel.Feeds.Count;
-            };
-
             this.WhenActivated(toDispose =>
             {
-                var binding = this.BindCommand(ViewModel, x => x.AddSubscriptionCommand, x => x.addSubscriptionButton);
+                var d = new CompositeDisposable
+                {
+                    this.BindCommand(ViewModel, x => x.AddSubscriptionCommand, x => x.addSubscriptionButton),
+                    this.BindCommand(ViewModel, x => x.LoginToFeedlyCommand, x => x.loginToFeedlyButton)
+                };
+
+
                 list.ItemsSource = ViewModel.Feeds;
 
-                toDispose(binding);
+                toDispose(d);
             });
         }
 

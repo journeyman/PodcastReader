@@ -92,6 +92,7 @@
     <Compile Include="Utils\PrExtensions.cs" />
     <Compile Include="Utils\RxExtensions.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
+    <Compile Include="Utils\UriExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Akavache, Version=4.1.2.0, Culture=neutral, processorArchitecture=MSIL">
