@@ -35,7 +35,7 @@ namespace Pr.Uwp.Infrastructure.Services.OAuth
             var url = $"{_endpoint}{CODE_PATH}{requestParams.ToQueryString()}";
 
             var redirect = Observable
-                .FromEvent<Uri>(handler => _browser.Navigated += handler, handler => _browser.Navigated -= handler)
+                .FromEvent<Uri>(handler => _browser.Navigating += handler, handler => _browser.Navigating -= handler)
                 .FirstAsync(uri => uri.OriginalString.StartsWith(_settings.RedirectUri, StringComparison.OrdinalIgnoreCase));
          
             await _browser.Navigate(new Uri(url, UriKind.Absolute));

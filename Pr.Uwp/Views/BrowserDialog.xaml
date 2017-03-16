@@ -8,11 +8,8 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid x:Name="LayoutRoot">
-        <WebView 
-            x:Name="WebBrowser"
-            NavigationStarting="WebBrowser_OnNavigationStarting"
-            NavigationCompleted="WebBrowser_OnNavigationCompleted"/>
+    <Grid>
+        <WebView x:Name="WebBrowser" />
         <ProgressBar VerticalAlignment="Center"
                      x:Name="ProgressBar"
                      Background="Transparent"/>

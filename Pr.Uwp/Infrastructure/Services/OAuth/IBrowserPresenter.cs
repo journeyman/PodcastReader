@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive;
 using System.Threading.Tasks;
 
 namespace Pr.Uwp.Infrastructure.Services.OAuth
@@ -6,7 +7,10 @@ namespace Pr.Uwp.Infrastructure.Services.OAuth
     public interface IBrowserPresenter
     {
         Task Navigate(Uri uri);
+        void Close();
 
-        event Action<Uri> Navigated;
+        IObservable<Uri> Navigating { get; }
+
+        IObservable<Unit> Closed { get; }
     }
 }

@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Core\Feedly\FeedlySandboxSettings.cs" />
     <Compile Include="Core\OAuth\Authorizer.cs" />
     <Compile Include="Core\OAuth\IBrowserPresenter.cs" />
     <Compile Include="Core\OAuth\OAuthResponse.cs" />
